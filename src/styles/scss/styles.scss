@@ -1,7 +1,50 @@
+:root {
+   $primary: rgba(33, 160, 56, 1);
+
+   $background: rgba(255, 255, 255, 1);
+   $surface: rgba(246, 251, 247, 1);
+
+   $secndary: rgba(9, 57, 34, 1);
+   $tertiary: rgba(216, 241, 160, 1);
+
+   $outlined: rgba(242, 243, 239, 1); // fields
+
+   $text-head: rgba(44, 49, 54, 1);
+   $text-paragraph: rgba(120, 120, 120, 1);
+   $text-white: rgba(255, 255, 255, 1);
+}
+
 body {
    font-size: 16px;
+}
 
-   h1 {
-      color: yellowgreen;
+.container {
+   width: 1440px;
+   display: block;
+   box-sizing: border-box;
+   position: relative;
+   padding: 0 145px;
+   background-color: $background;
+}
+
+// .header__navbar,
+// .header__content,
+.header__navbar,
+.header {
+   display: flex;
+}
+
+.header {
+   flex-wrap: wrap;
+
+   &__navbar {
+      width: 100&;
+   }
+
+   &__content {
+   }
+   &__cta-section {
+   }
+   &__stat-line {
    }
 }
