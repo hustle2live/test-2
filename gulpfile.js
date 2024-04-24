@@ -9,7 +9,7 @@ const htmlmin = require('gulp-htmlmin');
 const minify = require('gulp-minify');
 const clean = require('gulp-clean');
 const autoprefixer = require('gulp-autoprefixer');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 
 // Clear build folder
 
@@ -19,16 +19,14 @@ function clear() {
    }).pipe(clean());
 }
 
-// CSS
+// Compile SCSS to CSS
 
 function compileSass() {
    const source = './src/styles/scss/**/*.scss'; // Path to your SCSS files
    return src(source).pipe(sass().on('error', sass.logError)).pipe(dest('./src/styles/css'));
 }
 
-// .pipe(changed(source))
-
-// gulp.task('sass', compileSass);
+// CSS
 
 function css() {
    const source = './src/styles/css/**/*.css';
@@ -81,7 +79,8 @@ function javascript() {
 
 function watchFiles() {
    watch('./src/*.html', html);
-   watch('./src/css/*', css);
+   watch('./src/styles/scss/**/*.scss', compileSass);
+   watch('./src/styles/css/*', css);
    watch('./src/*.js', javascript);
    watch('./src/images/*', img);
 }
@@ -101,3 +100,4 @@ exports.watch = parallel(watchFiles, browserSync);
 exports.default = series(clear, parallel(html, compileSass, css, img, javascript));
 exports.javascript = javascript;
 exports.css = css;
+exports.compileSass = compileSass;
