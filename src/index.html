@@ -9,71 +9,90 @@
 </head>
 
 <body>
-    <header class="container header">
-        <div class="header__navbar-section">
-            <div class="header__logo">
-                <img src="./images/logo.png" alt="logoipsum company" />
+    <header class="header">
+        <div class="header__navigation">
+            <div class="header__navbar container">
+                <div class="header__logo">
+                    <img src="./images/logo.png" alt="logoipsum company" />
+                </div>
+                <nav class="header__menu">
+                    <ul>
+                        <li>
+                            <a href="#">Про нас</a>
+                        </li>
+                        <li>
+                            <a href="#">Переваги</a>
+                        </li>
+                        <li>
+                            <a href="#">Калькулятор прибутку</a>
+                        </li>
+                        <li>
+                            <button class="btn-primary">Розрахувати прибуток</button>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <nav class="header__menu">
-                <ul>
-                    <li>
-                        <a href="#">Про нас</a>
-                    </li>
-                    <li>
-                        <a href="#">Переваги</a>
-                    </li>
-                    <li>
-                        <a href="#">Калькулятор прибутку</a>
-                    </li>
-                    <li>
-                        <button class="btn-primary">Розрахувати прибуток</button>
-                    </li>
-                </ul>
-            </nav>
         </div>
-        <div class="header__content-section">
-            <p class="heading">
-                Інвестувати <span><img src="./images/icons/header-icon.svg" alt="award" /></span> <br /> проще, ніж
-                здається!
-            </p>
-            <p class="description">
-                Кожен клієнт має доступ до нової інвестиційної платформи з можливістю отримання доходу. Будь ласка,
-                пройдіть просту реєстрацію на сайті, а також ознайомтеся з інформацією нижче, щоб дізнатися, як
-                підвищити
-                свій дохід лише за кілька кроків!
-            </p>
-        </div>
-        <div class="header__offer-section">
-            <div class="background"></div>
-            <div class="form">
-                <form>
+        <div class="header__container container">
+            <div class="header__content-section">
+                <p class="heading">
+                    Інвестувати <span><img class="text-icon" src="./images/icons/header-icon.svg" alt="award" /></span>
+                    <br /> проще, ніж
+                    здається!
+                </p>
+                <p class="description">
+                    Кожен клієнт має доступ до нової інвестиційної платформи з можливістю отримання доходу. Будь ласка,
+                    пройдіть просту реєстрацію на сайті, а також ознайомтеся з інформацією нижче, щоб дізнатися, як
+                    підвищити
+                    свій дохід лише за кілька кроків!
+                </p>
+            </div>
+            <div class="header__offer-section">
+                <div class="bg-picture">
+                    <img src="./images/person.png" alt="personal consultant">
+                </div>
+                <form class="form">
                     <p class="form-heading">Почніть зараз</p>
                     <div class="field">
-                        <label for="kraken">Kraken</label><br />
-                        <input type="text" id="kraken" name="monster" value="K" />
+                        <label for="name">Ім'я</label>
+                        <input required type="text" id="name" name="name" placeholder="Ваше ім'я" />
                     </div>
                     <div class="field">
-                        <label for="sasquatch">Sasquatch</label><br />
-                        <input type="text" id="sasquatch" name="monster" value="S" />
+                        <label for="sasquatch">Прізвище</label>
+                        <input required type="text" id="sasquatch" name="monster" placeholder="Ваше прізвище" />
                     </div>
                     <div class="field">
-                        <label for="mothman">Mothman</label>
-                        <input type="text" id="mothman" name="monster" value="M" />
+                        <label for="mothman">Номер телефону</label>
+                        <input required type="text" id="mothman" name="monster" placeholder="+3 (__) ___ - __ - __" />
                     </div>
                     <div class="field">
-                        <label for="mothman2">Mothman</label>
-                        <input type="text" id="mothman2" name="monster" value="M" />
+                        <label for="mothman2">Електронна пошта</label>
+                        <input type="email" id="email" name="email" placeholder="Введіть вашу пошту" />
                     </div>
-                    <button class="btn-primary" type="submit">відправити</button>
+                    <button class="btn-primary" type="submit">Відправити</button>
                 </form>
             </div>
-        </div>
+            <div class="header__statline">
+                <div class="header__statline_item">
+                    <p class="header__statline_count">75+</p>
+                    <p class="header__statline_title">Клієнтів</p>
+                </div>
+                <div class="header__statline_item">
+                    <p class="header__statline_count">4.9</p>
+                    <p class="header__statline_title">Рейтинг Довіри</p>
+                </div>
+                <div class="header__statline_item">
+                    <p class="header__statline_count">100</p>
+                    <p class="header__statline_title">Інвестицій</p>
+                </div>
 
-        <div class="header__stat-line"></div>
+            </div>
+        </div>
     </header>
 
     <main class="container main"></main>
     <footer class="container footer"></footer>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>

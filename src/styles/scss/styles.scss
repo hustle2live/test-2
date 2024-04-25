@@ -13,8 +13,10 @@ $text-p: rgba(120, 120, 120, 1);
 $text-white: rgba(255, 255, 255, 1);
 
 body {
-   margin: 0;
    font-size: 16px;
+   margin: 0;
+   padding: 0;
+   background: pink;
 }
 
 .container {
@@ -22,14 +24,15 @@ body {
    display: block;
    box-sizing: border-box;
    position: relative;
+   margin: 0 auto;
    padding: 0 145px;
    background-color: $background-main;
 }
 
-// .header__navbar-section,
-.header__navbar-section,
-.header {
+.header__navbar,
+.header__container {
    display: flex;
+   // padding: 0 145px;
 }
 
 .btn-primary {
@@ -50,17 +53,20 @@ body {
 }
 
 .header {
-   flex-wrap: wrap;
+   position: relative;
+
+   &__navigation {
+      display: block;
+      width: 100%;
+      border-bottom: 1px solid rgba(228, 235, 242, 1);
+   }
 
    &__logo {
       width: 532px;
    }
 
-   &__navbar-section {
-      width: 100%;
-      min-width: 100%;
+   &__navbar {
       height: 83px;
-      border-bottom: 1px solid rgba(228, 235, 242, 1);
       align-items: center;
 
       ul li {
@@ -77,7 +83,7 @@ body {
    }
 
    &__content-section {
-      width: 514px;
+      width: 44%;
       margin-top: 184px;
       margin-right: 20px;
 
@@ -87,6 +93,11 @@ body {
          line-height: 62.4px;
          text-align: left;
          color: $text-h;
+         margin: 0;
+      }
+      .text-icon {
+         display: inline-block;
+         vertical-align: middle;
       }
 
       .description {
@@ -95,15 +106,131 @@ body {
          line-height: 20.8px;
          text-align: left;
          color: $text-p;
+         margin-top: 16px;
       }
    }
 
    &__offer-section {
-      width: 50%;
+      width: 54%;
+      box-sizing: border-box;
+      height: 748px;
+      position: relative;
 
+      &::before {
+         display: block;
+         width: 550px;
+         height: 705px;
+         background: $tertiary;
+         content: '';
+         left: 0;
+         bottom: 0;
+         border-radius: 65px;
+         position: absolute;
+         z-index: 1;
+      }
 
-      
+      .bg-picture {
+         display: block;
+         position: absolute;
+         bottom: 0;
+         right: -21%;
+         height: 685px;
+         z-index: 2;
+      }
+
+      .form {
+         position: absolute;
+         box-sizing: border-box;
+         left: 90px;
+         top: 184px;
+         width: 327px;
+         border-radius: 42px;
+         background-color: $background-main;
+         padding: 26px 28px;
+         z-index: 3;
+      }
+
+      .form-heading {
+         text-align: center;
+         font-size: 20px;
+         font-weight: 600;
+         line-height: 26px;
+         color: $text-h;
+         margin: 0 auto;
+      }
+
+      .field {
+         display: block;
+         box-sizing: border-box;
+         height: 52px;
+         padding: 8px 17px;
+         margin: 14px auto;
+         border-radius: 10px;
+         background: $outlined;
+
+         label,
+         input {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 15.6px;
+            text-align: left;
+            padding: 0;
+         }
+
+         input {
+            margin-top: 5px;
+            background: $outlined;
+            border: none;
+            outline: none;
+         }
+
+         input:required ~ label,
+         input:required ~ label:after {
+            content: '*';
+            color: red !important;
+         }
+      }
+
+      .btn-primary {
+         width: 100%;
+      }
    }
-   &__stat-line {
+   &__statline {
+      display: flex;
+      box-sizing: border-box;
+      gap: 78px;
+      position: absolute;
+      background: $surface;
+      content: '';
+      height: 157px;
+      width: 800px;
+      bottom: 70px;
+      padding: 42px 0 42px 145px;
+      left: 0;
+
+      &_item {
+         display: block;
+         text-align: left;
+      }
+
+      &_count,
+      &_title {
+         margin: 0;
+      }
+
+      &_count {
+         font-size: 36px;
+         font-weight: 600;
+         line-height: 46.8px;
+         color: $text-h;
+      }
+
+      &_title {
+         font-size: 16px;
+         font-weight: 400;
+         line-height: 20.8px;
+         color: $text-p;
+      }
    }
 }
