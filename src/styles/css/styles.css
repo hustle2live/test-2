@@ -245,6 +245,7 @@ body {
 }
 .about__article {
   display: flex;
+  align-items: center;
   box-sizing: border-box;
   width: 660px;
   height: 324px;
