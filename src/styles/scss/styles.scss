@@ -26,7 +26,7 @@ body {
    position: relative;
    margin: 0 auto;
    padding: 0 145px;
-   background-color: $background-main;
+   background-color: inherit;
 }
 
 .header__navbar,
@@ -52,8 +52,34 @@ body {
    }
 }
 
+.heading {
+   font-size: 36px;
+   font-weight: 600;
+   line-height: 46.8px;
+   text-align: left;
+   color: $text-h;
+   margin: 0;
+}
+
+.title {
+   font-size: 18px;
+   font-weight: 600;
+   line-height: 23.4px;
+   text-align: left;
+   color: $text-h;
+}
+
+.text {
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 20.8px;
+   text-align: left;
+   color: $text-p;
+}
+
 .header {
    position: relative;
+   background-color: $background-main;
 
    &__navigation {
       display: block;
@@ -87,7 +113,7 @@ body {
       margin-top: 184px;
       margin-right: 20px;
 
-      .heading {
+      &__heading {
          font-size: 48px;
          font-weight: 600;
          line-height: 62.4px;
@@ -95,12 +121,13 @@ body {
          color: $text-h;
          margin: 0;
       }
-      .text-icon {
+
+      &__text-icon {
          display: inline-block;
          vertical-align: middle;
       }
 
-      .description {
+      &__description {
          font-size: 16px;
          font-weight: 400;
          line-height: 20.8px;
@@ -306,22 +333,6 @@ body {
 
    &__description {
       margin-top: 20px;
-
-      .title {
-         font-size: 18px;
-         font-weight: 600;
-         line-height: 23.4px;
-         text-align: left;
-         color: $text-h;
-      }
-
-      .text {
-         font-size: 16px;
-         font-weight: 400;
-         line-height: 20.8px;
-         text-align: left;
-         color: $text-p;
-      }
    }
 
    &__picture,
@@ -329,4 +340,87 @@ body {
       display: block;
       min-width: 342px;
    }
+}
+
+.benefits {
+   padding-top: 23px;
+   margin-bottom: 140px;
+   background: $surface;
+   background: linear-gradient(0deg, $background-main 22%, $surface 22%);
+
+   &__item-card_image,
+   &__section {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 24px;
+      gap: 24px;
+   }
+
+   &__cards-grid {
+      width: 100%;
+      position: relative;
+      padding-bottom: 40px;
+   }
+
+   &__item-card {
+      width: 370px;
+      text-align: left;
+      padding: 17px 17px 35px 17px;
+      background: $background-main;
+      border-radius: 42px;
+      box-shadow: 20px 20px 60px 0px #1721000f;
+
+      &_description {
+         &-title,
+         &-text {
+            margin: 6px 0;
+         }
+      }
+
+      &_image {
+         border-radius: 65px;
+         height: 336px;
+         justify-content: center;
+         align-items: center;
+         background: $tertiary;
+         margin: 0;
+         margin-bottom: 12px;
+
+         img {
+            width: 265px;
+            height: 270px;
+         }
+      }
+
+      &:nth-of-type(1) &_image img {
+         width: 248px;
+         height: 248px;
+      }
+
+      &:nth-of-type(2) &_image img {
+         width: 273px;
+         height: 273px;
+      }
+   }
+}
+
+.container {
+}
+.benefits__section {
+}
+.heading {
+}
+.deposit {
+}
+.benefits__cards-grid {
+}
+.benefits__item-card {
+}
+.benefits__item-image {
+}
+.benefits__item-descripton {
+}
+.benefits__item-title {
+}
+.benefits__item-text {
 }
