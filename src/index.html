@@ -9,26 +9,18 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="header__navigation">
-            <div class="header__navbar container">
-                <div class="header__logo">
+    <header id="top" class="header">
+        <div class="header__navigation navigation">
+            <div class="navigation__navbar container">
+                <a href="#top" class="navigation__logo">
                     <img src="./images/logo.png" alt="logoipsum company" />
-                </div>
-                <nav aria-label="Top navigation bar" class="header__menu">
+                </a>
+                <nav aria-label="Top navigation bar" class="navigation__menu">
                     <ul>
-                        <li>
-                            <a href="#">Про нас</a>
-                        </li>
-                        <li>
-                            <a href="#">Переваги</a>
-                        </li>
-                        <li>
-                            <a href="#">Калькулятор прибутку</a>
-                        </li>
-                        <li>
-                            <button class="btn-primary">Розрахувати прибуток</button>
-                        </li>
+                        <li><a href="#about">Про нас</a></li>
+                        <li><a href="#benefits">Переваги</a></li>
+                        <li><a href="#deposit">Калькулятор прибутку</a></li>
+                        <li><button class="btn-primary">Розрахувати прибуток</button></li>
                     </ul>
                 </nav>
             </div>
@@ -36,8 +28,9 @@
         <div class="header__container container">
             <div class="header__content-section">
                 <p class="header__content-section__heading heading">
-                    Інвестувати <span><img class="header__content-section__text-icon"
-                            src="./images/icons/header-icon.svg" alt="award" /></span>
+                    Інвестувати
+                    <span><img class="header__content-section__text-icon" src="./images/icons/header-icon.svg"
+                            alt="award" /></span>
                     <br />
                     проще, ніж здається!
                 </p>
@@ -48,28 +41,28 @@
                 </p>
             </div>
             <div class="header__offer-section">
-                <div class="bg-picture">
+                <div class="header__offer-section__bg-picture">
                     <img src="./images/person.png" alt="personal consultant" />
                 </div>
-                <form class="form">
-                    <p class="form-heading">Почніть зараз</p>
-                    <div class="field">
+                <form class="header__offer-section__form">
+                    <p class="header__offer-section__form-heading">Почніть зараз</p>
+                    <div class="header__offer-section__form-field">
                         <label for="name">Ім'я</label>
                         <input required type="text" id="name" name="name" placeholder="Ваше ім'я" />
                     </div>
-                    <div class="field">
+                    <div class="header__offer-section__form-field">
                         <label for="sasquatch">Прізвище</label>
                         <input required type="text" id="sasquatch" name="monster" placeholder="Ваше прізвище" />
                     </div>
-                    <div class="field">
+                    <div class="header__offer-section__form-field">
                         <label for="mothman">Номер телефону</label>
                         <input required type="text" id="mothman" name="monster" placeholder="+3 (__) ___ - __ - __" />
                     </div>
-                    <div class="field">
+                    <div class="header__offer-section__form-field">
                         <label for="mothman2">Електронна пошта</label>
                         <input type="email" id="email" name="email" placeholder="Введіть вашу пошту" />
                     </div>
-                    <button class="btn-primary" type="submit">Відправити</button>
+                    <button class="header__offer-section__form-btn btn-primary" type="submit">Відправити</button>
                 </form>
             </div>
             <div class="header__statline">
@@ -94,8 +87,8 @@
             <p class="about__heading heading">Про нас</p>
             <div class="about__container container">
                 <section class="about__section">
-                    <article class="about__article">
-                        <div class="about__description">
+                    <article class="about__section__article">
+                        <div class="about__section__description">
                             <p class="title">Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя</p>
                             <p class="text">
                                 Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар
@@ -106,12 +99,12 @@
                                 незмінною.
                             </p>
                         </div>
-                        <div class="about__picture">
+                        <div class="about__section__picture">
                             <img src="./images/abstract_green-92.png" alt="" />
                         </div>
                     </article>
-                    <article class="about__article">
-                        <div class="about__description">
+                    <article class="about__section__article">
+                        <div class="about__section__description">
                             <p class="title">Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя</p>
                             <p class="text">
                                 Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар
@@ -122,17 +115,17 @@
                                 незмінною.
                             </p>
                         </div>
-                        <div class="about__picture">
+                        <div class="about__section__picture">
                             <img src="./images/figure_run.png" alt="" />
                         </div>
                     </article>
                 </section>
                 <section class="about__section">
-                    <article class="about__article">
-                        <div class="about__picture">
-                            <img src="./images/brain.png" alt="" />
+                    <article class="about__section__article">
+                        <div class="about__section__picture">
+                            <img src="./images/brain.png" alt="brain abstract" />
                         </div>
-                        <div class="about__description">
+                        <div class="about__section__description">
                             <p class="title">Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя</p>
                             <p class="text">
                                 Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя Lorem Ipsum є, фактично,
@@ -209,7 +202,6 @@
                         </div>
                     </div>
                     <div class="deposit__range__income">
-
                         <p class="deposit__range__income-title">Сума прибутку</p>
                         <p class="deposit__range__income-output">96123</p>
                         <input type="range" class="deposit__range__income-input" />
@@ -226,26 +218,36 @@
     </main>
 
     <footer class="footer">
-        <div class="footer__menu">
-            <div class="footer__menu__logo"></div>
-            <nav aria-label="Navigation menu bottom" class="footer__menu__navlist">
-                <ul>
-                    <li> <a href="#">Про нас</a></li>
-                    <li> <a href="#">Переваги</a></li>
-                    <li> <a href="#">Калькулятор прибутку</a></li>
-                </ul>
-            </nav>
+        <div class="footer__navigation navigation">
+            <span class="divider"></span>
+            <div class="navigation__navbar container">
+                <a href="#top" class="navigation__logo">
+                    <img src="./images/logo.png" alt="logoipsum company" />
+                </a>
+                <nav aria-label="Navigation menu bottom" class="navigation__menu">
+                    <ul>
+                        <li><a href="#about">Про нас</a></li>
+                        <li><a href="#benefits">Переваги</a></li>
+                        <li><a href="#deposit">Калькулятор прибутку</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-        <div class="footer__text container">
-            <p>Lorem Ipsum - це текст-"риба", що використовується в друкарстві та дизайні</p>
-            <p>
-                Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову
-                гранку та склав на ній підбірку зразків шрифтів. "Риба" не тільки успішно пережила п'ять століть, але й
-                прижилася в електронному верстуванні, залишаючись по суті незмінною. Вона популяризувалась в 60-их роках
-                минулого сторіччя завдяки виданню зразків шрифтів Letraset, які містили уривки з Lorem Ipsum, і вдруге -
-                нещодавно завдяки програмам комп'ютерного верстування на кшталт Aldus Pagemaker, які використовували
-                різні версії Lorem Ipsum.
-            </p>
+        <div class="footer__content">
+            <div class="footer__content__text container">
+                <p>Lorem Ipsum - це текст-"риба", що використовується в друкарстві та дизайні</p>
+                <span class="divider"></span>
+                <p>
+                    Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову
+                    гранку та склав на ній підбірку зразків шрифтів. "Риба" не тільки успішно пережила п'ять століть,
+                    але
+                    й прижилася в електронному верстуванні, залишаючись по суті незмінною. Вона популяризувалась в 60-их
+                    роках минулого сторіччя завдяки виданню зразків шрифтів Letraset, які містили уривки з Lorem Ipsum,
+                    і
+                    вдруге - нещодавно завдяки програмам комп'ютерного верстування на кшталт Aldus Pagemaker, які
+                    використовували різні версії Lorem Ipsum.
+                </p>
+            </div>
         </div>
     </footer>
     <script src="./js/script.js"></script>
