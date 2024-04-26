@@ -445,14 +445,18 @@ body {
 }
 .deposit__range__income-input, .deposit__range__invest-input {
   height: 44px;
-  opacity: 1;
-  accent-color: rgb(33, 160, 56);
+  accent-color: rgb(33, 159, 56);
 }
 .deposit__range__income-input::-webkit-slider-runnable-track, .deposit__range__invest-input::-webkit-slider-runnable-track {
-  height: 20px;
-  box-shadow: 3px 3px 3px rgba(193, 193, 193, 0.5529411765) inset;
+  box-shadow: 0px 3px 3px -1px rgb(200, 229, 206) inset;
   border-radius: 16px;
-  margin: auto -5px;
+  margin: 0 -6px;
+}
+.deposit__range__income-input::-webkit-slider-thumb, .deposit__range__invest-input::-webkit-slider-thumb {
+  cursor: pointer;
+  outline: 6px solid rgb(255, 255, 255);
+  border-radius: 23px;
+  box-shadow: 5px 5px 10px 0px rgba(23, 33, 0, 0.13);
 }
 .deposit__range__income-points, .deposit__range__invest-points {
   display: flex;
