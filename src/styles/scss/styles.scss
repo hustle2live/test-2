@@ -344,7 +344,6 @@ body {
 
 .benefits {
    padding-top: 23px;
-   margin-bottom: 140px;
    background: $surface;
    background: linear-gradient(0deg, $background-main 22%, $surface 22%);
 
@@ -404,23 +403,165 @@ body {
    }
 }
 
-.container {
-}
-.benefits__section {
-}
-.heading {
-}
 .deposit {
-}
-.benefits__cards-grid {
-}
-.benefits__item-card {
-}
-.benefits__item-image {
-}
-.benefits__item-descripton {
-}
-.benefits__item-title {
-}
-.benefits__item-text {
+   padding: 48px 0;
+   background: $background-main;
+
+   &__container,
+   &__plan,
+   &__plan__description,
+   &__range {
+      display: flex;
+   }
+
+   &__range,
+   &__plan {
+      box-sizing: border-box;
+      flex-direction: column;
+   }
+
+   &__plan {
+      width: 466px;
+      background-color: $secndary;
+      padding: 44px 30px;
+      border-radius: 42px;
+      height: fit-content;
+      color: $text-white;
+      align-items: center;
+      margin: auto;
+      margin-left: 0;
+
+      &-title,
+      &-count {
+         margin: 0;
+      }
+
+      &-count {
+         font-size: 48px;
+         font-weight: 600;
+         line-height: 62.4px;
+         color: $primary;
+         margin-top: 12px;
+      }
+
+      &-title,
+      &__description-text {
+         font-size: 16px;
+         font-weight: 400;
+         line-height: 20.8px;
+      }
+
+      &__description {
+         box-sizing: border-box;
+         flex-wrap: nowrap;
+         background-color: rgba(255, 255, 255, 0.1);
+         justify-content: space-between;
+         align-items: center;
+         width: 378px;
+         padding: 22px 23px;
+         gap: 42px;
+         border-radius: 20px;
+         margin: 14px;
+
+         &-text,
+         &-value {
+            margin: 0;
+         }
+
+         &-text {
+            display: block;
+            width: 42%;
+         }
+
+         &-value {
+            width: fit-content;
+            white-space: nowrap;
+            font-size: 36px;
+            font-weight: 600;
+            line-height: 46.8px;
+            color: $primary;
+         }
+      }
+
+      &_button {
+         width: 100%;
+      }
+   }
+
+   &__range {
+      width: 658px;
+      gap: 12px;
+      margin-left: auto;
+      background-color: inherit;
+
+      &__heading {
+         text-align: center;
+      }
+
+      &__invest,
+      &__income {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 9px;
+         justify-content: space-between;
+         background: $surface;
+         padding: 35px 52px;
+         color: $text-h;
+         border-radius: 65px;
+      }
+
+      &__income,
+      &__invest {
+         &-title,
+         &-output {
+            margin: 0;
+         }
+         &-title {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 23.4px;
+            text-align: left;
+            color: $text-h;
+         }
+
+         &-output {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 23.4px;
+            text-align: right;
+            color: $primary;
+         }
+
+         &-input,
+         &-points {
+            width: 100%;
+         }
+         &-input {
+            height: 44px;
+            opacity: 1;
+            accent-color: $primary;
+
+            &::-webkit-slider-runnable-track {
+               height: 20px;
+               box-shadow: 3px 3px 3px #c1c1c18d inset;
+               border-radius: 16px;
+               margin: auto -5px;
+               // background: rgba(200, 229, 206, 1);
+            }
+         }
+
+         &-points {
+            display: flex;
+            justify-content: space-between;
+
+            p {
+               font-size: 16px;
+               font-weight: 400;
+               line-height: 20.8px;
+               color: $text-h;
+               margin: 0;
+            }
+         }
+      }
+   }
 }
