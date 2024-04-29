@@ -669,6 +669,38 @@ body {
    }
 }
 
+.top-btn {
+   display: none;
+   position: fixed;
+   bottom: 14px;
+   right: 0;
+   border: none;
+   outline: none;
+
+   background-color: $secndary;
+   color: $tertiary;
+   padding: 14px 10px 16px;
+   min-width: 60px;
+   width: auto;
+   text-align: center;
+   font-size: 2rem;
+   text-decoration: none;
+   cursor: pointer;
+   border-radius: 12px;
+   box-shadow: 2px 2px 12px -4px #636363;
+   transition-duration: 0.5s;
+   z-index: 99;
+   opacity: 0.8;
+   transform: scale(0.6);
+
+   &:hover {
+      opacity: 1;
+      background-color: $surface;
+      color: #000000;
+      border-radius: 8px;
+      transform: scale(0.7);
+   }
+}
 @media screen and (max-width: 425px) {
    body {
       font-size: 12px;
@@ -851,13 +883,24 @@ body {
             li {
                color: $text-white;
                display: block;
-               margin: 24px auto;
+               margin: 5px auto;
                font-size: 20px;
+               height: 48px;
+
+               a {
+                  height: 100%;
+                  line-height: 48px;
+                  vertical-align: middle;
+               }
             }
          }
 
          &.open {
             transform: translateX(0%);
+         }
+
+         .btn-primary {
+            margin-top: 20px;
          }
       }
    }
