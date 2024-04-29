@@ -772,8 +772,69 @@ body {
     width: 130px !important;
     height: 131px !important;
   }
-  .deposit {
+  .deposit__container {
+    flex-direction: column-reverse;
+  }
+  .deposit__range, .deposit__plan {
+    width: 100%;
+  }
+  .deposit__plan {
+    padding: 24px 30px;
+    margin-top: 28px;
+  }
+  .deposit__plan__description {
+    width: 271px;
+    gap: 0;
+    padding: 15px 23px;
+  }
+  .deposit__plan__description-text {
+    width: 52%;
+  }
+  .deposit__plan__description-value {
+    font-size: 27px;
+    font-weight: 600;
+    line-height: 35.1px;
+  }
+  .deposit__plan-count {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 46.8px;
+  }
+  .deposit__plan-title, .deposit__plan__description-text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15.6px;
+  }
+  .deposit__range__invest, .deposit__range__income {
+    gap: 4px;
+    padding: 18px 35px;
+    border-radius: 65px;
+  }
+  .deposit__range__invest-title, .deposit__range__invest-output, .deposit__range__income-title, .deposit__range__income-output {
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 17.55px;
+  }
+  .deposit__range__invest-points p, .deposit__range__income-points p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15.6px;
+  }
+  .deposit__range__invest-points p:nth-of-type(2), .deposit__range__invest-points p:nth-of-type(3), .deposit__range__income-points p:nth-of-type(2), .deposit__range__income-points p:nth-of-type(3) {
     display: none;
+  }
+  .deposit__range__invest-input, .deposit__range__income-input {
+    height: 4px;
+    margin: 10px 0;
+  }
+  .deposit__range__invest-input::-webkit-slider-runnable-track, .deposit__range__income-input::-webkit-slider-runnable-track {
+    border-radius: 16px;
+  }
+  .deposit__range__invest-input::-webkit-slider-thumb, .deposit__range__income-input::-webkit-slider-thumb {
+    outline: 4px solid rgb(255, 255, 255);
+    max-width: 13px !important;
+    max-height: 13px !important;
+    border-radius: 23px;
   }
   .footer {
     display: none;
