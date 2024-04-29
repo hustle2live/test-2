@@ -441,7 +441,7 @@ body {
 }
 .deposit__plan__description-text {
   display: block;
-  width: 42%;
+  width: 50%;
 }
 .deposit__plan__description-value {
   width: fit-content;

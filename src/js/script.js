@@ -1,24 +1,20 @@
-const menuButton = document.querySelector('.header__menu-btn');
+const investInput = document.querySelector('.deposit__range__invest-input');
+const investOutput = document.querySelector('.deposit__range__invest-output');
+
 const sideBarMobile = document.querySelector('.header__sidebar-mobile');
 
-const formElem = document.querySelector('.header__offer-section__form');
-
-menuButton.addEventListener('click', () => {
-   sideBarMobile.classList.toggle('open');
+investInput.addEventListener('change', () => {
+   investOutput.textContent = investInput.value;
 });
 
-// submit form script
-formElem.addEventListener('submit', (e) => {
-   e.preventDefault();
+// const showingTopBarOnScroll = () => {
+//    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+//       topMenuBar.style.top = '0';
+//    } else {
+//       topMenuBar.style.top = '-86px';
+//    }
+// };
 
-   const formData = new FormData(formElem);
-
-   const userData = {
-      name: formData.get('firstName'),
-      surname: formData.get('secondName'),
-      mail: formData.get('emailAddress'),
-      phone: formData.get('phoneNumber')
-   };
-
-   console.log(userData);
-});
+// window.onscroll = function () {
+//    showingTopBarOnScroll();
+// };
