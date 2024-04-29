@@ -463,6 +463,9 @@ body {
 .deposit__range__heading {
   text-align: center;
 }
+.deposit__range__income {
+  transition: all 600ms ease;
+}
 .deposit__range__invest, .deposit__range__income {
   display: flex;
   flex-wrap: wrap;
@@ -473,46 +476,46 @@ body {
   color: rgb(44, 49, 54);
   border-radius: 65px;
 }
-.deposit__range__income-title, .deposit__range__income-output, .deposit__range__invest-title, .deposit__range__invest-output {
+.deposit__range__invest-title, .deposit__range__invest-output, .deposit__range__income-title, .deposit__range__income-output {
   margin: 0;
 }
-.deposit__range__income-title, .deposit__range__invest-title {
+.deposit__range__invest-title, .deposit__range__income-title {
   font-size: 18px;
   font-weight: 600;
   line-height: 23.4px;
   text-align: left;
   color: rgb(44, 49, 54);
 }
-.deposit__range__income-output, .deposit__range__invest-output {
+.deposit__range__invest-output, .deposit__range__income-output {
   font-size: 18px;
   font-weight: 600;
   line-height: 23.4px;
   text-align: right;
   color: rgb(33, 160, 56);
 }
-.deposit__range__income-input, .deposit__range__income-points, .deposit__range__invest-input, .deposit__range__invest-points {
+.deposit__range__invest-input, .deposit__range__invest-points, .deposit__range__income-input, .deposit__range__income-points {
   width: 100%;
 }
-.deposit__range__income-input, .deposit__range__invest-input {
+.deposit__range__invest-input, .deposit__range__income-input {
   height: 44px;
   accent-color: rgb(33, 159, 56);
 }
-.deposit__range__income-input::-webkit-slider-runnable-track, .deposit__range__invest-input::-webkit-slider-runnable-track {
+.deposit__range__invest-input::-webkit-slider-runnable-track, .deposit__range__income-input::-webkit-slider-runnable-track {
   box-shadow: 0px 3px 3px -1px rgb(200, 229, 206) inset;
   border-radius: 16px;
   margin: 0 -6px;
 }
-.deposit__range__income-input::-webkit-slider-thumb, .deposit__range__invest-input::-webkit-slider-thumb {
+.deposit__range__invest-input::-webkit-slider-thumb, .deposit__range__income-input::-webkit-slider-thumb {
   cursor: pointer;
   outline: 6px solid rgb(255, 255, 255);
   border-radius: 23px;
   box-shadow: 5px 5px 10px 0px rgba(23, 33, 0, 0.13);
 }
-.deposit__range__income-points, .deposit__range__invest-points {
+.deposit__range__invest-points, .deposit__range__income-points {
   display: flex;
   justify-content: space-between;
 }
-.deposit__range__income-points p, .deposit__range__invest-points p {
+.deposit__range__invest-points p, .deposit__range__income-points p {
   font-size: 16px;
   font-weight: 400;
   line-height: 20.8px;

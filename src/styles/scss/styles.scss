@@ -550,6 +550,10 @@ body {
          text-align: center;
       }
 
+      &__income {
+         transition: all 600ms ease;
+      }
+
       &__invest,
       &__income {
          display: flex;
@@ -560,10 +564,7 @@ body {
          padding: 35px 52px;
          color: $text-h;
          border-radius: 65px;
-      }
 
-      &__income,
-      &__invest {
          &-title,
          &-output {
             margin: 0;
