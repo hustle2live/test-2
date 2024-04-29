@@ -1,20 +1,9 @@
-const counterPlus = () => {
-   let counter = 0;
+const menuButton = document.querySelector('.header__menu-btn');
+const sideBarMobile = document.querySelector('.header__sidebar-mobile');
 
-   return function () {
-      return ++counter;
-   };
-};
+console.log(menuButton);
+console.log(sideBarMobile);
 
-const counterFirst = counterPlus();
-const counterSecond = counterPlus();
-
-console.log('counterFirst : ' + counterFirst());
-console.log('counterFirst : ' + counterFirst());
-console.log('counterFirst : ' + counterFirst());
-console.log('counterFirst : ' + counterFirst());
-console.log('counterFirst : ' + counterFirst());
-
-console.log('second : ' + counterSecond());
-console.log('second : ' + counterSecond());
-console.log('second : ' + counterSecond());
+menuButton.addEventListener('click', () => {
+   sideBarMobile.classList.toggle('open');
+});
