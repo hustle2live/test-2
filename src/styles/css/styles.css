@@ -685,8 +685,9 @@ body {
   }
   .header__sidebar-mobile.open + .header__menu-btn img.close {
     display: block;
-    width: 24px;
-    height: 24px;
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
   }
   .header__sidebar-mobile {
     position: fixed;
