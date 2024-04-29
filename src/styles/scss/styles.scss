@@ -14,7 +14,7 @@ body {
    font-size: 16px;
    margin: 0;
    padding: 0;
-   background: pink;
+   background: $background-main;
 }
 
 .container {
@@ -656,22 +656,15 @@ body {
       line-height: 35px;
    }
 
-   .title,
-   .text {
-      // text-align: center;
-   }
-
    .container {
-      // width: 100vw;
-      // max-width: 100vw;
       width: 100%;
-      // max-width: 100%;
       padding: 0 20px;
    }
 
    .navigation {
       &__logo {
-         width: auto;
+         width: 169px;
+         height: 51px;
       }
    }
 
@@ -684,6 +677,16 @@ body {
 
    .header {
       overflow-x: hidden;
+
+      .navigation__logo {
+         height: 45px;
+         width: 150px;
+
+         img {
+            height: 100%;
+            width: auto;
+         }
+      }
 
       &__content-section {
          margin: 0;
@@ -1037,6 +1040,37 @@ body {
    }
 
    .footer {
-      display: none;
+      padding-top: 24px;
+
+      .navigation {
+         width: 100%;
+
+         &__navbar {
+            width: 100%;
+            flex-direction: column;
+            margin: 24px auto;
+         }
+
+         &__menu {
+            ul {
+               padding: 0;
+            }
+         }
+      }
+
+      &__content {
+         box-sizing: border-box;
+         padding: 24px 14px;
+         width: 100%;
+
+         p {
+            padding-top: 0;
+            width: 100%;
+
+            &:first-of-type {
+               width: 100%;
+            }
+         }
+      }
    }
 }
