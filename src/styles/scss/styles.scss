@@ -806,19 +806,21 @@ body {
          transition-property: 600ms;
          z-index: 99;
 
-         &::before {
-            content: url('../../images/icons/menu-icon.svg');
+         img.close {
+            display: none;
          }
       }
 
       &__sidebar-mobile.open + &__menu-btn {
          background-color: transparent;
          box-shadow: none;
-
-         &::before {
-            content: url('../../images/icons/icons8-close-48.svg');
-            width: 24px;
-            height: 24px;
+         img {
+            display: none;
+            &.close {
+               display: block;
+               width: 24px;
+               height: 24px;
+            }
          }
       }
 

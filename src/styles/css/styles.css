@@ -673,15 +673,18 @@ body {
     transition-property: 600ms;
     z-index: 99;
   }
-  .header__menu-btn::before {
-    content: url("../../images/icons/menu-icon.svg");
+  .header__menu-btn img.close {
+    display: none;
   }
   .header__sidebar-mobile.open + .header__menu-btn {
     background-color: transparent;
     box-shadow: none;
   }
-  .header__sidebar-mobile.open + .header__menu-btn::before {
-    content: url("../../images/icons/icons8-close-48.svg");
+  .header__sidebar-mobile.open + .header__menu-btn img {
+    display: none;
+  }
+  .header__sidebar-mobile.open + .header__menu-btn img.close {
+    display: block;
     width: 24px;
     height: 24px;
   }
