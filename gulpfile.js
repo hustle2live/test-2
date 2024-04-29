@@ -78,11 +78,11 @@ function javascript() {
 // watch files
 
 function watchFiles() {
-   watch('./src/*.html', html);
+   watch('./src/**/*.html', html);
    watch('./src/styles/scss/**/*.scss', compileSass);
-   watch('./src/styles/css/*', css);
-   watch('./src/*.js', javascript);
-   watch('./src/images/*', img);
+   watch('./src/styles/css/**/*.css', css);
+   watch('./src/**/*.js', javascript);
+   watch('./src/images/**/*.*', img);
 }
 
 // browsersync
