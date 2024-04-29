@@ -556,6 +556,7 @@ body {
 
       &__invest,
       &__income {
+         cursor: pointer;
          display: flex;
          flex-wrap: wrap;
          gap: 9px;
@@ -590,6 +591,7 @@ body {
             width: 100%;
          }
 
+         &-input:disabled,
          &-input {
             height: 44px;
             accent-color: rgba(33, 159, 56, 1);

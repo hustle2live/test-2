@@ -467,6 +467,7 @@ body {
   transition: all 600ms ease;
 }
 .deposit__range__invest, .deposit__range__income {
+  cursor: pointer;
   display: flex;
   flex-wrap: wrap;
   gap: 9px;
@@ -496,16 +497,16 @@ body {
 .deposit__range__invest-input, .deposit__range__invest-points, .deposit__range__income-input, .deposit__range__income-points {
   width: 100%;
 }
-.deposit__range__invest-input, .deposit__range__income-input {
+.deposit__range__invest-input:disabled, .deposit__range__invest-input, .deposit__range__income-input:disabled, .deposit__range__income-input {
   height: 44px;
   accent-color: rgb(33, 159, 56);
 }
-.deposit__range__invest-input::-webkit-slider-runnable-track, .deposit__range__income-input::-webkit-slider-runnable-track {
+.deposit__range__invest-input:disabled::-webkit-slider-runnable-track, .deposit__range__invest-input::-webkit-slider-runnable-track, .deposit__range__income-input:disabled::-webkit-slider-runnable-track, .deposit__range__income-input::-webkit-slider-runnable-track {
   box-shadow: 0px 3px 3px -1px rgb(200, 229, 206) inset;
   border-radius: 16px;
   margin: 0 -6px;
 }
-.deposit__range__invest-input::-webkit-slider-thumb, .deposit__range__income-input::-webkit-slider-thumb {
+.deposit__range__invest-input:disabled::-webkit-slider-thumb, .deposit__range__invest-input::-webkit-slider-thumb, .deposit__range__income-input:disabled::-webkit-slider-thumb, .deposit__range__income-input::-webkit-slider-thumb {
   cursor: pointer;
   outline: 6px solid rgb(255, 255, 255);
   border-radius: 23px;
