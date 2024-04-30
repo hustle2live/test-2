@@ -592,7 +592,7 @@ body {
   transform: scale(0.7);
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 625px) {
   body {
     font-size: 12px;
   }
@@ -603,6 +603,7 @@ body {
   }
   .container {
     width: 100%;
+    max-width: 375px;
     padding: 0 20px;
   }
   .navigation__logo {
@@ -628,6 +629,10 @@ body {
   }
   .header__container {
     margin-top: 84px;
+    max-width: unset;
+  }
+  .header .navigation__navbar {
+    max-width: unset;
   }
   .header .navigation__logo {
     height: 45px;
@@ -659,6 +664,8 @@ body {
   }
   .header__content-section, .header__offer-section, .header__statline {
     width: 100%;
+    max-width: 375px;
+    margin: 0 auto;
   }
   .header__offer-section {
     margin-top: 16px;
@@ -684,6 +691,7 @@ body {
     position: unset;
     margin: 0px -20px;
     width: auto;
+    max-width: 100vw;
     min-width: 100vw;
     padding-left: 0;
     padding-right: 0;
@@ -701,7 +709,6 @@ body {
     display: block;
     margin-left: auto;
     margin-right: 0;
-    transition-property: 600ms;
     z-index: 99;
   }
   .header__menu-btn img.close {
@@ -722,7 +729,6 @@ body {
   }
   .header__sidebar-mobile {
     position: fixed;
-    top: 0;
     min-width: 340px;
     width: auto;
     height: 100vh;
@@ -736,6 +742,7 @@ body {
   }
   .header__sidebar-mobile ul {
     width: 100%;
+    max-width: 375px;
     display: flex;
     flex-direction: column;
     margin: 50px 0 0;
@@ -770,6 +777,7 @@ body {
   }
   .about__section__article {
     width: 100% !important;
+    max-width: 375px;
     height: 438px !important;
     justify-content: space-around;
     text-align: center;
@@ -880,6 +888,7 @@ body {
   }
   .deposit__range, .deposit__plan {
     width: 100%;
+    max-width: 375px;
   }
   .deposit__plan {
     padding: 24px 30px;
@@ -955,8 +964,12 @@ body {
   }
   .footer__content {
     box-sizing: border-box;
+    margin: 0 auto;
     padding: 24px 14px;
     width: 100%;
+  }
+  .footer__content__text {
+    max-width: 375px;
   }
   .footer__content p {
     padding-top: 0;
