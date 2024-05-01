@@ -395,7 +395,9 @@ body {
       margin: 0;
    }
 
+   .swiper-slide,
    &__item-card {
+      flex-shrink: 1;
       width: 370px;
       text-align: left;
       padding: 17px 17px 35px 17px;
@@ -701,6 +703,11 @@ body {
       transform: scale(0.7);
    }
 }
+
+.swiper-wrapper.disabled {
+   transform: translate3d(0px, 0, 0) !important;
+}
+
 @media screen and (max-width: 625px) {
    body {
       font-size: 12px;
@@ -1024,12 +1031,8 @@ body {
 
       &__cards-grid {
          transition-duration: 600ms;
-         position: absolute;
          gap: 0px;
          width: auto;
-         transform: translateX(0);
-         // transform: translateX(-314px);
-         // transform: translateX(-628px);
       }
 
       &__pagination {
@@ -1042,9 +1045,11 @@ body {
          transform: translateX(-50%);
       }
 
+      .swiper-slide,
       &__item-card {
-         margin: 0 44px;
-         width: 226px;
+         flex-shrink: 0;
+         margin: 0 40px;
+         width: 226px !important;
          height: 318px;
          box-sizing: border-box;
 

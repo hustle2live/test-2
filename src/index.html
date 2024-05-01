@@ -5,6 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Test-2</title>
       <link rel="stylesheet" href="./css/styles.css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
    </head>
 
    <body>
@@ -171,9 +172,9 @@
                   <p class="benefits__heading heading">Переваги</p>
                   <button class="benefits__button btn-primary">Вкластися зараз</button>
                </div>
-               <div class="benefits__section">
-                  <div class="benefits__cards-grid">
-                     <div class="benefits__item-card">
+               <div class="benefits__section swiper mySwiper">
+                  <div class="benefits__cards-grid swiper-wrapper">
+                     <div class="benefits__item-card swiper-slide">
                         <div class="benefits__item-card_image">
                            <img src="./images/abstract_green-68.png" alt="abstract item" />
                         </div>
@@ -182,7 +183,7 @@
                            <p class="benefits__item-card_description-text text">Дата виплати - 05.06.2024</p>
                         </div>
                      </div>
-                     <div class="benefits__item-card">
+                     <div class="benefits__item-card swiper-slide">
                         <div class="benefits__item-card_image">
                            <img src="./images/abstract_green-72.png" alt="abstract item" />
                         </div>
@@ -191,7 +192,7 @@
                            <p class="benefits__item-card_description-text text">Дата виплати - 05.06.2024</p>
                         </div>
                      </div>
-                     <div class="benefits__item-card">
+                     <div class="benefits__item-card swiper-slide">
                         <div class="benefits__item-card_image">
                            <img src="./images/abstract_green-36.png" alt="abstract item" />
                         </div>
@@ -201,8 +202,8 @@
                         </div>
                      </div>
                   </div>
-                  <div class="benefits__pagination">
-                     <span class="benefits__pagination__circle active"></span>
+                  <div class="benefits__pagination swiper-pagination">
+                     <span class="benefits__pagination__circle"></span>
                      <span class="benefits__pagination__circle"></span>
                      <span class="benefits__pagination__circle"></span>
                   </div>
@@ -296,5 +297,7 @@
       <script src="./js/script.js"></script>
       <script src="./js/form.js"></script>
       <script src="./js/buttons.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+      <script src="./js/swiper.js"></script>
    </body>
 </html>
