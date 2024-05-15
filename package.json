@@ -2,7 +2,7 @@
   "name": "test-2-project",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://hustle2live.github.io/megogo-test-task/",
+  "homepage": "https://hustle2live.github.io/test-2/megogo-test-task/",
   "main": "index.html",
   "scripts": {
     "start": "cross-env AUTOPREFIXER_GRID=autoplace react-scripts start",
