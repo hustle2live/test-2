@@ -10,7 +10,14 @@ const minify = require('gulp-minify');
 const clean = require('gulp-clean');
 const autoprefixer = require('gulp-autoprefixer');
 const sass = require('gulp-sass')(require('sass'));
+const fontmin = require('gulp-fontmin');
 
+// Fonts minimizer
+
+function minifyFont() {
+   const source = './src/styles/fonts/**/*.otf';
+   return src(source).pipe(fontmin()).pipe(dest('./build/fonts'));
+}
 // Clear build folder
 
 function clear() {
@@ -97,7 +104,8 @@ function browserSync() {
 }
 
 exports.watch = parallel(watchFiles, browserSync);
-exports.default = series(clear, parallel(html, compileSass, css, img, javascript));
+exports.default = series(clear, parallel(html, compileSass, css, img, minifyFont, javascript));
 exports.javascript = javascript;
 exports.css = css;
 exports.compileSass = compileSass;
+exports.minifyFont = minifyFont;

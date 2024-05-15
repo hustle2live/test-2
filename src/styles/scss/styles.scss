@@ -7,6 +7,24 @@ $background-gradient-8: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 
 $background-main: #101010;
 $background-secondary: #b55454;
 
+@font-face {
+   font-family: 'SF-Display-med';
+   src: url('../fonts/sf-ui-display/sf-ui-display-medium.otf') format('opentype');
+   font-weight: 400;
+}
+
+@font-face {
+   font-family: 'SF-Display-bold';
+   src: url('../fonts/sf-ui-display/sf-ui-display-bold.otf') format('opentype');
+   font-weight: 700;
+}
+
+// @font-face {
+//    font-family: 'SF-Display-light';
+//    src: url('../fonts/sf-ui-display/sf-ui-display-light.otf') format('opentype');
+//    font-weight: 300;
+// }
+
 body,
 button,
 input,
@@ -17,8 +35,7 @@ li,
 h1,
 h2,
 h3 {
-   font-family: 'Segoe UI', sans-serif;
-   font-weight: 400;
+   font-family: 'SF-Display-med', sans-serif;
    font-style: normal;
 }
 

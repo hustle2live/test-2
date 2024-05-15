@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "SF-Display-med";
+  src: url("../fonts/sf-ui-display/sf-ui-display-medium.otf") format("opentype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "SF-Display-bold";
+  src: url("../fonts/sf-ui-display/sf-ui-display-bold.otf") format("opentype");
+  font-weight: 700;
+}
 body,
 button,
 input,
@@ -8,8 +18,7 @@ li,
 h1,
 h2,
 h3 {
-  font-family: "Segoe UI", sans-serif;
-  font-weight: 400;
+  font-family: "SF-Display-med", sans-serif;
   font-style: normal;
 }
 
@@ -21,5 +30,5 @@ body {
   font-size: 16px;
   margin: 0;
   padding: 0;
-  background: rgb(255, 255, 255);
+  background: #101010;
 }
