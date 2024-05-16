@@ -130,6 +130,26 @@ body {
    }
 
    &__picture {
+      position: relative;
+      width: 100%;
+      height: auto;
+      max-height: 500px;
+      overflow: hidden;
+
+      img {
+         width: 100%;
+         height: 100%;
+      }
+
+      &_inside {
+         position: absolute;
+         left: 10px;
+         top: 10px;
+         width: calc(100% - 20px) !important;
+         height: 100%;
+         border-radius: 30px 30px 0 0;
+         z-index: -1;
+      }
    }
 
    &__background {
@@ -155,6 +175,47 @@ body {
    &__content {
    }
    &__cta {
+   }
+}
+
+.introduction {
+   padding-bottom: 0;
+   gap: 30px;
+   // background: #000000;
+
+   &::before {
+      width: 100%;
+      height: 60%;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: $background-gradient-1;
+      z-index: 1;
+   }
+
+   &__content {
+      display: flex;
+      box-sizing: border-box;
+      flex-direction: column;
+      flex-grow: 1;
+      margin: auto;
+      justify-content: flex-end;
+   }
+
+   &__heading {
+      font-size: 24px;
+      line-height: 28px;
+      margin: 15px 0;
+   }
+   &__description {
+      font-size: 15px;
+      margin: 0;
+      opacity: 0.8;
+   }
+
+   &__image {
+      justify-self: flex-end;
    }
 }
 
