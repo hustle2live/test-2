@@ -2,7 +2,7 @@ $primary: #23c3b2;
 $text-primary-color: #ffffff;
 
 $background-gradient-1: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
-$background-gradient-8: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.83) 100%);
+$background-gradient-2: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.83) 100%);
 
 $background-main: #101010;
 $background-secondary: #b55454;
@@ -109,12 +109,20 @@ body {
    height: 100vh;
    width: 100%;
 
+   &__subtitle,
    &__title {
       font-family: $SF-Display-bold;
       font-size: 30px;
       font-weight: 700;
       line-height: 36px;
       text-align: left;
+   }
+
+   &__subtitle {
+      font-size: 24px;
+      line-height: 28.64px;
+      letter-spacing: 1px;
+      margin: 5px 0;
    }
 
    &__text {
@@ -219,8 +227,73 @@ body {
    }
 }
 
-.btn-primary {
+.subscribe {
+   background: $background-gradient-2;
+   box-shadow: 0px 0px 0px 8px $primary inset;
+
+   &__heading {
+      margin: 0 auto auto 0;
+   }
+
+   &__text_shadow {
+      line-height: 22.4px;
+      letter-spacing: 0.5px;
+      margin: 5px 0;
+   }
+
+   &__content {
+      margin: auto 0 0;
+   }
+
+   &__cta {
+      margin: 40px 0;
+      align-self: start;
+   }
+
+   &__content,
+   &__cta {
+      .section__subtitle {
+         margin-top: 0;
+      }
+
+      .section__text {
+         margin-bottom: 0;
+      }
+   }
+
+   &__text_details {
+      width: 155px;
+      height: auto;
+      font-size: 12px;
+      line-height: 14.32px;
+      letter-spacing: 0.84px;
+      text-align: left;
+   }
+
+   &__button_more {
+      color: rgba(229, 229, 229, 1);
+   }
 }
+
+.subscribe__button_more,
+.btn-primary {
+   font-family: $SF-Display;
+   font-size: 11px;
+   font-weight: 600;
+   line-height: 13.1px;
+   letter-spacing: 1.3px;
+   text-transform: uppercase;
+}
+
+.btn-primary {
+   background-color: $primary;
+   border: none;
+   text-align: center;
+   padding: 21px 57px;
+   border-radius: 5px;
+   margin: 10px 0;
+}
+
 .advantages {
 }
 .offer {

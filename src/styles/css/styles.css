@@ -85,12 +85,18 @@ body {
   height: 100vh;
   width: 100%;
 }
-.section__title {
+.section__subtitle, .section__title {
   font-family: "SF-Display-bold", sans-serif;
   font-size: 30px;
   font-weight: 700;
   line-height: 36px;
   text-align: left;
+}
+.section__subtitle {
+  font-size: 24px;
+  line-height: 28.64px;
+  letter-spacing: 1px;
+  margin: 5px 0;
 }
 .section__text {
   font-family: "SF-Display-med", sans-serif;
@@ -169,4 +175,60 @@ body {
 }
 .introduction__image {
   justify-self: flex-end;
+}
+
+.subscribe {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.83) 100%);
+  box-shadow: 0px 0px 0px 8px #23c3b2 inset;
+}
+.subscribe__heading {
+  margin: 0 auto auto 0;
+}
+.subscribe__text_shadow {
+  line-height: 22.4px;
+  letter-spacing: 0.5px;
+  margin: 5px 0;
+}
+.subscribe__content {
+  margin: auto 0 0;
+}
+.subscribe__cta {
+  margin: 40px 0;
+  align-self: start;
+}
+.subscribe__content .section__subtitle, .subscribe__cta .section__subtitle {
+  margin-top: 0;
+}
+.subscribe__content .section__text, .subscribe__cta .section__text {
+  margin-bottom: 0;
+}
+.subscribe__text_details {
+  width: 155px;
+  height: auto;
+  font-size: 12px;
+  line-height: 14.32px;
+  letter-spacing: 0.84px;
+  text-align: left;
+}
+.subscribe__button_more {
+  color: rgb(229, 229, 229);
+}
+
+.subscribe__button_more,
+.btn-primary {
+  font-family: "SF-Display-med", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 13.1px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  background-color: #23c3b2;
+  border: none;
+  text-align: center;
+  padding: 21px 57px;
+  border-radius: 5px;
+  margin: 10px 0;
 }
