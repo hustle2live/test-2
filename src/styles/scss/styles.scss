@@ -189,7 +189,6 @@ body {
 .introduction {
    padding-bottom: 0;
    gap: 30px;
-   // background: #000000;
 
    &::before {
       width: 100%;
@@ -242,23 +241,23 @@ body {
    }
 
    &__content {
-      margin: auto 0 0;
+      margin: 0;
+      margin-top: auto;
+
+      &_offer-heading {
+         font-size: 36px;
+         line-height: 42.96px;
+         margin: 0;
+      }
+
+      &_offer-text {
+         margin: 10px 0 0;
+      }
    }
 
    &__cta {
       margin: 40px 0;
       align-self: start;
-   }
-
-   &__content,
-   &__cta {
-      .section__subtitle {
-         margin-top: 0;
-      }
-
-      .section__text {
-         margin-bottom: 0;
-      }
    }
 
    &__text_details {
@@ -268,10 +267,16 @@ body {
       line-height: 14.32px;
       letter-spacing: 0.84px;
       text-align: left;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0 0 10px;
    }
 
    &__button_more {
       color: rgba(229, 229, 229, 1);
+      margin: 0;
+      padding: 10px 0;
+      background: transparent;
+      border: none;
    }
 }
 

@@ -190,17 +190,20 @@ body {
   margin: 5px 0;
 }
 .subscribe__content {
-  margin: auto 0 0;
+  margin: 0;
+  margin-top: auto;
+}
+.subscribe__content_offer-heading {
+  font-size: 36px;
+  line-height: 42.96px;
+  margin: 0;
+}
+.subscribe__content_offer-text {
+  margin: 10px 0 0;
 }
 .subscribe__cta {
   margin: 40px 0;
   align-self: start;
-}
-.subscribe__content .section__subtitle, .subscribe__cta .section__subtitle {
-  margin-top: 0;
-}
-.subscribe__content .section__text, .subscribe__cta .section__text {
-  margin-bottom: 0;
 }
 .subscribe__text_details {
   width: 155px;
@@ -209,9 +212,15 @@ body {
   line-height: 14.32px;
   letter-spacing: 0.84px;
   text-align: left;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 10px;
 }
 .subscribe__button_more {
   color: rgb(229, 229, 229);
+  margin: 0;
+  padding: 10px 0;
+  background: transparent;
+  border: none;
 }
 
 .subscribe__button_more,
