@@ -104,6 +104,13 @@ body {
   font-weight: 400;
   line-height: 20px;
 }
+.section__text_description {
+  font-size: 15px;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.8;
+  line-height: 20px;
+}
 .section__title, .section__text {
   margin: 10px 0;
 }
@@ -141,11 +148,7 @@ body {
   width: 100%;
   height: 100%;
 }
-.introduction {
-  padding-bottom: 0;
-  gap: 30px;
-}
-.introduction::before {
+.shadow-overlay {
   width: 100%;
   height: 60%;
   content: "";
@@ -154,6 +157,11 @@ body {
   left: 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
   z-index: 1;
+}
+
+.introduction {
+  padding-bottom: 0;
+  gap: 30px;
 }
 .introduction__content {
   display: flex;
@@ -167,11 +175,6 @@ body {
   font-size: 24px;
   line-height: 28px;
   margin: 15px 0;
-}
-.introduction__description {
-  font-size: 15px;
-  margin: 0;
-  opacity: 0.8;
 }
 .introduction__image {
   justify-self: flex-end;
@@ -240,4 +243,23 @@ body {
   padding: 21px 57px;
   border-radius: 5px;
   margin: 10px 0;
+}
+
+.advantages {
+  gap: 20px;
+}
+.advantages__content {
+  margin-top: auto;
+  margin-bottom: 0;
+  justify-self: center;
+}
+.advantages__image {
+  margin: 0;
+  justify-self: flex-end;
+  width: 120%;
+  margin-left: -10px;
+}
+.advantages .shadow-overlay {
+  height: 50%;
+  background: linear-gradient(179.79deg, rgba(16, 16, 16, 0) 37.5%, #101010 90.39%);
 }
