@@ -1,6 +1,6 @@
 @font-face {
   font-family: "SF-Display-med";
-  src: url("../fonts/sf-ui-display/sf-ui-display-medium.otf") format("opentype");
+  src: url("../fonts/sf-ui-display/sf-ui-display-light.otf") format("opentype");
   font-weight: 400;
 }
 @font-face {
@@ -105,6 +105,7 @@ body {
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
+  letter-spacing: normal;
 }
 .section__text_description {
   font-size: 15px;
@@ -186,13 +187,19 @@ body {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.83) 100%);
   box-shadow: 0px 0px 0px 8px #23c3b2 inset;
 }
+.subscribe .shadow-overlay {
+  height: 100%;
+  background: rgb(16, 16, 16);
+  opacity: 0.5;
+  z-index: -1;
+}
 .subscribe__heading {
   margin: 0 auto auto 0;
 }
 .subscribe__text_shadow {
   line-height: 22.4px;
-  letter-spacing: 0.5px;
   margin: 5px 0;
+  letter-spacing: 0.5px;
 }
 .subscribe__content {
   margin: 0;
@@ -204,6 +211,7 @@ body {
   margin: 0;
 }
 .subscribe__content_offer-text {
+  letter-spacing: 0.5px;
   margin: 10px 0 0;
 }
 .subscribe__cta {
@@ -266,8 +274,12 @@ body {
   background: linear-gradient(179.79deg, rgba(16, 16, 16, 0) 37.5%, #101010 90.39%);
 }
 
+.benefits {
+  align-items: baseline;
+  justify-content: center;
+}
 .benefits__list {
-  margin-top: 30px;
+  margin: 30px 0;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -276,6 +288,8 @@ body {
 .benefits__list li {
   flex-basis: 45%;
   list-style: none;
+  margin-bottom: 20px;
+  flex-shrink: 1;
 }
 .benefits__description {
   box-sizing: border-box;
@@ -289,4 +303,8 @@ body {
   font-weight: 400;
   line-height: 17.9px;
   margin: 0;
+}
+.benefits button {
+  padding: 20px 40px;
+  margin-top: 0;
 }
