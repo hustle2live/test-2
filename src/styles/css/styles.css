@@ -125,6 +125,7 @@ body {
   height: auto;
   max-height: 500px;
   overflow: hidden;
+  max-width: 40svh;
 }
 .section__picture img {
   width: 100%;
@@ -204,11 +205,13 @@ body {
   box-sizing: border-box;
   flex-direction: column;
   flex-grow: 1;
-  margin: auto;
+  margin: auto 0;
+  align-self: flex-start;
   justify-content: center;
 }
 .introduction__image {
   flex-grow: 1;
+  align-self: flex-start;
   justify-self: flex-end;
 }
 .introduction__heading {
@@ -290,7 +293,7 @@ body {
   margin: 0 0 auto;
   justify-self: flex-end;
   width: 120%;
-  margin-left: -10px;
+  margin-left: -10%;
 }
 .advantages .shadow-overlay {
   height: 50%;
