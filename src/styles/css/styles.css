@@ -41,6 +41,17 @@ body {
   background: #101010;
 }
 
+.scroller {
+  height: 100vh;
+  height: 100svh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.scroller .section {
+  scroll-snap-align: start;
+}
+
 .header {
   background: rgba(0, 0, 0, 0.5);
 }
@@ -83,6 +94,7 @@ body {
   min-height: 500px;
   min-width: 320px;
   height: 100vh;
+  height: 100svh;
   width: 100%;
 }
 .section__subtitle, .section__title {
