@@ -280,14 +280,14 @@ body {
 
 .advantages {
   gap: 20px;
+  justify-content: space-around;
 }
 .advantages__content {
   margin-top: auto;
   margin-bottom: 0;
-  justify-self: center;
 }
 .advantages__image {
-  margin: 0;
+  margin: 0 0 auto;
   justify-self: flex-end;
   width: 120%;
   margin-left: -10px;
