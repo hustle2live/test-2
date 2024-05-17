@@ -211,7 +211,6 @@ body {
 }
 .introduction__image {
   flex-grow: 1;
-  align-self: flex-start;
   justify-self: flex-end;
 }
 .introduction__heading {
