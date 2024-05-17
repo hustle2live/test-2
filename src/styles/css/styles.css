@@ -8,6 +8,18 @@
   src: url("../fonts/sf-ui-display/sf-ui-display-bold.otf") format("opentype");
   font-weight: 700;
 }
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+}
+
 body,
 button,
 input,
@@ -21,18 +33,6 @@ h3 {
   font-family: "SF-Display-med", sans-serif;
   text-align: left;
   color: #ffffff;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-html,
-body {
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
-  max-width: 100vw;
 }
 
 body {
@@ -52,33 +52,23 @@ body {
   scroll-snap-align: start;
 }
 
-.header {
-  background: rgba(0, 0, 0, 0.5);
+.subscribe__button_more,
+.btn-primary {
+  font-family: "SF-Display-med", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 13.1px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
 }
-.header__content {
-  display: block;
-  height: fit-content;
-  box-sizing: border-box;
-  margin: auto;
-}
-.header__title {
-  margin-right: -10px;
-}
-.header__text {
-  opacity: 0.8;
-}
-.header__button_menu, .header__button_more {
+
+.btn-primary {
+  background-color: #23c3b2;
   border: none;
-  background: transparent;
-  padding: 0;
-}
-.header__button_menu {
-  position: absolute;
-  left: 10px;
-  top: 10px;
-}
-.header__button_more {
-  justify-self: flex-end;
+  text-align: center;
+  padding: 21px 57px;
+  border-radius: 5px;
+  margin: 10px 0;
 }
 
 .section {
@@ -163,6 +153,36 @@ body {
   width: 100%;
   height: 100%;
 }
+
+.header {
+  background: rgba(0, 0, 0, 0.5);
+}
+.header__content {
+  display: block;
+  height: fit-content;
+  box-sizing: border-box;
+  margin: auto;
+}
+.header__title {
+  margin-right: -10px;
+}
+.header__text {
+  opacity: 0.8;
+}
+.header__button_menu, .header__button_more {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+.header__button_menu {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.header__button_more {
+  justify-self: flex-end;
+}
+
 .shadow-overlay {
   width: 100%;
   height: 60%;
@@ -246,25 +266,6 @@ body {
   padding: 10px 0;
   background: transparent;
   border: none;
-}
-
-.subscribe__button_more,
-.btn-primary {
-  font-family: "SF-Display-med", sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 13.1px;
-  letter-spacing: 1.3px;
-  text-transform: uppercase;
-}
-
-.btn-primary {
-  background-color: #23c3b2;
-  border: none;
-  text-align: center;
-  padding: 21px 57px;
-  border-radius: 5px;
-  margin: 10px 0;
 }
 
 .advantages {
