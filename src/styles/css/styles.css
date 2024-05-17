@@ -195,6 +195,7 @@ body {
 }
 
 .introduction {
+  padding-top: 65px;
   padding-bottom: 0;
   gap: 30px;
 }
@@ -204,15 +205,16 @@ body {
   flex-direction: column;
   flex-grow: 1;
   margin: auto;
-  justify-content: flex-end;
+  justify-content: center;
+}
+.introduction__image {
+  flex-grow: 1;
+  justify-self: flex-end;
 }
 .introduction__heading {
   font-size: 24px;
   line-height: 28px;
   margin: 15px 0;
-}
-.introduction__image {
-  justify-self: flex-end;
 }
 
 .subscribe {
