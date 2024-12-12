@@ -160,7 +160,7 @@ video {
     padding: 0;
     border: 0;
     outline: 0;
-    font-size: 100%;
+    font-size: 1rem;
     vertical-align: baseline;
     background: transparent;
 }
@@ -203,7 +203,7 @@ q:after {
 a {
     margin: 0;
     padding: 0;
-    font-size: 100%;
+    font-size: 1rem;
     vertical-align: baseline;
     background: transparent;
 }
@@ -314,7 +314,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-size: 100%;
+    font-size: 1rem;
     font-weight: normal
 }
 
@@ -414,7 +414,7 @@ h2 {
 
 h3,
 h4 {
-    font-size: 100%;
+    font-size: 1rem;
     font-weight: bold
 }
 
@@ -548,7 +548,7 @@ body.noscroll {
 }
 
 .ChannelRedirect>.h1_mimic {
-    font-size: 100%;
+    font-size: 1rem;
     font-weight: normal;
     margin-bottom: .5em;
     font: 236.36% "azo-sans", Helvetica, Arial, sans-serif

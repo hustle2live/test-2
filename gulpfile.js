@@ -15,7 +15,7 @@ const fontmin = require('gulp-fontmin');
 // Fonts minimizer
 
 function minifyFont() {
-   const source = './src/styles/fonts/**/*.otf';
+   const source = './src/**/*.otf';
    return src(source).pipe(fontmin()).pipe(dest('./build/fonts'));
 }
 // Clear build folder
@@ -29,14 +29,14 @@ function clear() {
 // Compile SCSS to CSS
 
 function compileSass() {
-   const source = './src/styles/scss/**/*.scss'; // Path to your SCSS files
+   const source = './src/**/*.scss'; // Path to your SCSS files
    return src(source).pipe(sass().on('error', sass.logError)).pipe(dest('./src/styles/css'));
 }
 
 // CSS
 
 function css() {
-   const source = './src/styles/css/**/*.css';
+   const source = './src/**/*.css';
    return src(source)
       .pipe(changed(source))
       .pipe(
@@ -61,7 +61,7 @@ function img() {
 // html
 
 function html() {
-   return src('./src/*.html')
+   return src('./src/**/*.html')
       .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
       .pipe(dest('./build'))
       .pipe(browsersync.stream());
@@ -70,7 +70,7 @@ function html() {
 // compress javascript
 
 function javascript() {
-   return src('./src/js/*.js')
+   return src('./src/**/*.js')
       .pipe(
          minify({
             noSource: true,
@@ -86,10 +86,10 @@ function javascript() {
 
 function watchFiles() {
    watch('./src/**/*.html', html);
-   watch('./src/styles/scss/**/*.scss', compileSass);
-   watch('./src/styles/css/**/*.css', css);
+   watch('./src/**/*.scss', compileSass);
+   watch('./src/**/*.css', css);
    watch('./src/**/*.js', javascript);
-   watch('./src/images/**/*.*', img);
+   watch('./src/**/*.*', img);
 }
 
 // browsersync

@@ -1,0 +1,133 @@
+﻿body #crFrame {
+  position: fixed;
+  left: -200%;
+  top: 105px;
+  bottom: 0;
+  width: 70%;
+  z-index: 2000;
+  -moz-transition: left 0.54s ease-in-out, background-color 0.6s ease-in 0.1s;
+  -webkit-transition: left 0.54s ease-in-out, background-color 0.6s ease-in 0.1s;
+  -o-transition: left 0.54s ease-in-out, background-color 0.6s ease-in 0.1s;
+  transition: left 0.54s ease-in-out, background-color 0.6s ease-in 0.1s;
+}
+
+body #crFrame #cfFrameInner {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: #fff;
+  border-color: #ba6f90;
+  border-style: solid;
+  border-width: 0 1px 2px 1px;
+  border-right-color: #ccc;
+  padding-top: 28px;
+}
+
+body #crFrame .crHeader {
+  background-color: #af8585;
+  float: left;
+  width: 100%;
+  z-index: 20;
+  position: relative;
+}
+
+body #crFrame #crCloseButton {
+  text-align: right;
+  cursor: pointer;
+  margin-top: 0;
+  width: 28px;
+  padding: 5px;
+  position: relative;
+  float: right;
+}
+
+body #crFrame #crCloseButton img {
+  opacity: 0.7;
+}
+
+body #crFrame .iframeLoader {
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  position: absolute;
+}
+
+body #crFrame .iframeLoader img {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+body #crFrame .showLoader {
+  display: block;
+}
+
+body #crFrame .hideLoader {
+  display: none;
+}
+
+body .more-ways-block:hover {
+  cursor: pointer;
+}
+
+body .more-ways-card-details:hover {
+  cursor: pointer;
+}
+
+body .loadingContent {
+  width: 100%;
+  height: 100%;
+  background: #ffffff url("/Images/Structural/Icons/Loaders/loader.gif") center no-repeat;
+  z-index: 9999;
+  position: absolute;
+}
+
+.lockScroll {
+  position: fixed;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  body #crFrame {
+    width: 100%;
+  }
+  body #crFrame #cfFrameInner {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  body #crFrame #cfFrameInner #crPage {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media only screen and (min-device-width: 900px) and (max-device-width: 1280px) and (orientation: portrait) and (min-resolution: 192dpi) {
+  body #crFrame {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-device-width: 900px) and (max-device-width: 1280px) and (orientation: landscape) and (min-resolution: 192dpi) {
+  body #crFrame {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-device-width: 1280px) {
+  .aOS #crFrame {
+    width: 100%;
+  }
+  .iOS #crFrame {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=NextCreditPopup.css.map */

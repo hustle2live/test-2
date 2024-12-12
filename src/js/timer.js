@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
    const timerDisplay = document.getElementById('timer-display');
    const mainContainer = document.querySelector('.structure_content-main');
+   const timerAmount = 3;
 
    let countdownInterval;
 
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
    }
 
-   function startCountdown(time = 9) {
+   function startCountdown(time = timerAmount) {
       clearInterval(countdownInterval);
       let remainingTime = parseInt(time);
 
@@ -25,14 +26,20 @@ document.addEventListener('DOMContentLoaded', function () {
          } else {
             clearInterval(countdownInterval);
             timerDisplay.textContent = '00:00';
-            mainContainer.classList.add('next');
+            mainContainer.classList.toggle('next');
 
             setTimeout(() => {
-               document.querySelectorAll('.content-first').forEach((el) => (el.style.display = 'none'));
-               document.querySelector('#next-footer-entrypoint').style.display = 'block';
+               if (mainContainer.classList.contains('next')) {
+                  document.querySelectorAll('.content-first').forEach((el) => (el.style.display = 'none'));
+                  document.querySelector('#next-footer-entrypoint').style.display = 'block';
+               } else {
+                  document.querySelectorAll('.content-first').forEach((el) => (el.style.display = 'block'));
+                  document.querySelector('#next-footer-entrypoint').style.display = 'none';
+               }
             }, 1000);
          }
       }, 1000);
    }
-   startCountdown();
+
+   setInterval(startCountdown, (timerAmount + 2) * 1000);
 });

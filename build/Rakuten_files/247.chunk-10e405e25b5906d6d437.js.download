@@ -1,0 +1,378 @@
+this["pages/home_iso"] =
+(window["webpackJsonp_name_iso"] = window["webpackJsonp_name_iso"] || []).push([[247],{
+
+/***/ 1481:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(1638);
+
+
+/***/ }),
+
+/***/ 1638:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "modulePromise", function() { return /* binding */ modulePromise; });
+__webpack_require__.d(__webpack_exports__, "render", function() { return /* binding */ render; });
+
+// NAMESPACE OBJECT: ./src/app/modules/home/containers/index.js
+var containers_namespaceObject = {};
+__webpack_require__.r(containers_namespaceObject);
+__webpack_require__.d(containers_namespaceObject, "HomeContainer", function() { return HomeContainer; });
+
+// NAMESPACE OBJECT: ./src/app/modules/home/constants.js
+var constants_namespaceObject = {};
+__webpack_require__.r(constants_namespaceObject);
+__webpack_require__.d(constants_namespaceObject, "NAME", function() { return NAME; });
+__webpack_require__.d(constants_namespaceObject, "DEFAULT_STATE", function() { return DEFAULT_STATE; });
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/debug@3.2.7_supports-color@6.1.0/node_modules/debug/src/browser.js
+var browser = __webpack_require__(52);
+var browser_default = /*#__PURE__*/__webpack_require__.n(browser);
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/canopy-common-fo@12.40.0_@babel+core@7.24.4_@date-io+core@1.3.13_@types+react@18.2.75_enzyme@_whoumozrlvqevdl3s2ltxkc264/node_modules/canopy-common-fo/src/shared/iso.js + 100 modules
+var iso = __webpack_require__(32);
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/canopy-common-fo@12.40.0_@babel+core@7.24.4_@date-io+core@1.3.13_@types+react@18.2.75_enzyme@_whoumozrlvqevdl3s2ltxkc264/node_modules/canopy-common-fo/src/shared/promise.js
+var promise = __webpack_require__(65);
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/canopy-common-fo@12.40.0_@babel+core@7.24.4_@date-io+core@1.3.13_@types+react@18.2.75_enzyme@_whoumozrlvqevdl3s2ltxkc264/node_modules/canopy-common-fo/src/shared/env.js
+var env = __webpack_require__(30);
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/canopy-common-fo@12.40.0_@babel+core@7.24.4_@date-io+core@1.3.13_@types+react@18.2.75_enzyme@_whoumozrlvqevdl3s2ltxkc264/node_modules/canopy-common-fo/src/modules/md/index.js + 2 modules
+var md = __webpack_require__(73);
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/canopy-common-fo@12.40.0_@babel+core@7.24.4_@date-io+core@1.3.13_@types+react@18.2.75_enzyme@_whoumozrlvqevdl3s2ltxkc264/node_modules/canopy-common-fo/src/modules/monetization/index.js + 3 modules
+var monetization = __webpack_require__(205);
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/canopy-common-fo@12.40.0_@babel+core@7.24.4_@date-io+core@1.3.13_@types+react@18.2.75_enzyme@_whoumozrlvqevdl3s2ltxkc264/node_modules/canopy-common-fo/src/modules/partners/index.js + 1 modules
+var partners = __webpack_require__(166);
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/canopy-common-fo@12.40.0_@babel+core@7.24.4_@date-io+core@1.3.13_@types+react@18.2.75_enzyme@_whoumozrlvqevdl3s2ltxkc264/node_modules/canopy-common-fo/src/modules/jahiaPersonalize/index.js + 8 modules
+var jahiaPersonalize = __webpack_require__(115);
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/@babel+runtime@7.24.4/node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteral.js
+var taggedTemplateLiteral = __webpack_require__(106);
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/graphql-tag@2.12.6_graphql@15.8.0/node_modules/graphql-tag/lib/index.js + 13 modules
+var lib = __webpack_require__(76);
+
+// CONCATENATED MODULE: ./src/app/pages/home/PageQuery.js
+
+var _templateObject;
+
+var PageQuery_createQuery = function createQuery(_ref, _ref2) {
+  var headerModule = _ref.headerModule,
+    footerModule = _ref.footerModule,
+    didomiStoreModule = _ref.didomiStoreModule,
+    jahiaPersonalizeModule = _ref.jahiaPersonalizeModule;
+  var _ref2$includePersonal = _ref2.includePersonalQuery,
+    includePersonalQuery = _ref2$includePersonal === void 0 ? false : _ref2$includePersonal;
+  var PAGE_QUERY = Object(lib["a" /* default */])(_templateObject || (_templateObject = Object(taggedTemplateLiteral["a" /* default */])(["query homeQuery($path: String!, $subPath: String!)\n  {\n    ...FooterSSRFragment\n    metadata(metadataInput: {path: $path, subPath: $subPath}) {\n      title\n      description\n      imageUrl\n    }\n", "\n}\n  ", "\n  ", "\n\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n"])), includePersonalQuery ? "\n    ...FooterpersonalizeFragment\n    cart {\n      ...HeaderCart\n    }\n    profile {\n      ...HeaderProfile\n      ...JahianProfile\n    }    \n    clubSubscriptionStatus {\n      ...MonetizationClubSubscriptionStatus\n      ...JahianClubSubscriptionStatus\n    }\n    priceClub {\n      ...JahiaClub\n      ...HederPriceClub\n    }\n    " : '', footerModule.containers.FooterContainer.SSRFragment, includePersonalQuery ? footerModule.containers.FooterContainer.PersonalizeFragment : '', includePersonalQuery ? headerModule.containers.HeaderContainer.personalizedFraments.cart : '', includePersonalQuery ? headerModule.containers.HeaderContainer.personalizedFraments.profile : '', includePersonalQuery ? headerModule.containers.HeaderContainer.personalizedFraments.priceClub : '', includePersonalQuery ? didomiStoreModule.containers.DidomiContainer.personalizedFraments.clubSubscriptionStatus : '', includePersonalQuery ? jahiaPersonalizeModule.containers.JahiaPersonalizeContainer.personalizedFraments.priceClub : '', includePersonalQuery ? jahiaPersonalizeModule.containers.JahiaPersonalizeContainer.personalizedFraments.clubSubscriptionStatus : '', includePersonalQuery ? jahiaPersonalizeModule.containers.JahiaPersonalizeContainer.personalizedFraments.profile : '');
+  return PAGE_QUERY;
+};
+// EXTERNAL MODULE: ./node_modules/.pnpm/react-redux@7.2.9_react-dom@18.2.0_react@18.3.1/node_modules/react-redux/es/index.js + 24 modules
+var es = __webpack_require__(29);
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/@next-common+header@8.116.7_@apollo+client@3.9.10_@date-io+core@1.3.13_@emotion+react@11.11.4_y22hd3255efoisfdgtr5gni42i/node_modules/@next-common/header/build/esm/index-cedff764.js + 4 modules
+var index_cedff764 = __webpack_require__(81);
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/react@18.3.1/node_modules/react/index.js
+var react = __webpack_require__(0);
+var react_default = /*#__PURE__*/__webpack_require__.n(react);
+
+// EXTERNAL MODULE: ./src/app/components/Home/DiscoveryShopping/DiscoveryShoppingCategory/discoveryShoppingCategory.css
+var discoveryShoppingCategory = __webpack_require__(215);
+var discoveryShoppingCategory_default = /*#__PURE__*/__webpack_require__.n(discoveryShoppingCategory);
+
+// EXTERNAL MODULE: ./src/app/components/Home/DiscoveryShopping/discoveryShopping.css
+var discoveryShopping = __webpack_require__(240);
+var discoveryShopping_default = /*#__PURE__*/__webpack_require__.n(discoveryShopping);
+
+// CONCATENATED MODULE: ./src/app/components/Home/DiscoveryShopping/DiscoveryShoppingCategory/discoveryShoppingCategory.js
+var __jsx = react_default.a.createElement;
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+
+
+var discoveryShoppingCategory_DiscoveryShoppingCategory = function DiscoveryShoppingCategory(_ref) {
+  var category = _ref.category;
+  var _useState = Object(react["useState"])(false),
+    isOpen = _useState[0],
+    setOpen = _useState[1];
+  var ref = Object(react["useRef"])();
+  Object(react["useEffect"])(function () {
+    if (!isOpen && ref && ref.current) {
+      ref.current.scrollTop = 0;
+    }
+  }, [isOpen]);
+  return __jsx("div", {
+    className: "".concat(discoveryShoppingCategory_default.a.category, " dib")
+  }, __jsx("a", {
+    className: "f5 fw6 b no-underline black ".concat(discoveryShoppingCategory_default.a.cut, " db"),
+    href: category.url
+  }, category.ancre), __jsx("div", {
+    className: "mt-24 mb-24 ".concat(isOpen && 'bg-gray-100 br3')
+  }, __jsx("div", {
+    className: "flex ".concat(discoveryShoppingCategory_default.a.urls)
+  }, __jsx("div", {
+    ref: ref,
+    className: !isOpen ? 'overflow-hidden' : "".concat(discoveryShoppingCategory_default.a.scrollY, " ").concat(discoveryShoppingCategory_default.a.cut, " ").concat(discoveryShopping_default.a.thinScrollbar, " ma3")
+  }, __jsx("div", {
+    className: "flex flex-auto flex-wrap"
+  }, category.links.map(function (link) {
+    return __jsx("a", {
+      key: link.url,
+      className: "mv1 fw4 f6 b no-underline w-50 gray-800 ".concat(discoveryShoppingCategory_default.a.column, " ").concat(discoveryShoppingCategory_default.a.cut),
+      href: link.url
+    }, link.ancre);
+  }))))), __jsx("span", {
+    className: "f6 fw6 b no-underline black pointer mb-8",
+    onClick: function onClick() {
+      return setOpen(!isOpen);
+    }
+  }, isOpen ? __jsx(react_default.a.Fragment, null, "Voir moins") : __jsx(react_default.a.Fragment, null, "Voir plus")));
+};
+/* harmony default export */ var DiscoveryShoppingCategory_discoveryShoppingCategory = (discoveryShoppingCategory_DiscoveryShoppingCategory);
+// CONCATENATED MODULE: ./src/app/components/Home/DiscoveryShopping/DiscoveryShoppingCategory/index.js
+
+/* harmony default export */ var DiscoveryShopping_DiscoveryShoppingCategory = (DiscoveryShoppingCategory_discoveryShoppingCategory);
+// CONCATENATED MODULE: ./src/app/components/Home/DiscoveryShopping/discoveryShopping.js
+var discoveryShopping_jsx = react_default.a.createElement;
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+
+
+var discoveryShopping_DiscoveryShopping = function DiscoveryShopping(_ref) {
+  var categories = _ref.categories;
+  return discoveryShopping_jsx("div", {
+    className: discoveryShopping_default.a.container,
+    style: {
+      maxHeight: '320px',
+      overflowY: 'hidden'
+    }
+  }, discoveryShopping_jsx("h2", {
+    className: "tc fw7 ".concat(discoveryShopping_default.a.title)
+  }, "Le meilleur de nos cat\xE9gories"), discoveryShopping_jsx("div", {
+    className: "flex overflow-x-scroll overflow-y-hidden ".concat(discoveryShopping_default.a.thinScrollbar, " ").concat(discoveryShopping_default.a.categories)
+  }, categories.map(function (category) {
+    return discoveryShopping_jsx(DiscoveryShopping_DiscoveryShoppingCategory, {
+      key: category.ancre,
+      category: category
+    });
+  })));
+};
+/* harmony default export */ var DiscoveryShopping_discoveryShopping = (discoveryShopping_DiscoveryShopping);
+// CONCATENATED MODULE: ./src/app/components/Home/DiscoveryShopping/index.js
+
+/* harmony default export */ var Home_DiscoveryShopping = (DiscoveryShopping_discoveryShopping);
+// CONCATENATED MODULE: ./src/app/components/Home/home.js
+var home_jsx = react_default.a.createElement;
+
+
+var home_Home = function Home(_ref) {
+  var home = _ref.home;
+  var _home$discoveryShoppi = home.discoveryShopping,
+    categories = _home$discoveryShoppi === void 0 ? [] : _home$discoveryShoppi;
+  return home_jsx(react_default.a.Fragment, null, categories && categories.length > 0 && home_jsx(Home_DiscoveryShopping, {
+    categories: categories
+  }));
+};
+/* harmony default export */ var Home_home = (home_Home);
+// CONCATENATED MODULE: ./src/app/components/Home/index.js
+
+
+// CONCATENATED MODULE: ./src/app/modules/home/containers/HomeContainer.js
+
+
+
+
+/**
+ * see connected-react-router
+ *
+ * @param {*} state
+ */
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    home: state.home,
+    router: state.router,
+    partners: state.partners
+  };
+};
+
+// default behavior for redux
+var HomeContainer_mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    dispatch: dispatch,
+    persistHeaderSearch: function persistHeaderSearch(keywords) {
+      return dispatch(index_cedff764["w" /* r */].actions.persistHeaderSearch(keywords));
+    }
+  };
+};
+/* harmony default export */ var HomeContainer = (Object(es["c" /* connect */])(mapStateToProps, HomeContainer_mapDispatchToProps)(Home_home));
+// CONCATENATED MODULE: ./src/app/modules/home/containers/index.js
+
+
+// CONCATENATED MODULE: ./src/app/modules/home/constants.js
+var NAME = 'home';
+var DEFAULT_STATE = {
+  discoveryShopping: []
+};
+// CONCATENATED MODULE: ./src/app/modules/home/reducer/index.js
+
+function reducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  return state;
+}
+/* harmony default export */ var home_reducer = (reducer);
+// CONCATENATED MODULE: ./src/app/modules/home/index.js
+
+
+
+/* harmony default export */ var modules_home = ({
+  containers: containers_namespaceObject,
+  constants: constants_namespaceObject,
+  reducer: home_reducer
+});
+// EXTERNAL MODULE: ./node_modules/.pnpm/react-router-config@4.4.0-beta.8_react-router@4.3.1_react@18.3.1/node_modules/react-router-config/esm/react-router-config.js
+var react_router_config = __webpack_require__(419);
+
+// EXTERNAL MODULE: ./src/app/components/HomeRoot/homeRoot.css
+var homeRoot = __webpack_require__(776);
+var homeRoot_default = /*#__PURE__*/__webpack_require__.n(homeRoot);
+
+// CONCATENATED MODULE: ./src/app/components/HomeRoot/homeRoot.js
+var homeRoot_jsx = react_default.a.createElement;
+
+
+
+// class obsolète, non utilisée ! voir iso.js pour le routage
+function HomeRoot(_ref) {
+  var route = _ref.route;
+  return homeRoot_jsx("div", {
+    className: homeRoot_default.a.component
+  }, route && Object(react_router_config["a" /* renderRoutes */])(route.routes));
+}
+/* harmony default export */ var HomeRoot_homeRoot = (HomeRoot);
+// CONCATENATED MODULE: ./src/app/components/HomeRoot/index.js
+
+/* harmony default export */ var components_HomeRoot = (HomeRoot_homeRoot);
+// CONCATENATED MODULE: ./src/app/modules/home/routes.js
+
+
+var routes = [{
+  component: components_HomeRoot,
+  routes: [{
+    path: '*',
+    component: HomeContainer
+  }]
+}];
+/* harmony default export */ var home_routes = (routes);
+// CONCATENATED MODULE: ./src/app/pages/home/index.js
+
+
+
+
+
+
+
+
+
+
+
+var debug = browser_default()('canopy:page');
+var promises = {
+  headerModule: Promise.all(/* import() | Header */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, 818)),
+  footerModule: Promise.all(/* import() | Footer */[__webpack_require__.e(0), __webpack_require__.e(261)]).then(__webpack_require__.bind(null, 2105)),
+  appStoreModule: Promise.all(/* import() | AppStoreBanner */[__webpack_require__.e(0), __webpack_require__.e(255)]).then(__webpack_require__.bind(null, 2104)),
+  didomiStoreModule: Promise.all(/* import() | Didomi */[__webpack_require__.e(0), __webpack_require__.e(259)]).then(__webpack_require__.bind(null, 2102)),
+  clubRWelcomePopin: Promise.all(/* import() | ClubRWelcomePopin */[__webpack_require__.e(0), __webpack_require__.e(256)]).then(__webpack_require__.bind(null, 2100)),
+  crewPartnerModal: Promise.all(/* import() | CrewPartnerModal */[__webpack_require__.e(0), __webpack_require__.e(258), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, 2099))
+};
+function resolveDefault(module) {
+  if (module) {
+    return module.default || module;
+  }
+  return module;
+}
+function modulePromise() {
+  return Object(promise["a" /* promiseAll */])(promises).then(function (modules) {
+    var headerModule = resolveDefault(modules.headerModule);
+    var footerModule = resolveDefault(modules.footerModule);
+    var appStoreModule = resolveDefault(modules.appStoreModule);
+    var didomiStoreModule = resolveDefault(modules.didomiStoreModule);
+    var clubRWelcomePopinModule = resolveDefault(modules.clubRWelcomePopin);
+    var crewPartnerModalModule = resolveDefault(modules.crewPartnerModal);
+
+    // graphql inital personalization query extraction
+    var PAGE_QUERY = PageQuery_createQuery({
+      headerModule: headerModule,
+      footerModule: footerModule,
+      didomiStoreModule: didomiStoreModule,
+      jahiaPersonalizeModule: jahiaPersonalize["a" /* default */]
+    }, {
+      includePersonalQuery: true
+    });
+    return {
+      PAGE_QUERY: PAGE_QUERY,
+      // Home must be the name of the component to render
+      // through its container (('../../components/Home')
+      Home: Object(iso["a" /* exposeReducers */])(modules_home.containers.HomeContainer, [modules_home], home_routes),
+      // Header must be the name as the component to render
+      // through its container ('canopy-common-fo/src/components/Header')
+      Header: Object(iso["a" /* exposeReducers */])(headerModule.containers.HeaderContainer, [headerModule, md["a" /* default */]]),
+      // Footer must be the name as the component to render
+      // through its container ('canopy-common-fo/src/components/Footer')
+      Footer: Object(iso["a" /* exposeReducers */])(footerModule.containers.FooterContainer, [footerModule, md["a" /* default */]]),
+      AppStoreBanner: Object(iso["a" /* exposeReducers */])(appStoreModule.containers.AppStoreBannerContainer, [appStoreModule, md["a" /* default */]]),
+      Didomi: Object(iso["a" /* exposeReducers */])(didomiStoreModule.containers.DidomiContainer, [didomiStoreModule, monetization["a" /* default */], partners["a" /* default */]]),
+      ClubRWelcomePopin: Object(iso["a" /* exposeReducers */])(clubRWelcomePopinModule.containers.ClubRWelcomePopinContainer, [clubRWelcomePopinModule]),
+      CrewPartnerModal: Object(iso["a" /* exposeReducers */])(crewPartnerModalModule.containers.CrewPartnerModalContainer, [crewPartnerModalModule]),
+      JahiaPersonalize: Object(iso["a" /* exposeReducers */])(jahiaPersonalize["a" /* default */].containers.JahiaPersonalizeContainer, [jahiaPersonalize["a" /* default */], md["a" /* default */]])
+    };
+  }).catch(function (err) {
+    debug("homePage : modulePromise err=".concat(err));
+    throw err;
+  });
+}
+var render = Object(iso["b" /* isomorphicRendering */])(modulePromise);
+
+// with webpack 4, bundles are loaded dynamically being potentially incomplete when loaded
+// on client call rendering
+if (!env["a" /* default */].isNode()) {
+  render(window.INITIAL_MODULES, window.INITIAL_STORE);
+}
+
+/***/ }),
+
+/***/ 215:
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by extract-css-chunks-webpack-plugin
+module.exports = {"category":"discoveryShoppingCategory_category_kwZ","urls":"discoveryShoppingCategory_urls_+8w","column":"discoveryShoppingCategory_column_DSf","cut":"discoveryShoppingCategory_cut_yun","scrollY":"discoveryShoppingCategory_scrollY_n3N"};
+
+/***/ }),
+
+/***/ 240:
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by extract-css-chunks-webpack-plugin
+module.exports = {"color-0":"var(--color-0)","gray-900":"var(--gray-900)","gray-800":"var(--gray-800)","gray-700":"var(--gray-700)","gray-600":"var(--gray-600)","gray-500":"var(--gray-500)","gray-400":"var(--gray-400)","gray-300":"var(--gray-300)","gray-200":"var(--gray-200)","gray-100":"var(--gray-100)","white":"var(--white)","red-1000":"var(--red-1000)","red-900":"var(--red-900)","red-800":"var(--red-800)","red-700":"var(--red-700)","red-600":"var(--red-600)","red-500":"var(--red-500)","red-400":"var(--red-400)","red-300":"var(--red-300)","red-200":"var(--red-200)","red-100":"var(--red-100)","orange-1000":"var(--orange-1000)","orange-900":"var(--orange-900)","orange-800":"var(--orange-800)","orange-700":"var(--orange-700)","orange-600":"var(--orange-600)","orange-500":"var(--orange-500)","orange-400":"var(--orange-400)","orange-300":"var(--orange-300)","orange-200":"var(--orange-200)","orange-100":"var(--orange-100)","yellow-1000":"var(--yellow-1000)","yellow-900":"var(--yellow-900)","yellow-800":"var(--yellow-800)","yellow-700":"var(--yellow-700)","yellow-600":"var(--yellow-600)","yellow-500":"var(--yellow-500)","yellow-400":"var(--yellow-400)","yellow-300":"var(--yellow-300)","yellow-200":"var(--yellow-200)","yellow-100":"var(--yellow-100)","green-1000":"var(--green-1000)","green-900":"var(--green-900)","green-800":"var(--green-800)","green-700":"var(--green-700)","green-600":"var(--green-600)","green-500":"var(--green-500)","green-400":"var(--green-400)","green-300":"var(--green-300)","green-200":"var(--green-200)","green-100":"var(--green-100)","light-blue-1000":"var(--light-blue-1000)","light-blue-900":"var(--light-blue-900)","light-blue-800":"var(--light-blue-800)","light-blue-700":"var(--light-blue-700)","light-blue-600":"var(--light-blue-600)","light-blue-500":"var(--light-blue-500)","light-blue-400":"var(--light-blue-400)","light-blue-300":"var(--light-blue-300)","light-blue-200":"var(--light-blue-200)","light-blue-100":"var(--light-blue-100)","blue-1000":"var(--blue-1000)","blue-900":"var(--blue-900)","blue-800":"var(--blue-800)","blue-700":"var(--blue-700)","blue-600":"var(--blue-600)","blue-500":"var(--blue-500)","blue-400":"var(--blue-400)","blue-300":"var(--blue-300)","blue-200":"var(--blue-200)","blue-100":"var(--blue-100)","purple-1000":"var(--purple-1000)","purple-900":"var(--purple-900)","purple-800":"var(--purple-800)","purple-700":"var(--purple-700)","purple-600":"var(--purple-600)","purple-500":"var(--purple-500)","purple-400":"var(--purple-400)","purple-300":"var(--purple-300)","purple-200":"var(--purple-200)","purple-100":"var(--purple-100)","pink-1000":"var(--pink-1000)","pink-900":"var(--pink-900)","pink-800":"var(--pink-800)","pink-700":"var(--pink-700)","pink-600":"var(--pink-600)","pink-500":"var(--pink-500)","pink-400":"var(--pink-400)","pink-300":"var(--pink-300)","pink-200":"var(--pink-200)","pink-100":"var(--pink-100)","silver-dark":"var(--silver-dark)","silver-middle":"var(--silver-middle)","silver-light":"var(--silver-light)","silver-lightest":"var(--silver-lightest)","gold-dark":"var(--gold-dark)","gold-middle":"var(--gold-middle)","gold-light":"var(--gold-light)","gold-lightest":"var(--gold-lightest)","platinum-dark":"var(--platinum-dark)","platinum-middle":"var(--platinum-middle)","platinum-light":"var(--platinum-light)","platinum-lightest":"var(--platinum-lightest)","nearWhite":"var(--near-white)","lightGray":"var(--light-gray)","moonGray":"var(--moon-gray)","blue":"var(--blue)","navy":"var(--navy)","purple":"var(--purple)","green":"var(--green)","nearBlack":"var(--near-black)","text":"var(--text)","orange":"var(--orange)","lightRead":"var(--light-red)","red":"var(--red)","darkRed":"var(--dark-red)","iconGray":"var(--icon-gray)","iconActive":"var(--icon-active)","secondHand":"var(--secondHand)","new":"var(--new)","grade3":"var(--grade3)","grade1":"var(--grade1)","lightRed2":"var(--light-red2)","lightGreen":"var(--light-green)","yellow":"var(--yellow)","lightYellow":"var(--light-yellow)","lightBlue":"var(--light-blue)","container":"discoveryShopping_container_C7Q","title":"discoveryShopping_title_uhl","categories":"discoveryShopping_categories_EJp","thinScrollbar":"discoveryShopping_thinScrollbar_SwQ"};
+
+/***/ }),
+
+/***/ 776:
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by extract-css-chunks-webpack-plugin
+module.exports = {};
+
+/***/ })
+
+},[[1481,1,0,2]]]);

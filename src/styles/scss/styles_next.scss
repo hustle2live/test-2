@@ -30,11 +30,6 @@
    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
-
-
-
-
-
 #platform_modernisation_header {
    font-family: 'azo-sans-400', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
       'Open Sans', 'Helvetica Neue', sans-serif;
@@ -244,18 +239,18 @@
    font-weight: 400;
 }
 
-.cm_bootstrap .font--helvetica 55 {
+.cm_bootstrap .font--helvetica {
    font-family: Helvetica 55, sans-serif !important;
    font-weight: 400;
 }
 
 @font-face {
-   font-family: Helvetica 65;
+   font-family: Helvetica;
    src: url(/static-content/fonts/HelveticaNeueLTW05-65Medium.woff2) format('woff2');
    font-weight: 400;
 }
 
-.cm_bootstrap .font--helvetica 65 {
+.cm_bootstrap .font--helvetica {
    font-family: Helvetica 65, sans-serif !important;
    font-weight: 400;
 }
@@ -1097,13 +1092,13 @@
 }
 
 @font-face {
-   font-family: PlayfairDisplay-Regular.woff;
+   font-family: PlayfairDisplay-Regular;
    src: url(/static-content/fonts/PlayfairDisplay-Regular.woff) format('woff2');
    font-weight: 400;
 }
 
 .cm_bootstrap .font--playfairdisplay-regular.woff {
-   font-family: PlayfairDisplay-Regular.woff, sans-serif !important;
+   font-family: PlayfairDisplay-Regular, sans-serif !important;
    font-weight: 400;
 }
 
@@ -1447,10 +1442,6 @@
    font-family: Work-Sans-900, sans-serif !important;
    font-weight: 900;
 }
-
-
-
-
 
 #epm_footer {
    font-family: 'azo-sans-400', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
@@ -7320,7 +7311,7 @@ body.appMode #onetrust-banner-sdk {
 
 #onetrust-pc-sdk .ot-ven-item ul {
    list-style: none inside;
-   font-size: 100%;
+   font-size: 1rem;
    margin: 0;
 }
 
@@ -10178,6 +10169,7 @@ html[data-tp-page='true'] #epm_footer .footer-device-switcher {
       'Open Sans', 'Helvetica Neue', sans-serif;
    color: rgba(0, 0, 0, 1);
    font-size: 0.875rem;
+   font-size: 1.875rem;
    line-height: 1.5;
    letter-spacing: 0;
    font-weight: 400;
@@ -10224,6 +10216,7 @@ html[data-tp-page='true'] #epm_footer .footer-device-switcher {
    font-family: inherit;
    color: rgba(0, 0, 0, 1);
    font-size: 0.875rem;
+   font-size: 1.875rem;
    text-transform: none;
    letter-spacing: 0.12px;
    line-height: 1.5;
