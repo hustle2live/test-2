@@ -1,0 +1,2125 @@
+(window["webpackJsonp_name_iso"] = window["webpackJsonp_name_iso"] || []).push([
+    [261], {
+
+        /***/
+        1859:
+            /***/
+            (function(module, exports, __webpack_require__) {
+
+                "use strict";
+
+
+                var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+                Object.defineProperty(exports, "__esModule", {
+                    value: true
+                });
+                exports.configService = exports.loadConfiguration = exports.publicRuntimeConfig = exports.serverRuntimeConfig = exports.get = void 0;
+                /* eslint-disable max-len */
+                var backendTechUrl = Object({
+                    "NODE_ENV": "production"
+                }).BACKEND_TECH_URL;
+                var backendVisUrl = Object({
+                    "NODE_ENV": "production"
+                }).BACKEND_VIS_URL;
+                var backendSelUrl = Object({
+                    "NODE_ENV": "production"
+                }).BACKEND_SEL_URL;
+                var backendBuyUrl = Object({
+                    "NODE_ENV": "production"
+                }).BACKEND_BUY_URL;
+                var gatewayUrl = Object({
+                    "NODE_ENV": "production"
+                }).GATEWAY_URL;
+                var merchantCenterStrapiUrl = Object({
+                    "NODE_ENV": "production"
+                }).MERCHANT_CENTER_STRAPI_URL;
+                var backendRfnUrl = Object({
+                    "NODE_ENV": "production"
+                }).BACKEND_RFN_URL;
+                var backendRefUrl = Object({
+                    "NODE_ENV": "production"
+                }).BACKEND_REF_URL;
+                var backendDispUrl = Object({
+                    "NODE_ENV": "production"
+                }).BACKEND_DISP_URL;
+                var backendCompUrl = Object({
+                    "NODE_ENV": "production"
+                }).BACKEND_COMP_URL;
+                // backend WS is used when testing JAHIA content that use flux directly from production (home)
+                var backendWsUrl = Object({
+                    "NODE_ENV": "production"
+                }).BACKEND_WS_URL;
+                var apiUrl = Object({
+                    "NODE_ENV": "production"
+                }).API_URL || Object({
+                    "NODE_ENV": "production"
+                }).API_TECH;
+                var apiTech = Object({
+                    "NODE_ENV": "production"
+                }).API_TECH;
+                var apiVis = Object({
+                    "NODE_ENV": "production"
+                }).API_VIS;
+                var apiSeller = Object({
+                    "NODE_ENV": "production"
+                }).API_SELLER;
+                var apiBuyer = Object({
+                    "NODE_ENV": "production"
+                }).API_BUYER;
+                var apiMerch = Object({
+                    "NODE_ENV": "production"
+                }).API_MERCH;
+                var apiStrapi = Object({
+                    "NODE_ENV": "production"
+                }).API_STRAPI;
+                var canonicalUrl = Object({
+                    "NODE_ENV": "production"
+                }).CANONICAL_URL || 'https://fr.shopping.rakuten.com';
+                var domainName = 'https://fr.shopping.rakuten.com';
+                var enableProxification = Object({
+                    "NODE_ENV": "production"
+                }).BACKEND_PROXIFICATION === 'true';
+                var enableBackendHttpProxy = Object({
+                    "NODE_ENV": "production"
+                }).USE_BACKEND_HTTP_PROXY === 'true'; // Allow the use of a Http proxy between node and WS e.g chares. https://confluence.rakuten-it.com/confluence/display/PRIC/Http+Request+between+Canopy+and+Scala+Gateway+inspection
+                var enableBackendHttpProxyServerUrl = Object({
+                    "NODE_ENV": "production"
+                }).HTTP_PROXY; // Allow the use of a Http proxy between node and WS e.g chares. https://confluence.rakuten-it.com/confluence/display/PRIC/Http+Request+between+Canopy+and+Scala+Gateway+inspection
+                var httpsPort = Object({
+                    "NODE_ENV": "production"
+                }).HTTPS_PORT;
+                var nodeInstance = Object({
+                    "NODE_ENV": "production"
+                }).NODE_INSTANCE;
+                var filterFamilyIsActive = Object({
+                    "NODE_ENV": "production"
+                }).FEATURE_FLIPPING_FILTER_FAMILY_IS_ACTIVE === 'true';
+                var kmlEndpoint = Object({
+                    "NODE_ENV": "production"
+                }).KML_ENDPOINT || 'https://fr.shopping.rakuten.com/visuels/0_Kameleoon/tagIntegration/kameleoon.js';
+                var kmlIframeUrl = Object({
+                    "NODE_ENV": "production"
+                }).KAMELEOON_IFRAME_URL || '/visuels/0_Kameleoon/tagIntegration/kameleoon-iframe.html?fallback=1';
+                var kmlIsActive = Object({
+                    "NODE_ENV": "production"
+                }).KAMELEOON_IS_ACTIVE === 'true';
+                var cdn = Object({
+                    "NODE_ENV": "production"
+                }).CDN || '/vstatic/0/';
+                var cdnStatic = Object({
+                    "NODE_ENV": "production"
+                }).CDN_STATIC_BASE_URL || cdn;
+                var cdnImages = Object({
+                    "NODE_ENV": "production"
+                }).CDN_IMAGES || Object({
+                    "NODE_ENV": "production"
+                }).CDN;
+                var defaultTimeout = parseInt(Object({
+                    "NODE_ENV": "production"
+                }).TIMEOUT_DEFAULT, 10) || 2000;
+                var longTimeout = parseInt(Object({
+                    "NODE_ENV": "production"
+                }).TIMEOUT_LONG, 10) || 5000;
+                var lazyOffsetDesktop = parseInt(Object({
+                    "NODE_ENV": "production"
+                }).LAZY_OFFSET_DESKTOP, 10) || 1000;
+                var lazyOffsetMobile = parseInt(Object({
+                    "NODE_ENV": "production"
+                }).LAZY_OFFSET_MOBILE, 10) || 600;
+                var lockMaxFlux = parseInt(Object({
+                    "NODE_ENV": "production"
+                }).LOCK_MAX_FLUX, 10) || 0;
+                var hasCanopy = !Object({
+                    "NODE_ENV": "production"
+                }).AB_ROUTE;
+                var xitiSiteDesktop = parseInt(Object({
+                    "NODE_ENV": "production"
+                }).APP_PARTNER_XITI_S_PC, 10) || 104628;
+                var xitiSiteMobile = parseInt(Object({
+                    "NODE_ENV": "production"
+                }).APP_PARTNER_XITI_S_MOBILE, 10) || 486165;
+                var xitiSiteIos = parseInt(Object({
+                    "NODE_ENV": "production"
+                }).APP_PARTNER_XITI_S_APP_IOS, 10) || 513336;
+                var xitiSiteAndroid = parseInt(Object({
+                    "NODE_ENV": "production"
+                }).APP_PARTNER_XITI_S_APP_ANDROID, 10) || 517553;
+                var didomiNoticeId = Object({
+                    "NODE_ENV": "production"
+                }).DIDOMI_NOTICE_ID || 'D9fNtHCe';
+                var jahiaModuleIsActive = Object({
+                    "NODE_ENV": "production"
+                }).JAHIA_MODULE_IS_ACTIVE === 'true';
+                var jahiaCdn = Object({
+                    "NODE_ENV": "production"
+                }).APP_JAHIA_CDN || 'https://static.fr.shopping.rakuten.com';
+                var jahiaCdnImg = Object({
+                    "NODE_ENV": "production"
+                }).APP_JAHIA_CDN_IMG || 'https://images.fr.shopping.rakuten.com';
+                var googleTagManagerEnvironmentId = Object({
+                    "NODE_ENV": "production"
+                }).APP_PARTNER_GOOGLE_TAG_MANAGER_ID || 'GTM-PW57K8V';
+                var googleTagManagerEnvironment = Object({
+                    "NODE_ENV": "production"
+                }).PARTNER_GOOGLE_TAG_MANAGER_ENV || 'env-8';
+                var googleTagManagerEnvironmentParameters = Object({
+                    "NODE_ENV": "production"
+                }).PARTNER_GOOGLE_TAG_MANAGER_PARAMETERS || 'gtm_auth=a8rpa1M_hAfUi_ajMpMS6g&gtm_cookies_win=x';
+                var ssrPersonalize = Object({
+                    "NODE_ENV": "production"
+                }).FEATURE_FLIP_SSR_PERSONALIZE === 'true';
+                var obfuscation = Object({
+                    "NODE_ENV": "production"
+                }).APP_OBFUSCATION_IS_ACTIVE !== 'false';
+                var desktopImgNoPadExcludedCategories = Object({
+                    "NODE_ENV": "production"
+                }).DESKTOP_IMG_NOPAD_EXCLUDED_CATEGORIES ? JSON.parse(Object({
+                    "NODE_ENV": "production"
+                }).DESKTOP_IMG_NOPAD_EXCLUDED_CATEGORIES) : [];
+                var desktopNoPadFormat = Object({
+                    "NODE_ENV": "production"
+                }).DESKTOP_NOPAD_FORMAT || 'L_NOPAD';
+                var mobImgNoPadExcludedCategories = Object({
+                    "NODE_ENV": "production"
+                }).MOB_IMG_NOPAD_EXCLUDED_CATEGORIES ? JSON.parse(Object({
+                    "NODE_ENV": "production"
+                }).MOB_IMG_NOPAD_EXCLUDED_CATEGORIES) : [];
+                var mobNoPadFormat = Object({
+                    "NODE_ENV": "production"
+                }).MOB_NOPAD_FORMAT || 'ML_NOPAD';
+                var noPadControlImgEndpoint = Object({
+                    "NODE_ENV": "production"
+                }).NOPAD_CONTROLLED_IMG_ENDPOINT || null;
+                var adsTestCampaignON = Object({
+                    "NODE_ENV": "production"
+                }).ADS_TEST_CAMPAIGN_IS_ON === 'true' || false;
+                var conversationIsActive = Object({
+                    "NODE_ENV": "production"
+                }).APP_CONVERSATION_IS_ACTIVE === 'true';
+                var sellHomeRedirectionIsActive = Object({
+                    "NODE_ENV": "production"
+                }).SELL_HOME_REDIRECTION_ENABLED === 'true' || false;
+                // Next.js
+                var logFile = Object({
+                    "NODE_ENV": "production"
+                }).LOG_FILE || 'logs/log';
+                var logLevel = Object({
+                    "NODE_ENV": "production"
+                }).LOG_LEVEL || 'info';
+                var logFormat = Object({
+                    "NODE_ENV": "production"
+                }).LOG_FORMAT || 'json';
+                var port = Object({
+                    "NODE_ENV": "production"
+                }).NEXT_PORT || '3000';
+                var strapiTechBaseUrl = Object({
+                    "NODE_ENV": "production"
+                }).STRAPI_TECH_BASE_URL || '/restpublic/cms/tech';
+                var strapiTechImagesCDN = Object({
+                    "NODE_ENV": "production"
+                }).STRAPI_TECH_IMAGES_CDN || '/images/cms/tech';
+                var dataDomeJsKey = Object({
+                    "NODE_ENV": "production"
+                }).DATADOME_JS_KEY;
+                var headerPseudoOrFirstnameMaxLength = Object({
+                    "NODE_ENV": "production"
+                }).HEADER_PSEUDO_OR_FIRSTNAME_OR_EMAIL_MAX_LENGTH || '15';
+                // when we create cacheable HTML we need a Useragent string to use for your MD mobile Detect freature
+                var cacheableHtmlSSRUserAgent = Object({
+                    "NODE_ENV": "production"
+                }).CACHEABLE_HTML_SSR_USER_AGENT || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36'; // Win 10 Chrome 94 most used Browser on the platform 10/2021
+                var processOutJsScriptUrl = Object({
+                    "NODE_ENV": "production"
+                }).PROCESSOUT_SCRIPT_URL;
+                var processOutProjectId = Object({
+                    "NODE_ENV": "production"
+                }).PROCESSOUT_PROJECT_ID;
+                var marqetaJsScriptUrl = Object({
+                    "NODE_ENV": "production"
+                }).MARQETA_SCRIPT_URL;
+                // Merchant center
+                var mcMenuAllOrdersUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_ALL_ORDERS_URL || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/order.php?sAction=mesventes&sSubAction=avalider';
+                var mcMenuClaimsUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_CLAIMS_URL || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/order.php?sAction=claims';
+                var mcMenuExpeditionsUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_EXPEDITION_URL || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/order.php?sAction=shipment&sSubAction=export';
+                var mcMenuShippingFeesUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_SHIPPING_FEES_URL || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/inventaire.php?sAction=category-management';
+                var mcMenuNumbersUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_NUMBERS_URL || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/chiffre.php';
+                var mcMenuMQSUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_MQS_URL || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/mqs.php';
+                var mcMenuAPIUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_API_URL || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/catalogue.php';
+                var mcMenuRakutenAdsUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_RAKUTEN_ADS_URL || 'https://outils.fr.shopping.rakuten.com/rakuten-ads/';
+                var mcMenuSuperPointsUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_SUPER_POINTS_URL || 'https://outils.fr.shopping.rakuten.com/rakuten-superpoints';
+                var mcMenuOrdersUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_ORDERS_URL || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/order.php?sAction=rakuten-logistic-order';
+                var mcMenuFulfillmentInboundUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_FULFILLMENT_INBOUND_URL || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/inventaire.php?sAction=rakuten-logistic-inbound-order';
+                var mcMenuFulfillmentInventoryUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_FULFILLMENT_INVENTORY_URL || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/inventaire.php?sAction=rakuten-logistic-inbound-product-list';
+                var mcMenuFulfillmentExternalOrdersUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_FULFILLMENT_EXTERNAL_ORDERS_URL || '/rakuten-fulfillment-network/external-orders';
+                var mcMenuEshopUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_ESHOP_URL || 'https://outils.fr.shopping.rakuten.com/rakuten-superboutique/';
+                var mcMenuSellerGuideUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_SELLER_GUIDE_URL || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/conseils.php';
+                var mcMenuRakutenAcademyUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_RAKUTEN_ACADEMY_URL || 'https://services.fr.shopping.rakuten.com/fr/formation-et-universite/e-learning';
+                var mcMenuEccUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_ECC_URL || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/contact.php';
+                var mcMenuAPIDocUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_API_DOC_URL || 'https://outils.fr.shopping.rakuten.com/dev-pro/fr/';
+                var mcMenuMyAdsUrl = Object({
+                    "NODE_ENV": "production"
+                }).MC_MENU_MY_ADS || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/dashboard.php?page=inventaire';
+                var merchantCenterDefaultLocale = Object({
+                    "NODE_ENV": "production"
+                }).MC_DEFAULT_LOCALE || 'fr-FR';
+                var merchantCenterIsActive = Object({
+                    "NODE_ENV": "production"
+                }).MERCHANT_CENTER_ENABLED === 'true';
+                var merchantCenterBetaTesters = ((_a = Object({
+                    "NODE_ENV": "production"
+                }).MERCHANT_CENTER_BETATESTERS) === null || _a === void 0 ? void 0 : _a.split(';').map(Number)) || [];
+                var mcCurrentSalesLink = Object({
+                    "NODE_ENV": "production"
+                }).MC_CURRENT_SALES_LINK || 'https://outils.fr.shopping.rakuten.com/documents/merchant-dashboard/public/php/order.php?sAction=mesventes&sSubAction=encours';
+                var merchantOnboardingIsActive = Object({
+                    "NODE_ENV": "production"
+                }).MERCHANT_ONBOARDING_ENABLED === 'true';
+                var merchantCenterStrapiToken = Object({
+                    "NODE_ENV": "production"
+                }).MERCHANT_CENTER_STRAPI_TOKEN;
+                var merchantSellerPreferencesIsActive = Object({
+                    "NODE_ENV": "production"
+                }).MERCHANT_SELLER_PREFERENCES_ENABLED === 'true';
+                var merchantSellerCouponsIsActive = Object({
+                    "NODE_ENV": "production"
+                }).MERCHANT_SELLER_COUPONS_ENABLED === 'true';
+                var merchantAccountingExportsRequestInterval = Object({
+                    "NODE_ENV": "production"
+                }).MERCHANT_ACCOUNTING_EXPORTS_REQUEST_INTERVAL || 5000;
+                var merchantOnboardingValidationCarouselInterval = Object({
+                    "NODE_ENV": "production"
+                }).MERCHANT_ONBOARDING_VALIDATION_CAROUSEL_INTERVAL || 5000;
+                var merchantAccountingExportsIsActive = Object({
+                    "NODE_ENV": "production"
+                }).MERCHANT_ACCOUNTING_EXPORTS_ENABLED === 'true';
+                var merchantInvoicesIsActive = Object({
+                    "NODE_ENV": "production"
+                }).MERCHANT_INVOICES_ENABLED === 'true';
+                var rfnOrdersImportsIsActive = Object({
+                    "NODE_ENV": "production"
+                }).IMPORT_ORDERS_FEATURE_FLIPPING === 'true';
+                // Chat
+                var chatIsActive = Object({
+                    "NODE_ENV": "production"
+                }).CHAT_IS_ACTIVE === 'true';
+                var featureFlippingSendFiles = Object({
+                    "NODE_ENV": "production"
+                }).CHAT_SEND_FILES_IS_ACTIVE === 'true';
+                var featureFlippingBuyerSendFiles = Object({
+                    "NODE_ENV": "production"
+                }).CHAT_BUYER_SEND_FILES_IS_ACTIVE === 'true';
+                var featureFlippingSendDocs = Object({
+                    "NODE_ENV": "production"
+                }).CHAT_SEND_DOCS_IS_ACTIVE === 'true';
+                var negotiationIsActive = Object({
+                    "NODE_ENV": "production"
+                }).NEGOTIATION_IS_ACTIVE === 'true';
+                var chatAppId = ((_b = Object({
+                    "NODE_ENV": "production"
+                })) === null || _b === void 0 ? void 0 : _b.CHAT_APP_ID) || '';
+                // Repairability index
+                var repairabilityIndexPdfUrl = Object({
+                    "NODE_ENV": "production"
+                }).REPAIRABILITY_INDEX_PDF_BASE_URL;
+                var repairabilityIndexSvgLocationPrefix = Object({
+                    "NODE_ENV": "production"
+                }).REPAIRABILITY_INDEX_SVG_LOCATION_PREFIX;
+                var crewAdvertInstantRedirectDesktopActive = Object({
+                    "NODE_ENV": "production"
+                }).FRICTIONLESS_MODAL_CREW_DESKTOP_IS_ACTIVE === 'true';
+                var crewAdvertInstantRedirectMobileActive = Object({
+                    "NODE_ENV": "production"
+                }).FRICTIONLESS_MODAL_CREW_MOB_IS_ACTIVE === 'true';
+                //DAC7
+                var featureFlippingDac7Status = Object({
+                    "NODE_ENV": "production"
+                }).FEATURE_FLIPPING_DAC7_STATUS === 'true';
+                //NSE
+                var featureFlippingNseActivateLightHeader = Object({
+                    "NODE_ENV": "production"
+                }).FEATURE_FLIPPING_NSE_ACTIVATE_LIGHT_HEADER === 'true';
+                var defaultConfig = {
+                    domainName: domainName,
+                    backendTechUrl: backendTechUrl,
+                    backendVisUrl: backendVisUrl,
+                    backendWsUrl: backendWsUrl,
+                    backendSelUrl: backendSelUrl,
+                    backendBuyUrl: backendBuyUrl,
+                    gatewayUrl: gatewayUrl,
+                    merchantCenterStrapiUrl: merchantCenterStrapiUrl,
+                    backendRfnUrl: backendRfnUrl,
+                    backendRefUrl: backendRefUrl,
+                    backendDispUrl: backendDispUrl,
+                    backendCompUrl: backendCompUrl,
+                    apiUrl: apiUrl,
+                    apiTech: apiTech,
+                    apiVis: apiVis,
+                    apiSeller: apiSeller,
+                    apiBuyer: apiBuyer,
+                    apiMerch: apiMerch,
+                    cdn: cdn,
+                    cdnStatic: cdnStatic,
+                    cdnImages: cdnImages,
+                    kmlEndpoint: kmlEndpoint,
+                    kmlIframeUrl: kmlIframeUrl,
+                    kmlIsActive: kmlIsActive,
+                    canonicalUrl: canonicalUrl,
+                    httpsPort: httpsPort,
+                    enableProxification: enableProxification,
+                    filterFamilyIsActive: filterFamilyIsActive,
+                    lazyOffsetDesktop: lazyOffsetDesktop,
+                    lazyOffsetMobile: lazyOffsetMobile,
+                    lockMaxFlux: lockMaxFlux,
+                    nodeInstance: nodeInstance,
+                    jahiaCdn: jahiaCdn,
+                    jahiaCdnImg: jahiaCdnImg,
+                    timeout: {
+                        default: defaultTimeout,
+                        long: longTimeout
+                    },
+                    hasCanopy: hasCanopy,
+                    adsTestCampaignON: adsTestCampaignON,
+                    featureFlipping: {
+                        jahiaModuleIsActive: jahiaModuleIsActive,
+                        ssrPersonalize: ssrPersonalize,
+                        obfuscation: obfuscation,
+                        desktopImgNoPadExcludedCategories: desktopImgNoPadExcludedCategories,
+                        mobImgNoPadExcludedCategories: mobImgNoPadExcludedCategories,
+                        desktopNoPadFormat: desktopNoPadFormat,
+                        mobNoPadFormat: mobNoPadFormat,
+                        noPadControlImgEndpoint: noPadControlImgEndpoint,
+                        didomiNoticeId: didomiNoticeId,
+                        conversationIsActive: conversationIsActive,
+                        sellHomeRedirectionIsActive: sellHomeRedirectionIsActive,
+                        merchantCenterIsActive: merchantCenterIsActive,
+                        merchantOnboardingIsActive: merchantOnboardingIsActive,
+                        merchantSellerPreferencesIsActive: merchantSellerPreferencesIsActive,
+                        merchantSellerCouponsIsActive: merchantSellerCouponsIsActive,
+                        merchantAccountingExportsIsActive: merchantAccountingExportsIsActive,
+                        merchantInvoicesIsActive: merchantInvoicesIsActive,
+                        rfnOrdersImportsIsActive: rfnOrdersImportsIsActive
+                    },
+                    xiti: {
+                        desktop: xitiSiteDesktop,
+                        mobile: xitiSiteMobile,
+                        iOS: xitiSiteIos,
+                        android: xitiSiteAndroid
+                    },
+                    partner: {
+                        googleTagManager: {
+                            id: googleTagManagerEnvironmentId,
+                            parameters: googleTagManagerEnvironmentParameters,
+                            env: googleTagManagerEnvironment
+                        },
+                        kameleoon: {
+                            endpoint: kmlEndpoint,
+                            iframUrl: kmlIframeUrl,
+                            isActive: kmlIsActive
+                        }
+                    },
+                    googleTagManagerEnvironmentId: googleTagManagerEnvironmentId,
+                    googleTagManagerEnvironmentParameters: googleTagManagerEnvironmentParameters,
+                    googleTagManagerEnvironment: googleTagManagerEnvironment,
+                    strapiTechBaseUrl: strapiTechBaseUrl,
+                    strapiTechImagesCDN: strapiTechImagesCDN,
+                    apiStrapi: apiStrapi,
+                    dataDomeJsKey: dataDomeJsKey,
+                    cacheableHtmlSSRUserAgent: cacheableHtmlSSRUserAgent,
+                    marqetaJsScriptUrl: marqetaJsScriptUrl,
+                    processOut: {
+                        url: processOutJsScriptUrl,
+                        project: processOutProjectId
+                    },
+                    merchantCenterMenuUrls: {
+                        mcMenuAllOrdersUrl: mcMenuAllOrdersUrl,
+                        mcMenuClaimsUrl: mcMenuClaimsUrl,
+                        mcMenuExpeditionsUrl: mcMenuExpeditionsUrl,
+                        mcMenuShippingFeesUrl: mcMenuShippingFeesUrl,
+                        mcMenuNumbersUrl: mcMenuNumbersUrl,
+                        mcMenuMQSUrl: mcMenuMQSUrl,
+                        mcMenuAPIUrl: mcMenuAPIUrl,
+                        mcMenuRakutenAdsUrl: mcMenuRakutenAdsUrl,
+                        mcMenuSuperPointsUrl: mcMenuSuperPointsUrl,
+                        mcMenuOrdersUrl: mcMenuOrdersUrl,
+                        mcMenuFulfillmentInboundUrl: mcMenuFulfillmentInboundUrl,
+                        mcMenuFulfillmentInventoryUrl: mcMenuFulfillmentInventoryUrl,
+                        mcMenuFulfillmentExternalOrdersUrl: mcMenuFulfillmentExternalOrdersUrl,
+                        mcMenuEshopUrl: mcMenuEshopUrl,
+                        mcMenuSellerGuideUrl: mcMenuSellerGuideUrl,
+                        mcMenuRakutenAcademyUrl: mcMenuRakutenAcademyUrl,
+                        mcMenuEccUrl: mcMenuEccUrl,
+                        mcMenuAPIDocUrl: mcMenuAPIDocUrl,
+                        mcMenuMyAdsUrl: mcMenuMyAdsUrl
+                    },
+                    merchantCenterDefaultLocale: merchantCenterDefaultLocale,
+                    merchantCenterBetaTesters: merchantCenterBetaTesters,
+                    mcCurrentSalesLink: mcCurrentSalesLink,
+                    merchantCenterStrapiToken: merchantCenterStrapiToken,
+                    merchantAccountingExportsRequestInterval: merchantAccountingExportsRequestInterval,
+                    merchantOnboardingValidationCarouselInterval: merchantOnboardingValidationCarouselInterval,
+                    chat: {
+                        chatIsActive: chatIsActive,
+                        featureFlippingSendFiles: featureFlippingSendFiles,
+                        featureFlippingBuyerSendFiles: featureFlippingBuyerSendFiles,
+                        featureFlippingSendDocs: featureFlippingSendDocs,
+                        negotiationIsActive: negotiationIsActive,
+                        appId: chatAppId
+                    },
+                    repairabilityIndex: {
+                        repairabilityIndexPdfUrl: repairabilityIndexPdfUrl,
+                        repairabilityIndexSvgLocationPrefix: repairabilityIndexSvgLocationPrefix
+                    },
+                    advertCrewModale: {
+                        instantRedirectDesktopActive: crewAdvertInstantRedirectDesktopActive,
+                        instantRedirectMobileActive: crewAdvertInstantRedirectMobileActive
+                    }
+                };
+
+                function get() {
+                    return Object.assign({}, defaultConfig);
+                }
+                exports.get = get;
+                // for nextJS
+                exports.serverRuntimeConfig = {
+                    apiUrl: apiUrl,
+                    apiVis: apiVis,
+                    apiBuyer: apiBuyer,
+                    apiMerch: apiMerch,
+                    apiSeller: apiSeller,
+                    enableProxification: enableProxification,
+                    enableBackendHttpProxy: enableBackendHttpProxy,
+                    enableBackendHttpProxyServerUrl: enableBackendHttpProxyServerUrl,
+                    backendTechUrl: backendTechUrl,
+                    backendVisUrl: backendVisUrl,
+                    backendSelUrl: backendSelUrl,
+                    backendBuyUrl: backendBuyUrl,
+                    gatewayUrl: gatewayUrl,
+                    merchantCenterStrapiUrl: merchantCenterStrapiUrl,
+                    backendRfnUrl: backendRfnUrl,
+                    backendRefUrl: backendRefUrl,
+                    backendDispUrl: backendDispUrl,
+                    backendCompUrl: backendCompUrl,
+                    strapiTechBaseUrl: strapiTechBaseUrl,
+                    strapiTechImagesCDN: strapiTechImagesCDN,
+                    kmlEndpoint: kmlEndpoint,
+                    kmlIframeUrl: kmlIframeUrl,
+                    kmlIsActive: kmlIsActive,
+                    googleTagManagerEnvironmentId: googleTagManagerEnvironmentId,
+                    googleTagManagerEnvironmentParameters: googleTagManagerEnvironmentParameters,
+                    googleTagManagerEnvironment: googleTagManagerEnvironment,
+                    logLevel: logLevel,
+                    logFile: logFile,
+                    logFormat: logFormat,
+                    port: port,
+                    canonicalUrl: canonicalUrl,
+                    apiStrapi: apiStrapi,
+                    cacheableHtmlSSRUserAgent: cacheableHtmlSSRUserAgent,
+                    marqetaJsScriptUrl: marqetaJsScriptUrl,
+                    processOut: {
+                        url: processOutJsScriptUrl,
+                        project: processOutProjectId
+                    },
+                    merchantCenterMenuUrls: {
+                        mcMenuAllOrdersUrl: mcMenuAllOrdersUrl,
+                        mcMenuClaimsUrl: mcMenuClaimsUrl,
+                        mcMenuExpeditionsUrl: mcMenuExpeditionsUrl,
+                        mcMenuShippingFeesUrl: mcMenuShippingFeesUrl,
+                        mcMenuNumbersUrl: mcMenuNumbersUrl,
+                        mcMenuMQSUrl: mcMenuMQSUrl,
+                        mcMenuAPIUrl: mcMenuAPIUrl,
+                        mcMenuRakutenAdsUrl: mcMenuRakutenAdsUrl,
+                        mcMenuSuperPointsUrl: mcMenuSuperPointsUrl,
+                        mcMenuOrdersUrl: mcMenuOrdersUrl,
+                        mcMenuFulfillmentInboundUrl: mcMenuFulfillmentInboundUrl,
+                        mcMenuFulfillmentInventoryUrl: mcMenuFulfillmentInventoryUrl,
+                        mcMenuFulfillmentExternalOrdersUrl: mcMenuFulfillmentExternalOrdersUrl,
+                        mcMenuEshopUrl: mcMenuEshopUrl,
+                        mcMenuSellerGuideUrl: mcMenuSellerGuideUrl,
+                        mcMenuRakutenAcademyUrl: mcMenuRakutenAcademyUrl,
+                        mcMenuEccUrl: mcMenuEccUrl,
+                        mcMenuAPIDocUrl: mcMenuAPIDocUrl
+                    },
+                    merchantCenterDefaultLocale: merchantCenterDefaultLocale,
+                    merchantCenterBetaTesters: merchantCenterBetaTesters,
+                    mcCurrentSalesLink: mcCurrentSalesLink,
+                    merchantCenterStrapiToken: merchantCenterStrapiToken,
+                    merchantAccountingExportsRequestInterval: merchantAccountingExportsRequestInterval,
+                    merchantOnboardingValidationCarouselInterval: merchantOnboardingValidationCarouselInterval,
+                    repairabilityIndexPdfUrl: repairabilityIndexPdfUrl,
+                    repairabilityIndexSvgLocationPrefix: repairabilityIndexSvgLocationPrefix,
+                    dac7: {
+                        featureFlippingDac7Status: featureFlippingDac7Status
+                    },
+                    nse: {
+                        featureFlippingNseActivateLightHeader: featureFlippingNseActivateLightHeader
+                    },
+                    advertCrewModale: {
+                        instantRedirectDesktopActive: crewAdvertInstantRedirectDesktopActive,
+                        instantRedirectMobileActive: crewAdvertInstantRedirectMobileActive
+                    }
+                };
+                // on server side load config from env, in browser load config from window.PUBLIC_RUNTIME_CONFIG, this is added in nextjs in pages/_document.tsx
+                exports.publicRuntimeConfig = {
+                    cdnImages: typeof window !== 'undefined' ? ((_c = window === null || window === void 0 ? void 0 : window.PUBLIC_RUNTIME_CONFIG) === null || _c === void 0 ? void 0 : _c.cdnImages) || cdnImages : cdnImages,
+                    timeout: {
+                        default: typeof window !== 'undefined' ? ((_e = (_d = window === null || window === void 0 ? void 0 : window.PUBLIC_RUNTIME_CONFIG) === null || _d === void 0 ? void 0 : _d.timeout) === null || _e === void 0 ? void 0 : _e.default) || defaultTimeout : defaultTimeout,
+                        long: typeof window !== 'undefined' ? ((_g = (_f = window === null || window === void 0 ? void 0 : window.PUBLIC_RUNTIME_CONFIG) === null || _f === void 0 ? void 0 : _f.timeout) === null || _g === void 0 ? void 0 : _g.long) || longTimeout : longTimeout
+                    },
+                    header: {
+                        firstNameOrPseudoMaxLength: typeof window !== 'undefined' ? ((_h = window === null || window === void 0 ? void 0 : window.PUBLIC_RUNTIME_CONFIG) === null || _h === void 0 ? void 0 : _h.header.firstNameOrPseudoMaxLength) || headerPseudoOrFirstnameMaxLength : headerPseudoOrFirstnameMaxLength
+                    },
+                    featureFlipping: {
+                        ssrPersonalize: typeof window !== 'undefined' ? ((_j = window === null || window === void 0 ? void 0 : window.PUBLIC_RUNTIME_CONFIG) === null || _j === void 0 ? void 0 : _j.featureFlipping.ssrPersonalize) || ssrPersonalize : ssrPersonalize
+                    },
+                    canonicalUrl: typeof window !== 'undefined' ? ((_k = window === null || window === void 0 ? void 0 : window.PUBLIC_RUNTIME_CONFIG) === null || _k === void 0 ? void 0 : _k.canonicalUrl) || canonicalUrl : canonicalUrl
+                };
+                /**
+                 * temporary
+                 */
+                function loadConfiguration() {
+                    return Promise.resolve(get());
+                }
+                exports.loadConfiguration = loadConfiguration;
+                exports.configService = {
+                    get: get,
+                    loadConfiguration: loadConfiguration,
+                    serverRuntimeConfig: exports.serverRuntimeConfig,
+                    publicRuntimeConfig: exports.publicRuntimeConfig
+                };
+
+                /***/
+            }),
+
+        /***/
+        1909:
+            /***/
+            (function(module, exports, __webpack_require__) {
+
+                "use strict";
+
+
+                Object.defineProperty(exports, "__esModule", {
+                    value: true
+                });
+                exports.getCsp = exports.publicRuntimeConfig = exports.serverRuntimeConfig = exports.loadConfiguration = exports.get = exports.configService = void 0;
+                var configService_1 = __webpack_require__(1859);
+                Object.defineProperty(exports, "configService", {
+                    enumerable: true,
+                    get: function get() {
+                        return configService_1.configService;
+                    }
+                });
+                Object.defineProperty(exports, "get", {
+                    enumerable: true,
+                    get: function get() {
+                        return configService_1.get;
+                    }
+                });
+                Object.defineProperty(exports, "loadConfiguration", {
+                    enumerable: true,
+                    get: function get() {
+                        return configService_1.loadConfiguration;
+                    }
+                });
+                Object.defineProperty(exports, "serverRuntimeConfig", {
+                    enumerable: true,
+                    get: function get() {
+                        return configService_1.serverRuntimeConfig;
+                    }
+                });
+                Object.defineProperty(exports, "publicRuntimeConfig", {
+                    enumerable: true,
+                    get: function get() {
+                        return configService_1.publicRuntimeConfig;
+                    }
+                });
+                var csp_1 = __webpack_require__(1910);
+                Object.defineProperty(exports, "getCsp", {
+                    enumerable: true,
+                    get: function get() {
+                        return csp_1.getCsp;
+                    }
+                });
+
+                /***/
+            }),
+
+        /***/
+        1910:
+            /***/
+            (function(module, exports, __webpack_require__) {
+
+                "use strict";
+
+
+                Object.defineProperty(exports, "__esModule", {
+                    value: true
+                });
+                exports.getCsp = void 0;
+                var configService_1 = __webpack_require__(1859);
+                var SELF = "'self'";
+                var UNSAFE_INLINE = "'unsafe-inline'";
+                var UNSAFE_EVAL = "'unsafe-eval'";
+                var BLOB = 'blob:';
+                var DATA = 'data:';
+                var STAR = '*';
+                var INTEG = Object({
+                    "NODE_ENV": "production"
+                }).INTEG && Object({
+                    "NODE_ENV": "production"
+                }).INTEG !== 'false';
+                var defaultSrc = [SELF, BLOB, UNSAFE_INLINE, 'http://*.googlesyndication.com', 'http://*.criteo.com', 'https://jahia7.babel.fr'];
+                var imgSrc = [BLOB, STAR, DATA];
+                var fontSrc = [STAR, DATA];
+                var scriptSrc = [SELF, BLOB, UNSAFE_INLINE, UNSAFE_EVAL, 'https://*.fr.shopping.rakuten.com', 'https://fr.shopping.rakuten.com', 'http://*.fr.shopping.rakuten.com', 'https://pmcdn.priceminister.com', 'https://pmcdn.staticpmrk.com', 'https://connect.facebook.net', 'https://maps.google.com', 'https://www.googletagservices.com', 'http://www.googletagservices.com', 'http://d1m6l9dfulcyw7.cloudfront.net', 'https://ajax.googleapis.com', 'http://tag.aticdn.net', 'https://securepubads.g.doubleclick.net', 'http://*.criteo.net', 'http://*.criteo.com', 'http://*.stormiq.com', 'https://*.googlesyndication.com', 'http://*.googlesyndication.com', 'https://maps.googleapis.com', 'http://*.rubiconproject.com', 'http://cdn.tinyclues.com', 'https://adservice.google.fr', 'https://adservice.google.com', 'https://www.googletagmanager.com', 'https://cdnjs.cloudflare.com', 'http://t.contentsquare.net', 'https://t.contentsquare.net', 'http://js.rmtag.com', 'http://www.google-analytics.com', 'http://bat.bing.com', 'http://nxtck.com', 'http://r.r10s.jp', 'http://js.sddan.com', 'http://www.googleadservices.com', 'http://mastertag.effiliation.com', 'http://www.rtmlb.com', 'http://mmtro.com', 'http://js.avads.net', "".concat(configService_1.serverRuntimeConfig.kmlEndpoint), 'https://jahia7.babel.fr', 'https://www.google.com', 'https://sdk.privacy-center.org', 'https://sdk-gcp.privacy-center.org', 'https://*.wlscripts.net', 'https://d32106rlhdcogo.cloudfront.net', 'https://d3dh5c7rwzliwm.cloudfront.net', 'https://dgf0rw7orw6vf.cloudfront.net', 'http://www.personalicanvas.com', 'https://www.personalicanvas.com', 'https://*.sendbird.com', 'wss://*.sendbird.com', 'https://*.xiti.com', 'https://*.kameleoon.eu', 'https://*.kameleoon.com', 'https://restapi.surveygizmo.com', 'https://js.datadome.co', 'https://*.processout.com', 'https://*.marqeta.com'];
+                var connectSrc = [SELF, 'https://*.fr.shopping.rakuten.com', 'https://fr.shopping.rakuten.com', 'http://*.fr.shopping.rakuten.com', 'https://*.priceminister.com', 'http://*.priceminister.com', 'https://pmcdn.staticpmrk.com ', 'http://*.criteo.com', 'https://*.contentsquare.net', 'https://clues.tinyclues.com', 'https://securepubads.g.doubleclick.net', 'https://*.googlesyndication.com', 'https://*.adsafeprotected.com', 'https://jahia7.babel.fr', 'https://api.privacy-center.org', 'http://*.personali.com', 'https://*.personali.com', 'https://*.sendbird.com', 'wss://*.sendbird.com', 'https://*.xiti.com', 'https://*.kameleoon.eu', 'https://*.kameleoon.com', 'https://restapi.surveygizmo.com', 'https://api-js.datadome.co', 'https://*.processout.com', 'https://*.marqeta.com'];
+                var styleSrc = [SELF, BLOB, UNSAFE_INLINE, 'https://*.fr.shopping.rakuten.com', 'https://fr.shopping.rakuten.com', 'https://pmcdn.priceminister.com', 'https://pmcdn.staticpmrk.com', 'https://fonts.googleapis.com', 'https://jahia7.babel.fr', 'https://cdnjs.cloudflare.com'];
+                var childSrc = ['http://*.criteo.com', 'http://*.googlesyndication.com'];
+                var frameSrc = ['https://*.solution.weborama.fr', 'https://*.commander1.com', 'https://*.googlesyndication.com', 'http://*.criteo.com', 'http://tpc.googlesyndication.com', 'https://www.google.com', 'http://www.googletagservices.com/', 'https://geo.captcha-delivery.com/', 'https://*.processout.com', 'https://*.marqeta.com'];
+                var workerSrc = [BLOB, 'https://*.fr.shopping.rakuten.com'];
+                if (INTEG) {
+                    scriptSrc.push('https://pmcdn.pminteg.fr');
+                    scriptSrc.push('https://pmcdn.pminteg1.fr');
+                    scriptSrc.push('https://pmcdn.pminteg2.fr');
+                    connectSrc.push('https://pmcdn.pminteg.fr');
+                    connectSrc.push('https://pmcdn.pminteg1.fr');
+                    connectSrc.push('https://pmcdn.pminteg2.fr');
+                    styleSrc.push('https://pmcdn.pminteg.fr');
+                    styleSrc.push('https://pmcdn.pminteg1.fr');
+                    styleSrc.push('https://pmcdn.pminteg2.fr');
+                }
+                var csp = {
+                    'default-src': Object({
+                        "NODE_ENV": "production"
+                    }).CSP_DEFAULT_SRC || defaultSrc.join(' '),
+                    'img-src': Object({
+                        "NODE_ENV": "production"
+                    }).CSP_IMG_SRC || imgSrc.join(' '),
+                    'font-src': Object({
+                        "NODE_ENV": "production"
+                    }).CSP_FONT_SRC || fontSrc.join(' '),
+                    'script-src': Object({
+                        "NODE_ENV": "production"
+                    }).CSP_SCRIPT_SRC || scriptSrc.join(' '),
+                    'connect-src': Object({
+                        "NODE_ENV": "production"
+                    }).CSP_CONNECT_SRC || connectSrc.join(' '),
+                    'style-src': Object({
+                        "NODE_ENV": "production"
+                    }).CSP_STYLE_SRC || styleSrc.join(' '),
+                    'child-src': Object({
+                        "NODE_ENV": "production"
+                    }).CSP_CHILD_SRC || childSrc.join(' '),
+                    'frame-src': Object({
+                        "NODE_ENV": "production"
+                    }).CSP_FRAME_SRC || frameSrc.join(' '),
+                    'worker-src': Object({
+                        "NODE_ENV": "production"
+                    }).CSP_WORKER_SRC || workerSrc.join(' ')
+                };
+                if (Object({
+                        "NODE_ENV": "production"
+                    }).CSP_MEDIA_SRC) {
+                    csp['media-src'] = Object({
+                        "NODE_ENV": "production"
+                    }).CSP_MEDIA_SRC;
+                }
+                if (Object({
+                        "NODE_ENV": "production"
+                    }).CSP_OBJECT_SRC) {
+                    csp['object-src'] = Object({
+                        "NODE_ENV": "production"
+                    }).CSP_OBJECT_SRC;
+                }
+                if (Object({
+                        "NODE_ENV": "production"
+                    }).CSP_PREFETCH_SRC) {
+                    csp['prefetch-src'] = Object({
+                        "NODE_ENV": "production"
+                    }).CSP_PREFETCH_SRC;
+                }
+                if (Object({
+                        "NODE_ENV": "production"
+                    }).CSP_BASE_URI) {
+                    csp['base-uri'] = Object({
+                        "NODE_ENV": "production"
+                    }).CSP_BASE_URI;
+                }
+
+                function getCsp() {
+                    var parts = csp['connect-src'].split(/^s/).filter(function(value) {
+                        return value;
+                    });
+                    if (configService_1.serverRuntimeConfig.apiUrl && configService_1.serverRuntimeConfig.apiUrl !== '/' && typeof parts.find(function(v) {
+                            return configService_1.serverRuntimeConfig.apiUrl === v;
+                        }) === 'undefined') {
+                        parts.push(configService_1.serverRuntimeConfig.apiUrl);
+                    }
+                    if (configService_1.serverRuntimeConfig.apiVis && typeof parts.find(function(v) {
+                            return configService_1.serverRuntimeConfig.apiVis === v;
+                        }) === 'undefined') {
+                        parts.push(configService_1.serverRuntimeConfig.apiVis);
+                    }
+                    if (configService_1.serverRuntimeConfig.apiBuyer && typeof parts.find(function(v) {
+                            return configService_1.serverRuntimeConfig.apiBuyer === v;
+                        }) === 'undefined') {
+                        parts.push(configService_1.serverRuntimeConfig.apiBuyer);
+                    }
+                    if (configService_1.serverRuntimeConfig.apiSeller && typeof parts.find(function(v) {
+                            return configService_1.serverRuntimeConfig.apiSeller === v;
+                        }) === 'undefined') {
+                        parts.push(configService_1.serverRuntimeConfig.apiSeller);
+                    }
+                    if (configService_1.serverRuntimeConfig.apiMerch && typeof parts.find(function(v) {
+                            return configService_1.serverRuntimeConfig.apiMerch === v;
+                        }) === 'undefined') {
+                        parts.push(configService_1.serverRuntimeConfig.apiMerch);
+                    }
+                    var result = Object.assign({}, csp);
+                    result['connect-src'] = parts.join(' ');
+                    return Object.keys(result).map(function(key) {
+                        return "".concat(key, " ").concat(result[key]);
+                    }).join(';');
+                }
+                exports.getCsp = getCsp;
+
+                /***/
+            }),
+
+        /***/
+        2105:
+            /***/
+            (function(module, __webpack_exports__, __webpack_require__) {
+
+                "use strict";
+                // ESM COMPAT FLAG
+                __webpack_require__.r(__webpack_exports__);
+
+                // EXPORTS
+                __webpack_require__.d(__webpack_exports__, "FooterMinimal", function() {
+                    return /* binding */ footer_esm_FooterMinimalWrapped;
+                });
+                __webpack_require__.d(__webpack_exports__, "default", function() {
+                    return /* binding */ footerModule;
+                });
+
+                // EXTERNAL MODULE: ./node_modules/.pnpm/tslib@2.6.2/node_modules/tslib/tslib.es6.js
+                var tslib_es6 = __webpack_require__(2);
+
+                // EXTERNAL MODULE: ./node_modules/.pnpm/react@18.3.1/node_modules/react/index.js
+                var react = __webpack_require__(0);
+                var react_default = /*#__PURE__*/ __webpack_require__.n(react);
+
+                // EXTERNAL MODULE: ./node_modules/.pnpm/react-redux@7.2.9_react-dom@18.2.0_react@18.3.1/node_modules/react-redux/es/index.js + 24 modules
+                var es = __webpack_require__(29);
+
+                // EXTERNAL MODULE: ./node_modules/.pnpm/@apollo+client@3.9.10_@types+react@18.2.75_graphql@15.8.0_react-dom@18.2.0_react@18.3.1/node_modules/@apollo/client/react/hooks/useQuery.js + 2 modules
+                var useQuery = __webpack_require__(1806);
+
+                // EXTERNAL MODULE: ./node_modules/.pnpm/graphql-tag@2.12.6_graphql@15.8.0/node_modules/graphql-tag/lib/index.js + 13 modules
+                var lib = __webpack_require__(76);
+
+                // EXTERNAL MODULE: ./node_modules/.pnpm/@next-common+mui@8.106.0_@date-io+core@1.3.13_@types+node@14.18.63_@types+react@18.2.75_momen_pbd4qfzh2ffoeu6hyvkkfuzvxu/node_modules/@next-common/mui/dist/esm/components/LinkOrSpan/LinkOrSpan.js
+                var LinkOrSpan = __webpack_require__(1779);
+
+                // EXTERNAL MODULE: ./node_modules/.pnpm/@next-common+mui@8.106.0_@date-io+core@1.3.13_@types+node@14.18.63_@types+react@18.2.75_momen_pbd4qfzh2ffoeu6hyvkkfuzvxu/node_modules/@next-common/mui/dist/esm/components/HideInWebview/HideInWebviewHoc.js
+                var HideInWebviewHoc = __webpack_require__(1782);
+
+                // EXTERNAL MODULE: ./node_modules/.pnpm/@mui+system@5.16.7_@emotion+react@11.13.3_@emotion+styled@11.11.5_@types+react@18.2.75_react@18.3.1/node_modules/@mui/system/esm/styled.js + 18 modules
+                var styled = __webpack_require__(1794);
+
+                // EXTERNAL MODULE: ./node_modules/.pnpm/@next-common+mui@8.106.0_@date-io+core@1.3.13_@types+node@14.18.63_@types+react@18.2.75_momen_pbd4qfzh2ffoeu6hyvkkfuzvxu/node_modules/@next-common/mui/dist/esm/colorPalette.js
+                var colorPalette = __webpack_require__(3);
+
+                // CONCATENATED MODULE: ./node_modules/.pnpm/@next-common+mui@8.106.0_@date-io+core@1.3.13_@types+node@14.18.63_@types+react@18.2.75_momen_pbd4qfzh2ffoeu6hyvkkfuzvxu/node_modules/@next-common/mui/dist/esm/components/Hyperlink/Hyperlink.style.js
+
+
+                var HyperlinkMarkup = Object(styled["a" /* default */ ])('a')(function(_ref) {
+                    var color = _ref.color,
+                        fontSize = _ref.fontSize,
+                        extraStyles = _ref.extraStyles;
+                    var defaultStyle = {
+                        color: color ? colorPalette["a" /* colorPalette */ ][color] : colorPalette["a" /* colorPalette */ ].gray800,
+                        fontSize: fontSize || '1.6rem'
+                    };
+                    if (extraStyles) {
+                        return Object.assign(Object.assign({}, defaultStyle), extraStyles);
+                    }
+                    return defaultStyle;
+                });
+                var styleForTest = {
+                    opacity: 0.3,
+                    margin: '2.5rem',
+                    fontWeight: 'bold'
+                };
+                // CONCATENATED MODULE: ./node_modules/.pnpm/@next-common+mui@8.106.0_@date-io+core@1.3.13_@types+node@14.18.63_@types+react@18.2.75_momen_pbd4qfzh2ffoeu6hyvkkfuzvxu/node_modules/@next-common/mui/dist/esm/components/Hyperlink/Hyperlink.js
+
+
+                /**
+                 * @deprecated Depricate in favour of Link form @next-common/mui
+                 */
+                var Hyperlink_Hyperlink = function Hyperlink(props) {
+                    var children = props.children,
+                        href = props.href,
+                        _props$openLinkInNewT = props.openLinkInNewTab,
+                        openLinkInNewTab = _props$openLinkInNewT === void 0 ? false : _props$openLinkInNewT,
+                        _props$extraClassName = props.extraClassName,
+                        extraClassName = _props$extraClassName === void 0 ? '' : _props$extraClassName,
+                        onClick = props.onClick,
+                        _props$noFollow = props.noFollow,
+                        noFollow = _props$noFollow === void 0 ? false : _props$noFollow;
+                    var dynamicProps = {};
+                    if (openLinkInNewTab) {
+                        dynamicProps.target = '_blank';
+                        dynamicProps.rel = 'noopener noreferrer';
+                    }
+                    if (noFollow) {
+                        if (dynamicProps.rel) {
+                            dynamicProps.rel += ' nofollow';
+                        } else {
+                            dynamicProps.rel = 'nofollow';
+                        }
+                    }
+                    return /*#__PURE__*/ react_default.a.createElement(HyperlinkMarkup, Object.assign({
+                        color: props.color,
+                        fontSize: props.fontSize,
+                        className: "".concat(extraClassName),
+                        href: href,
+                        extraStyles: props.extraStyles
+                    }, dynamicProps, {
+                        onClick: onClick,
+                        "data-qa": "hyperlink"
+                    }), children);
+                };
+                // EXTERNAL MODULE: ./node_modules/.pnpm/@next-common+mui@8.106.0_@date-io+core@1.3.13_@types+node@14.18.63_@types+react@18.2.75_momen_pbd4qfzh2ffoeu6hyvkkfuzvxu/node_modules/@next-common/mui/dist/esm/components/HideInWebview/HideInWebView.js
+                var HideInWebView = __webpack_require__(775);
+
+                // EXTERNAL MODULE: ./node_modules/.pnpm/@next-common+config-service@8.98.1/node_modules/@next-common/config-service/dist/index.js
+                var dist = __webpack_require__(1909);
+
+                // EXTERNAL MODULE: ./node_modules/.pnpm/@next-common+breakpoint@8.111.5_react-dom@18.2.0_react-redux@7.2.9_react@18.3.1_redux-thunk@2.3.0/node_modules/@next-common/breakpoint/dist/esm/utils/breakpointHook.js
+                var breakpointHook = __webpack_require__(432);
+
+                // EXTERNAL MODULE: ./node_modules/.pnpm/@next-common+breakpoint@8.111.5_react-dom@18.2.0_react-redux@7.2.9_react@18.3.1_redux-thunk@2.3.0/node_modules/@next-common/breakpoint/dist/esm/components/BreakpointProvider/BreakpointProvider.js
+                var BreakpointProvider = __webpack_require__(1774);
+
+                // CONCATENATED MODULE: ./node_modules/.pnpm/@next-common+footer@8.98.1_@apollo+client@3.9.10_@date-io+core@1.3.13_@emotion+react@11.11.4__bpsw3cizn7xhoilxjiau24ytfm/node_modules/@next-common/footer/build/footer.esm.js
+
+
+
+
+
+
+
+
+                var t = {
+                    "text": "_f-text-fbb03a",
+                    "helper_hide-AboveTablet": "_f-helper_hide-AboveTablet-9f8620",
+                    "sr-only": "_f-sr-only-2756d3",
+                    "contain": "_f-contain-51dd1e",
+                    "db": "_f-db-d2ba8a",
+                    "dib": "_f-dib-3b9ea7",
+                    "dn-ns": "_f-dn-ns-cf8b16",
+                    "flex": "_f-flex-c3a12c",
+                    "flex-column": "_f-flex-column-91540e",
+                    "flex-wrap": "_f-flex-wrap-85a32e",
+                    "items-center": "_f-items-center-67f653",
+                    "justify-between": "_f-justify-between-338fe5",
+                    "justify-around": "_f-justify-around-c1e7fe",
+                    "i": "_f-i-52df74",
+                    "normal": "_f-normal-d1745d",
+                    "h-auto": "_f-h-auto-8a3b6b",
+                    "link": "_f-link-1c8d7c",
+                    "list": "_f-list-d7a691",
+                    "mw-none": "_f-mw-none-ac1a6e",
+                    "w-100": "_f-w-100-2ec53a",
+                    "w-auto": "_f-w-auto-1a9f7e",
+                    "overflow-hidden": "_f-overflow-hidden-4fbe93",
+                    "static": "_f-static-03cb85",
+                    "relative": "_f-relative-be87fc",
+                    "dark-gray": "_f-dark-gray-05105b",
+                    "gray": "_f-gray-8885cc",
+                    "bg-near-white": "_f-bg-near-white-7d5940",
+                    "bg-white": "_f-bg-white-033e9a",
+                    "pa0": "_f-pa0-b2f1bf",
+                    "pa1": "_f-pa1-f3d1e7",
+                    "pa3": "_f-pa3-ed5153",
+                    "pl4": "_f-pl4-229e56",
+                    "pr4": "_f-pr4-da6975",
+                    "pb4": "_f-pb4-31e019",
+                    "pt2": "_f-pt2-acfe83",
+                    "pv3": "_f-pv3-54886b",
+                    "ph4": "_f-ph4-4629c9",
+                    "ma0": "_f-ma0-91afa6",
+                    "collapse": "_f-collapse-28620e",
+                    "no-underline": "_f-no-underline-42938b",
+                    "tc": "_f-tc-7c0393",
+                    "f6": "_f-f6-1f7ea0",
+                    "pointer": "_f-pointer-932ccf",
+                    "f12": "_f-f12-f45559",
+                    "pa-8": "_f-pa-8-10e39b"
+                };
+                var s$d = {
+                    "reinsuranceBlock": "_f-reinsuranceBlock-92ce15",
+                    "icon": "_f-icon-260244",
+                    "a": "_f-a-5c5cbe",
+                    "iconPriceClub": "_f-iconPriceClub-22269d",
+                    "labels": "_f-labels-9c8601",
+                    "labelSmall": "_f-labelSmall-d212fe",
+                    "labelLarge": "_f-labelLarge-00ee6f"
+                };
+                var footer_esm_LinkContent$3 = function LinkContent$3(_a) {
+                    var _b, _c, _d;
+                    var item = _a.item;
+                    return /*#__PURE__*/ react_default.a.createElement(react["Fragment"], null, /*#__PURE__*/ react_default.a.createElement("img", {
+                        "data-qa": "icon-external",
+                        className: "".concat(s$d.icon, " ").concat(item.id === 1 && s$d.iconPriceClub),
+                        loading: "lazy",
+                        src: item.iconUrl,
+                        alt: (_b = item.labels) === null || _b === void 0 ? void 0 : _b.large,
+                        width: item.width,
+                        height: item.height
+                    }), /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: "".concat(s$d.labels, " ").concat(t.flex, " ").concat(t['flex-column'])
+                    }, /*#__PURE__*/ react_default.a.createElement("span", {
+                        className: "".concat(t['dark-gray'], " ").concat(s$d.labelSmall)
+                    }, (_c = item.labels) === null || _c === void 0 ? void 0 : _c.small), /*#__PURE__*/ react_default.a.createElement("span", {
+                        className: "".concat(t.gray, " ").concat(s$d.labelLarge)
+                    }, (_d = item.labels) === null || _d === void 0 ? void 0 : _d.large)));
+                };
+                var footer_esm_Reinsurance = function Reinsurance(_a) {
+                    var links = _a.links;
+                    return /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: "".concat(t.flex, " ").concat(t.pa3, " ").concat(t['bg-white'], " ").concat(s$d.reinsuranceBlock)
+                    }, links.map(function(item) {
+                        return /*#__PURE__*/ react_default.a.createElement(LinkOrSpan["a" /* LinkOrSpan */ ], {
+                            key: item.id,
+                            href: item.link,
+                            className: "".concat(t.flex, " ").concat(t['no-underline'], " ").concat(s$d.a)
+                        }, /*#__PURE__*/ react_default.a.createElement(footer_esm_LinkContent$3, {
+                            item: item
+                        }));
+                    }));
+                };
+                var s$c = {
+                    "socialIcons": "_f-socialIcons-542bca",
+                    "socialIconsSpace": "_f-socialIconsSpace-b48d95",
+                    "iconSeparator": "_f-iconSeparator-b8d099"
+                };
+                var footer_esm_LinkContent$2 = function LinkContent$2(_a) {
+                    var item = _a.item;
+                    return /*#__PURE__*/ react_default.a.createElement(react["Fragment"], null, /*#__PURE__*/ react_default.a.createElement("img", {
+                        "data-qa": "icon-external",
+                        className: "".concat(s$c.socialIcons, " ").concat(t.db, " ").concat(t['overflow-hidden']),
+                        width: item.width,
+                        height: item.height,
+                        loading: "lazy",
+                        src: item.iconUrl
+                    }), /*#__PURE__*/ react_default.a.createElement("span", {
+                        className: "".concat(t['sr-only'])
+                    }, item.label));
+                };
+                var footer_esm_SocialLinks = function SocialLinks(_a) {
+                    var links = _a.links;
+                    return /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: "".concat(s$c.socialIconsSpace, " ").concat(s$c.iconSeparator, " ").concat(t.flex, " ").concat(t['justify-around'], " ").concat(t['bg-white'], " ").concat(t.pv3, " ").concat(t.ph4)
+                    }, links.map(function(item) {
+                        return /*#__PURE__*/ react_default.a.createElement(LinkOrSpan["a" /* LinkOrSpan */ ], {
+                            key: item.id,
+                            href: item.link,
+                            rel: "noopener noreferrer nofollow",
+                            target: "_blank"
+                        }, /*#__PURE__*/ react_default.a.createElement(footer_esm_LinkContent$2, {
+                            item: item
+                        }));
+                    }));
+                };
+                var s$b = {
+                    "appsLinksContainer": "_f-appsLinksContainer-c232ef",
+                    "appsLinkPicContainer": "_f-appsLinkPicContainer-27b991",
+                    "osIsAndroid": "_f-osIsAndroid-fb07eb",
+                    "isForIos": "_f-isForIos-9a5b52",
+                    "osIsIos": "_f-osIsIos-be94d2",
+                    "isForAndroid": "_f-isForAndroid-a4a7fd",
+                    "appsLink": "_f-appsLink-823673",
+                    "appsButton": "_f-appsButton-f91c45"
+                };
+
+                /* eslint-disable react/destructuring-assignment */
+                var getClass = function getClass(mobileDetect) {
+                    if (mobileDetect && mobileDetect.android) {
+                        return s$b.osIsAndroid;
+                    }
+                    if (mobileDetect && mobileDetect.ios) {
+                        return s$b.osIsIos;
+                    }
+                    return '';
+                };
+                var footer_esm_LinkContent$1 = function LinkContent$1(_a) {
+                    var item = _a.item;
+                    return /*#__PURE__*/ react_default.a.createElement(react["Fragment"], null, /*#__PURE__*/ react_default.a.createElement("img", {
+                        "data-qa": "icon-external",
+                        loading: 'lazy',
+                        className: "".concat(t.link, " ").concat(t['dark-gray'], " ").concat(s$b.appsButton),
+                        src: item.iconUrl,
+                        alt: item.label,
+                        width: item.width,
+                        height: item.height
+                    }), /*#__PURE__*/ react_default.a.createElement("span", {
+                        className: "".concat(t['sr-only'])
+                    }, item.label));
+                };
+                // comment the following react component
+                var footer_esm_AppsLinks = function AppsLinks(props) {
+                    var label = props.label,
+                        link = props.link,
+                        links = props.links,
+                        mobileDetect = props.mobileDetect;
+                    var _a = Object(react["useState"])(''),
+                        oSClass = _a[0],
+                        setOsClass = _a[1];
+                    // move the logic decision based on mobileDetect to the browser runtime, have the same server markup
+                    Object(react["useEffect"])(function() {
+                        setOsClass(getClass(mobileDetect));
+                    });
+                    return /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: " ".concat(s$b.appsLinksContainer, " ").concat(oSClass)
+                    }, /*#__PURE__*/ react_default.a.createElement(LinkOrSpan["a" /* LinkOrSpan */ ], {
+                        href: link,
+                        className: " ".concat(t.link, " ").concat(t['dark-gray'], " ").concat(s$b.appsLink, " ")
+                    }, label), /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: "".concat(t.flex, " ").concat(s$b.appsLinkPicContainer)
+                    }, links.map(function(item) {
+                        return /*#__PURE__*/ react_default.a.createElement(LinkOrSpan["a" /* LinkOrSpan */ ], {
+                            key: "appsLinks-".concat(item.id),
+                            href: item.link,
+                            className: "".concat(item.os === 'android' ? s$b.isForAndroid : s$b.isForIos)
+                        }, /*#__PURE__*/ react_default.a.createElement(footer_esm_LinkContent$1, {
+                            item: item
+                        }));
+                    })));
+                };
+                var s$a = {
+                    "img": "_f-img-a515e3"
+                };
+                var footer_esm_LinkContent = function LinkContent(_a) {
+                    var rakutenLogo = _a.rakutenLogo;
+                    return /*#__PURE__*/ react_default.a.createElement("img", {
+                        className: "".concat(t.db, " ").concat(t['mw-none'], " ").concat(s$a.img),
+                        src: rakutenLogo.img,
+                        loading: "lazy",
+                        // @ts-expect-error can be null
+                        alt: /[^/]+$/.exec(rakutenLogo.img)[0]
+                    });
+                };
+                var footer_esm_RakutenGroupLinksLogo = function RakutenGroupLinksLogo(_a) {
+                    var rakutenLogo = _a.rakutenLogo;
+                    return /*#__PURE__*/ react_default.a.createElement(LinkOrSpan["a" /* LinkOrSpan */ ], {
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        href: rakutenLogo.link
+                    }, /*#__PURE__*/ react_default.a.createElement(footer_esm_LinkContent, {
+                        rakutenLogo: rakutenLogo
+                    }));
+                };
+                var s$9 = {
+                    "anchor": "_f-anchor-933157",
+                    "companies": "_f-companies-9a48be",
+                    "list": "_f-list-21bee8"
+                };
+                var footer_esm_RakutenGroupLinksCompanies = function RakutenGroupLinksCompanies(_a) {
+                    var companies = _a.companies;
+                    return /*#__PURE__*/ react_default.a.createElement("ul", {
+                        className: "".concat(t.list, " ").concat(t.ma0, " ").concat(t.pa0, " ").concat(t.flex, " ").concat(t['justify-around'], " ").concat(t['w-100'], " ").concat(t.pr4, " ").concat(t.pl4, " ").concat(s$9.companies)
+                    }, companies.reduce(function(prev, company) {
+                        prev.push(
+                            /*#__PURE__*/
+                            // @ts-expect-error css
+                            react_default.a.createElement("li", {
+                                key: company.id,
+                                className: "".concat(s$9.list, " ").concat(s$9[company.name] ? s$9[company.name] : '')
+                            }, /*#__PURE__*/ react_default.a.createElement(LinkOrSpan["a" /* LinkOrSpan */ ], {
+                                target: "_blank",
+                                rel: "noopener noreferrer",
+                                href: company.link,
+                                className: "".concat(t.dib, " ").concat(t.normal, " ").concat(t['w-auto'], " ").concat(t['h-auto'], " ").concat(t['no-underline'], " ").concat(s$9.anchor)
+                            }, company.label)));
+                        return prev;
+                    }, []));
+                };
+
+                function createVisitorUSACookie(urlRedirect) {
+                    if (typeof window !== 'undefined') {
+                        if (urlRedirect === 'https://www.rakuten.com') {
+                            document.cookie = 'visitor-usa=true; domain=.rakuten.com; path=/';
+                        }
+                    }
+                }
+                var getClassiqueHref = function getClassiqueHref() {
+                    var returnUrl = '/'; // for ssr, will update in browser matching the url visited
+                    if (typeof window !== 'undefined') {
+                        var urlObj = new URL(window.location.toString());
+                        urlObj.searchParams.set('force_version', 'classic');
+                        returnUrl = urlObj.toString();
+                    }
+                    return returnUrl;
+                };
+                var s$8 = {
+                    "container": "_f-container-5f6655",
+                    "select": "_f-select-e20ab2"
+                };
+                var onClickForRedirectionUSA$1 = function onClickForRedirectionUSA(event) {
+                    event.preventDefault();
+                    if (event.target.value === 'https://www.rakuten.com') {
+                        createVisitorUSACookie(event.target.value);
+                    }
+                    return window.location.assign(event.target.value);
+                };
+                var footer_esm_RakutenGroupLinksSelect = function RakutenGroupLinksSelect(_a) {
+                    var select = _a.select;
+                    return /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: "".concat(t.relative, " ").concat(t.pointer, " ").concat(s$8.container)
+                    }, /*#__PURE__*/ react_default.a.createElement("select", {
+                        className: "".concat(t['bg-white'], " ").concat(t.pointer, " ").concat(s$8.select),
+                        onChange: onClickForRedirectionUSA$1
+                    }, select.reduce(function(prev, country) {
+                        prev.push( /*#__PURE__*/ react_default.a.createElement("option", {
+                            key: country.id,
+                            value: country.link
+                        }, country.label));
+                        return prev;
+                    }, [])));
+                };
+                var s$7 = {
+                    "container": "_f-container-968162"
+                };
+                var footer_esm_RakutenGroupLinks = function RakutenGroupLinks(_a) {
+                    var rakutenLogo = _a.rakutenLogo,
+                        companies = _a.companies,
+                        select = _a.select;
+                    return /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: "".concat(t.flex, " ").concat(t['justify-between'], " ").concat(t['items-center'], " ").concat(t.pr4, " ").concat(t.pl4, " ").concat(t['bg-white'], " ").concat(s$7.container)
+                    }, /*#__PURE__*/ react_default.a.createElement(footer_esm_RakutenGroupLinksLogo, {
+                        rakutenLogo: rakutenLogo
+                    }), /*#__PURE__*/ react_default.a.createElement(footer_esm_RakutenGroupLinksCompanies, {
+                        companies: companies
+                    }), /*#__PURE__*/ react_default.a.createElement(footer_esm_RakutenGroupLinksSelect, {
+                        select: select
+                    }));
+                };
+                var s$6 = {
+                    "groupedLinksLabel": "_f-groupedLinksLabel-94fc04",
+                    "linkItem": "_f-linkItem-feb18f",
+                    "icon": "_f-icon-fe9f1d",
+                    "iconed": "_f-iconed-b4586f",
+                    "linkIcon": "_f-linkIcon-388a46",
+                    "collapse": "_f-collapse-392744",
+                    "pmCorpGroupList": "_f-pmCorpGroupList-0ee134",
+                    "slideUp": "_f-slideUp-e7d2a9",
+                    "slideDown": "_f-slideDown-604118"
+                };
+                var noFollows = ['/publicite/'];
+                var footer_esm_CorporateBlocks = /** @class */ function(_super) {
+                    Object(tslib_es6["c" /* __extends */ ])(CorporateBlocks, _super);
+
+                    function CorporateBlocks(props) {
+                        var _this = _super.call(this, props) || this;
+                        _this.renderLink = function(item) {
+                            if (noFollows.includes(item.link) || item.noFollow) {
+                                return /*#__PURE__*/ react_default.a.createElement(LinkOrSpan["a" /* LinkOrSpan */ ], Object(tslib_es6["a" /* __assign */ ])({}, item, {
+                                    href: item.link,
+                                    className: "".concat(t.link, " ").concat(t['dark-gray']),
+                                    rel: "nofollow"
+                                }), item.label);
+                            }
+                            return /*#__PURE__*/ react_default.a.createElement(LinkOrSpan["a" /* LinkOrSpan */ ], Object(tslib_es6["a" /* __assign */ ])({}, item, {
+                                href: item.link,
+                                className: "".concat(t.link, " ").concat(t['dark-gray'])
+                            }), item.label);
+                        };
+                        var isOpen = props.groupedLinks.isOpen ? !props.groupedLinks.isOpen : true;
+                        _this.state = {
+                            closed: isOpen
+                        };
+                        _this.onToggle = _this.onToggle.bind(_this);
+                        return _this;
+                    }
+                    CorporateBlocks.prototype.onToggle = function() {
+                        var closed = this.state.closed;
+                        this.setState({
+                            closed: !closed
+                        });
+                    };
+                    CorporateBlocks.prototype.render = function() {
+                        var _this = this;
+                        var closed = this.state.closed;
+                        var groupedLinks = this.props.groupedLinks;
+                        var slideClass = closed ? s$6.slideUp : s$6.slideDown;
+                        var collapsibleClass = "".concat(s$6.collapse, " ").concat(t['helper_hide-AboveTablet']);
+                        var collapsibleIcon = closed ? ( /*#__PURE__*/ react_default.a.createElement("img", {
+                            src: '/visuels/0_TECH/shared-svg/plusIcon.svg',
+                            "data-qa": "icon-external",
+                            className: collapsibleClass,
+                            width: '16',
+                            height: '16',
+                            loading: "lazy"
+                        })) : ( /*#__PURE__*/ react_default.a.createElement("img", {
+                            src: '/visuels/0_TECH/shared-svg/minusIcon.svg',
+                            "data-qa": "icon-external",
+                            className: collapsibleClass,
+                            width: '16',
+                            height: '16',
+                            loading: "lazy"
+                        }));
+                        return /*#__PURE__*/ react_default.a.createElement("li", {
+                            className: "".concat(t.pa0, " ").concat(t.list, " ").concat(s$6.pmCorpGroupList),
+                            "data-qa": "footer-corporate-block",
+                            onClick: this.onToggle
+                        }, /*#__PURE__*/ react_default.a.createElement("div", {
+                            className: "".concat(t.pa0, " ").concat(t['dark-gray'], " ").concat(s$6.groupedLinksLabel)
+                        }, groupedLinks.iconUrl && ( /*#__PURE__*/ react_default.a.createElement("img", {
+                            "data-qa": "icon-external",
+                            className: "".concat(s$6.linkIcon, " ").concat(t['helper_hide-AboveTablet']),
+                            src: groupedLinks.iconUrl,
+                            width: groupedLinks.width,
+                            height: groupedLinks.height,
+                            loading: "lazy"
+                        })), groupedLinks.label, collapsibleIcon), /*#__PURE__*/ react_default.a.createElement("ul", {
+                            className: "".concat(t.list, " ").concat(t.pa0, " ").concat(slideClass)
+                        }, groupedLinks.links.map(function(item) {
+                            return /*#__PURE__*/ react_default.a.createElement("li", {
+                                key: "corporateBlocks-".concat(groupedLinks.iconUrl, "-").concat(item.id),
+                                "data-qa": "footer-corporate-link",
+                                className: "".concat(t['bg-near-white'], " ").concat(s$6.linkItem, " ").concat(item.iconUrl ? s$6.iconed : '', " ").concat(item.hideOnDesktop ? t['helper_hide-AboveTablet'] : '')
+                            }, item.iconUrl && ( /*#__PURE__*/ react_default.a.createElement("img", {
+                                "data-qa": "icon-external",
+                                className: "".concat(s$6.icon, " ").concat(t['helper_hide-AboveTablet']),
+                                src: item.iconUrl,
+                                width: item.width,
+                                height: item.height,
+                                loading: "lazy"
+                            })), _this.renderLink(item));
+                        })));
+                    };
+                    return CorporateBlocks;
+                }(react["Component"]);
+                var s$5 = {
+                    "groupedLinksLabel": "_f-groupedLinksLabel-d1d642",
+                    "linkItem": "_f-linkItem-475ee2",
+                    "pmCorpLinks": "_f-pmCorpLinks-0dd0ce"
+                };
+                var footer_esm_PriceministerCorporate = function PriceministerCorporate(_a) {
+                    var groups = _a.groups;
+                    return /*#__PURE__*/ react_default.a.createElement("ul", {
+                        className: "".concat(t.pa0, " ").concat(t.ma0, " ").concat(t['bg-near-white'], " ").concat(s$5.pmCorpLinks)
+                    }, groups.map(function(groupedLinks) {
+                        return /*#__PURE__*/ react_default.a.createElement(footer_esm_CorporateBlocks, {
+                            groupedLinks: groupedLinks,
+                            key: "priceministerCorporate-".concat(groupedLinks.iconUrl)
+                        });
+                    }));
+                };
+                var s$4 = {
+                    "paymentMethodsSpace": "_f-paymentMethodsSpace-b37f2d"
+                };
+
+                /* eslint-disable react/no-array-index-key */
+                var footer_esm_PaymentMethods = function PaymentMethods(_a) {
+                    var icons = _a.icons;
+                    return /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: "".concat(s$4.paymentMethodsSpace, " ").concat(t.pv3, " ").concat(t.ph4, " ").concat(t.flex, " ").concat(t['justify-around'], " ").concat(t['bg-white'])
+                    }, icons.map(function(item, id) {
+                        return /*#__PURE__*/ react_default.a.createElement("div", {
+                            className: "".concat(t.pt2),
+                            key: "PaymentMethods_".concat(id)
+                        }, /*#__PURE__*/ react_default.a.createElement("img", {
+                            "data-qa": "icon-external",
+                            className: "".concat(t.db, " ").concat(t['overflow-hidden']),
+                            src: item.iconUrl,
+                            alt: item.label,
+                            width: item.width,
+                            height: item.height,
+                            loading: "lazy"
+                        }), /*#__PURE__*/ react_default.a.createElement("span", {
+                            className: "".concat(t['sr-only'])
+                        }, item.label));
+                    }));
+                };
+                var s$3 = {
+                    "pmCopyright": "_f-pmCopyright-779a48",
+                    "rk_Pm_Copyright": "_f-rk_Pm_Copyright-199b2b"
+                };
+                var s$2 = {
+                    "anchor": "_f-anchor-a615f7",
+                    "links": "_f-links-9bdf09",
+                    "companies": "_f-companies-68f646",
+                    "list": "_f-list-019121"
+                };
+                var footer_esm_RakutenSdtLinksInline = function RakutenSdtLinksInline(_a) {
+                    var _b = _a.links,
+                        links = _b === void 0 ? [] : _b;
+                    return /*#__PURE__*/ react_default.a.createElement("ul", {
+                        className: "".concat(t.list, " ").concat(t.ma0, " ").concat(t.pa0, " ").concat(t.flex, " ").concat(t['justify-around'], " ").concat(t['w-100'], " ").concat(t.pr4, " ").concat(t.pl4, " ").concat(t.pb4, " ").concat(s$2.companies)
+                    }, links.reduce(function(prev, link) {
+                        prev.push( /*#__PURE__*/ react_default.a.createElement("li", {
+                            key: link.id,
+                            className: "".concat(t.flex, " ").concat(t.pa1, " ").concat(s$2.links, " ").concat(s$2.list)
+                        }, /*#__PURE__*/ react_default.a.createElement("a", {
+                            target: "_self",
+                            rel: "noopener noreferrer",
+                            href: link.link,
+                            className: "".concat(t.dib, " ").concat(t.normal, " ").concat(t['w-auto'], " ").concat(t['h-auto'], " ").concat(s$2.anchor)
+                        }, link.label)));
+                        return prev;
+                    }, []));
+                };
+                var s$1 = {
+                    "container": "_f-container-e74c42"
+                };
+                var footer_esm_RakutenSdtLinks = function RakutenSdtLinks(_a) {
+                    var links = _a.links;
+                    return /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: "".concat(t.flex, " ").concat(t['justify-between'], " ").concat(t['items-center'], " ").concat(t.pr4, " ").concat(t.pl4, " ").concat(t['bg-white'], " ").concat(s$1.container)
+                    }, /*#__PURE__*/ react_default.a.createElement(footer_esm_RakutenSdtLinksInline, {
+                        links: links
+                    }));
+                };
+                var footerStatic = {
+                    apps: {
+                        label: "Avec l'appli Rakuten, bénéficiez de 5% remboursés en Rakuten Points sur tous vos achats !",
+                        link: '/event/club-rakuten#xtatc=PUB-[PMC][HomePage][x7App][]',
+                        links: [{
+                            id: 0,
+                            link: 'https://app.appsflyer.com/id579373363?pid=PriceMinister&c=Page_EVT_2015',
+                            label: 'Application Appstore',
+                            iconUrl: '/visuels/0_TECH/shared-svg/appStoreIcon.svg',
+                            width: '135',
+                            height: '40',
+                            os: 'apple'
+                        }, {
+                            id: 1,
+                            link: 'https://app.appsflyer.com/com.priceminister.buyerapp?pid=PriceMinister&c=Page_EVT_2015',
+                            label: 'Application Android',
+                            iconUrl: '/visuels/0_TECH/shared-svg/playStoreIcon.svg',
+                            width: '135',
+                            height: '40',
+                            os: 'android'
+                        }]
+                    },
+                    corporate: {
+                        groups: [{
+                            label: 'Liens utiles',
+                            iconUrl: '/visuels/0_TECH/shared-svg/starIcon.svg',
+                            width: '24',
+                            height: '24',
+                            isOpen: true,
+                            links: [{
+                                id: 0,
+                                link: '/connect?action=login&c=80',
+                                label: 'Mon compte',
+                                iconUrl: '/visuels/0_TECH/shared-svg/profileIcon.svg',
+                                width: '24',
+                                height: '24',
+                                dataQA: 'footer-account'
+                            }, {
+                                id: 1,
+                                link: '/cart',
+                                label: 'Mon panier',
+                                iconUrl: '/visuels/0_TECH/shared-svg/cartIcon.svg',
+                                width: '24',
+                                height: '24',
+                                dataQA: 'footer-cart'
+                            }, {
+                                id: 2,
+                                link: 'https://help.fr.shopping.rakuten.net/hc/fr/articles/16298345113362-Je-souhaite-payer-en-plusieurs-fois-sur-la-plateforme-Rakuten-',
+                                label: 'Paiement en plusieurs fois',
+                                iconUrl: '/visuels/0_TECH/shared-svg/creditCardIcon.svg',
+                                width: '24',
+                                height: '24',
+                                dataQA: 'footer-payment'
+                            }, {
+                                id: 3,
+                                link: '/v/vendre',
+                                label: 'Vendre',
+                                iconUrl: '/visuels/0_TECH/shared-svg/sellIcon.svg',
+                                width: '24',
+                                height: '24',
+                                dataQA: 'footer-sell'
+                            }, {
+                                id: 4,
+                                link: '/connect?action=login',
+                                label: 'Suivre ma commande',
+                                iconUrl: '/visuels/0_TECH/shared-svg/orderTrackingIcon.svg',
+                                width: '24',
+                                height: '24',
+                                dataQA: 'footer-tracking'
+                            }, {
+                                id: 5,
+                                link: '/connect?action=login',
+                                label: 'Mon Club R',
+                                iconUrl: '/visuels/0_TECH/shared-svg/cardIcon.svg',
+                                width: '24',
+                                height: '24',
+                                dataQA: 'footer-clubR'
+                            }]
+                        }, {
+                            label: 'Aide',
+                            iconUrl: '/visuels/0_TECH/shared-svg/helpIcon.svg',
+                            width: '24',
+                            height: '24',
+                            isOpen: false,
+                            links: [{
+                                id: 0,
+                                link: '/newhelp/',
+                                label: "Besoin d'aide ?",
+                                dataQA: 'footer-help'
+                            }, {
+                                id: 1,
+                                link: '/seller/sell-register-pro',
+                                label: 'Ouvrir un e-shop en tant que commerçant',
+                                dataQA: 'footer-openShop'
+                            }, {
+                                id: 2,
+                                link: 'https://help.fr.shopping.rakuten.net/hc/fr/articles/10324490666002-A-quoi-correspondent-les-frais-prélevés-lors-de-mon-achat',
+                                label: 'Frais de protection acheteurs',
+                                dataQA: 'footer-protection'
+                            }, {
+                                id: 3,
+                                link: '/newhelp/signalements/',
+                                label: 'Signaler un contenu illicite'
+                            }, {
+                                id: 4,
+                                link: '/plan-de-site/sitemap-nav',
+                                label: 'Plan du site'
+                            }, {
+                                id: 5,
+                                link: 'https://global.fr.shopping.rakuten.com/actualite/',
+                                label: 'Le blog'
+                            }]
+                        }, {
+                            label: 'Rakuten',
+                            iconUrl: '/visuels/0_TECH/shared-svg/infoIcon.svg',
+                            width: '24',
+                            height: '24',
+                            isOpen: false,
+                            links: [{
+                                id: 0,
+                                link: 'https://global.fr.shopping.rakuten.com/nos-offres/',
+                                label: 'Carrières'
+                            }, {
+                                id: 1,
+                                link: '/newhelp/conditions-generales/',
+                                label: 'Conditions générales'
+                            }, {
+                                id: 2,
+                                link: 'https://fr.shopping.rakuten.com/event/mentions-legales',
+                                label: '*Conditions des offres'
+                            }, {
+                                id: 3,
+                                link: '/newhelp/vie-privee-et-cookies/',
+                                label: 'Politique Vie privée'
+                            }, {
+                                id: 4,
+                                link: '#',
+                                action: 'openDidomi',
+                                label: 'Gestion des cookies'
+                            }, {
+                                id: 5,
+                                link: '/evt/affiliation-PM',
+                                label: 'Affiliation'
+                            }, {
+                                id: 6,
+                                link: '/publicite/',
+                                label: 'Devenez annonceur'
+                            }, {
+                                id: 7,
+                                link: 'https://global.fr.shopping.rakuten.com/rakuten-monde/',
+                                label: 'A propos de Rakuten'
+                            }, {
+                                id: 8,
+                                link: '/newhelp/fonctionnement/',
+                                label: 'Fonctionnement du service'
+                            }, {
+                                id: 9,
+                                link: '/event/assurance',
+                                label: 'Assurances'
+                            }]
+                        }]
+                    },
+                    rakutenGroup: {
+                        rakutenLogo: {
+                            link: 'https://global.rakuten.com/',
+                            img: 'https://fr.shopping.rakuten.com/visuels/0_TECH/shared-svg/RakutenLogos.svg'
+                        },
+                        companies: [{
+                            id: 0,
+                            link: 'https://rd.rakuten.co.jp/s2/?R2=https%3A%2F%2Fwww.kobo.com%2F&D2=638.0.254426.0.32267295&C3=0b89bca361af97fbd21151cec125e851fc43e74f',
+                            name: 'kobo',
+                            label: 'Rakuten Kobo'
+                        }, {
+                            id: 1,
+                            link: 'https://rd.rakuten.co.jp/s2/?R2=https%3A%2F%2Ffr.rakuten.tv%2F&D2=638.0.254426.0.32267300&C3=7569a51ff88b2c7a761d90b3517c01a362070fdb',
+                            name: 'tv',
+                            label: 'Rakuten TV'
+                        }, {
+                            id: 2,
+                            link: 'https://rd.rakuten.co.jp/s2/?R2=https%3A%2F%2Fwww.viber.com%2Ffr%2F&D2=638.0.254426.0.32267296&C3=5785bb59de25ef8f0d5c143aea26b265b019aee4',
+                            name: 'viber',
+                            label: 'Rakuten Viber'
+                        }, {
+                            id: 3,
+                            link: 'https://rd.rakuten.co.jp/s2/?R2=https%3A%2F%2Fwww.viki.com%2F&D2=638.0.254426.0.32267294&C3=8c4f956fd025fffc9af6ee87c5ee18029e98a06d',
+                            name: 'viki',
+                            label: 'Rakuten Viki'
+                        }, {
+                            id: 4,
+                            link: 'https://rd.rakuten.co.jp/s2/?R2=https%3A%2F%2Fglobal.rakuten.com%2Fcorp%2Fabout%2Fcompany%2F&D2=638.0.254426.0.32267305&C3=a39d9a4bd3a6fae9223f079e192d7c8874091763',
+                            name: 'aboutCompany',
+                            label: 'Plus de services'
+                        }, {
+                            id: 5,
+                            link: 'https://rd.rakuten.co.jp/s2/?R2=https%3A%2F%2Fglobal.rakuten.com%2Fcorp%2Fabout%2Ffr%2F&D2=638.0.254426.0.32267304&C3=c00ff816abc6bd9961d86b36399aae96331a93ca',
+                            name: 'aboutFr',
+                            label: 'À propos de Rakuten'
+                        }],
+                        select: [{
+                            id: 0,
+                            link: 'https://fr.shopping.rakuten.com',
+                            label: 'France'
+                        }, {
+                            id: 1,
+                            link: 'https://www.rakuten.de',
+                            label: 'Allemagne'
+                        }, {
+                            id: 2,
+                            link: 'https://www.rakuten.com.br',
+                            label: 'Brésil'
+                        }, {
+                            id: 3,
+                            link: 'https://www.rakuten.com',
+                            label: 'Etats-Unis'
+                        }, {
+                            id: 4,
+                            link: 'https://www.rakuten.co.jp',
+                            label: 'Japon'
+                        }, {
+                            id: 5,
+                            link: 'https://www.rakuten.com.tw',
+                            label: 'Taïwan'
+                        }]
+                    },
+                    reinsurance: {
+                        links: [{
+                            id: 0,
+                            link: '/newhelp/a-quoi-correspondent-les-etats-des-articles/',
+                            labels: {
+                                small: 'Le choix',
+                                large: 'Neuf et occasion'
+                            },
+                            iconUrl: '/visuels/0_TECH/shared-svg/bagIcon.svg',
+                            width: '43',
+                            height: '43'
+                        }, {
+                            id: 1,
+                            link: '/event/club-rakuten',
+                            labels: {
+                                small: 'Minimum',
+                                large: '5% remboursés'
+                            },
+                            iconUrl: '/visuels/0_TECH/shared-svg/cardIcon.svg',
+                            width: '80',
+                            height: '43'
+                        }, {
+                            id: 2,
+                            link: 'https://help.fr.shopping.rakuten.net/hc/fr/articles/10324490666002-A-quoi-correspondent-les-frais-de-protection-acheteur-pr%C3%A9lev%C3%A9s-lors-de-mon-achat',
+                            labels: {
+                                small: 'La sécurité',
+                                large: 'Satisfait ou remboursé'
+                            },
+                            iconUrl: '/visuels/0_TECH/shared-svg/shieldIcon.svg',
+                            width: '43',
+                            height: '43'
+                        }, {
+                            id: 3,
+                            link: '/newhelp/',
+                            labels: {
+                                small: 'Le service clients',
+                                large: 'À votre écoute'
+                            },
+                            iconUrl: '/visuels/0_TECH/shared-svg/customerCareIcon.svg',
+                            width: '43',
+                            height: '43'
+                        }]
+                    },
+                    social: {
+                        links: [{
+                            id: 0,
+                            link: 'https://www.linkedin.com/company/rakutenfrance',
+                            label: 'Linkedin',
+                            iconUrl: '/visuels/0_TECH/shared-svg/linkedinIcon.svg',
+                            width: '34',
+                            height: '34'
+                        }, {
+                            id: 1,
+                            link: 'https://www.facebook.com/RakutenFrance',
+                            label: 'Facebook',
+                            iconUrl: '/visuels/0_TECH/shared-svg/facebookIcon.svg',
+                            width: '34',
+                            height: '34'
+                        }, {
+                            id: 2,
+                            link: 'https://twitter.com/RakutenFrance',
+                            label: 'Twitter',
+                            iconUrl: '/visuels/0_TECH/shared-svg/twitterIcon.svg',
+                            width: '34',
+                            height: '34'
+                        }, {
+                            id: 3,
+                            link: 'https://www.instagram.com/rakutenfrance',
+                            label: 'Instagram',
+                            iconUrl: '/visuels/0_TECH/shared-svg/instagramIcon.svg',
+                            width: '34',
+                            height: '34'
+                        }, {
+                            id: 4,
+                            link: 'https://www.youtube.com/c/rakutenfrance',
+                            label: 'Youtube',
+                            iconUrl: '/visuels/0_TECH/shared-svg/youtubeIcon.svg',
+                            width: '34',
+                            height: '34'
+                        }, {
+                            id: 5,
+                            link: 'https://www.pinterest.com/rakutenfrance',
+                            label: 'Pinterest',
+                            iconUrl: '/visuels/0_TECH/shared-svg/pinterestIcon.svg',
+                            width: '34',
+                            height: '34'
+                        }]
+                    },
+                    payment: {
+                        icons: [{
+                            id: 0,
+                            label: 'visa',
+                            iconUrl: '/visuels/0_TECH/shared-svg/visaIcon.svg',
+                            width: '45',
+                            height: '25'
+                        }, {
+                            id: 1,
+                            label: 'mastercard',
+                            iconUrl: '/visuels/0_TECH/shared-svg/mastercardIcon.svg',
+                            width: '34',
+                            height: '34'
+                        }, {
+                            id: 2,
+                            label: 'klarna',
+                            iconUrl: '/visuels/0_TECH/shared-svg/klarna.svg',
+                            width: '54',
+                            height: '30'
+                        }, {
+                            id: 3,
+                            label: 'paypal',
+                            iconUrl: '/visuels/0_TECH/shared-svg/paypalIcon.svg',
+                            width: '60',
+                            height: '34'
+                        }, {
+                            id: 4,
+                            label: 'floa',
+                            iconUrl: '/visuels/0_TECH/shared-svg/floaLogo.svg',
+                            width: '73',
+                            height: '25'
+                        }, {
+                            id: 5,
+                            label: 'americanexpress',
+                            iconUrl: '/visuels/0_TECH/shared-svg/americanExpress.svg',
+                            width: '34',
+                            height: '34'
+                        }]
+                    }
+                };
+                var footer_esm_a, footer_esm_b;
+                var config = dist["configService"].get();
+                var NAME = 'footer';
+                var DEFAULT_STATE = {
+                    visible: true,
+                    featureFlipping: {
+                        sellHomeRedirection: {
+                            isActive: (footer_esm_a = config.featureFlipping.sellHomeRedirectionIsActive) !== null && footer_esm_a !== void 0 ? footer_esm_a : false
+                        },
+                        onboardingPro: {
+                            isActive: (footer_esm_b = config.featureFlipping.merchantOnboardingIsActive) !== null && footer_esm_b !== void 0 ? footer_esm_b : false
+                        }
+                    }
+                };
+                var SELL_HOME = {
+                    link: '/seller/sell-form'
+                };
+                var NEW_ONBOARDING_PRO = {
+                    link: '/onboarding-pro/user-information'
+                };
+                var constants = /*#__PURE__*/ Object.freeze({
+                    __proto__: null,
+                    NAME: NAME,
+                    DEFAULT_STATE: DEFAULT_STATE,
+                    SELL_HOME: SELL_HOME,
+                    NEW_ONBOARDING_PRO: NEW_ONBOARDING_PRO
+                });
+                var onClickForRedirectionUSA = function onClickForRedirectionUSA() {
+                    createVisitorUSACookie('https://www.rakuten.com');
+                    window.location.assign('https://www.rakuten.com');
+                };
+                var footer_esm_updateCorporateGroups = function updateCorporateGroups(corporate, groupeIndex, values) {
+                    var _a;
+                    if (Array.isArray(corporate) && corporate.length > 0) {
+                        var groups = corporate[groupeIndex];
+                        if (groups) {
+                            groups = Object(tslib_es6["a" /* __assign */ ])(Object(tslib_es6["a" /* __assign */ ])({}, groups), {
+                                links: (_a = groups.links) === null || _a === void 0 ? void 0 : _a.map(function(groupLink) {
+                                    if (groupLink.id === (values === null || values === void 0 ? void 0 : values.id)) {
+                                        return Object(tslib_es6["a" /* __assign */ ])(Object(tslib_es6["a" /* __assign */ ])({}, groupLink), values);
+                                    }
+                                    return groupLink;
+                                })
+                            });
+                            corporate[groupeIndex] = groups;
+                        }
+                    }
+                    return corporate;
+                };
+                var footer_esm_RenderFooter = function RenderFooter(props) {
+                    var _a;
+                    var graphQlData = props.graphQlData,
+                        footer = props.footer;
+                    var featureFlipping = (footer || {}).featureFlipping;
+                    var copyright = "\xA9 Rakuten France 2000 - ".concat(new Date().getFullYear());
+                    var defaultCorporateGroupLinks = function defaultCorporateGroupLinks() {
+                        var defaultLinks = Object(tslib_es6["g" /* __spreadArray */ ])([], footerStatic.corporate.groups, true);
+                        if (featureFlipping === null || featureFlipping === void 0 ? void 0 : featureFlipping.sellHomeRedirection.isActive) {
+                            defaultLinks = footer_esm_updateCorporateGroups(Object(tslib_es6["g" /* __spreadArray */ ])([], defaultLinks, true), 0, {
+                                id: 3,
+                                link: SELL_HOME.link
+                            });
+                        }
+                        if (featureFlipping === null || featureFlipping === void 0 ? void 0 : featureFlipping.onboardingPro.isActive) {
+                            defaultLinks = footer_esm_updateCorporateGroups(Object(tslib_es6["g" /* __spreadArray */ ])([], defaultLinks, true), 1, {
+                                id: 1,
+                                link: NEW_ONBOARDING_PRO.link
+                            });
+                        }
+                        return defaultLinks;
+                    };
+                    var _b = Object(react["useState"])([]),
+                        logoutLink = _b[0],
+                        setLogoutLink = _b[1];
+                    var _c = Object(react["useState"])([]),
+                        siteClassicLink = _c[0],
+                        setSiteClassicLink = _c[1];
+                    var initalPriceministerCorporateGroup = Object(react["useState"])(defaultCorporateGroupLinks)[0];
+                    var _d = Object(react["useState"])(initalPriceministerCorporateGroup),
+                        priceministerCorporateGroup = _d[0],
+                        setPriceministerCorporateGroup = _d[1];
+                    Object(react["useEffect"])(function() {
+                        var _a;
+                        if (graphQlData === null || graphQlData === void 0 ? void 0 : graphQlData.profile) {
+                            var logoutUrl = '/connect?action=logout';
+                            if ((_a = props.md.wsParams) === null || _a === void 0 ? void 0 : _a.isMobile) {
+                                logoutUrl = '/security_logout_front';
+                            }
+                            setLogoutLink([{
+                                id: 6,
+                                link: logoutUrl,
+                                label: 'Déconnexion',
+                                iconUrl: '/visuels/0_TECH/shared-svg/logoutIcon.svg',
+                                width: '24',
+                                height: '24',
+                                dataQA: 'footer-logout'
+                            }]);
+                        }
+                    }, [props.md, graphQlData]);
+                    Object(react["useEffect"])(function() {
+                        if (props.showClassicPageLink) {
+                            setSiteClassicLink([{
+                                id: 7,
+                                link: getClassiqueHref(),
+                                label: 'Accéder au site classique',
+                                iconUrl: '/visuels/0_TECH/shared-svg/computerIcon.svg',
+                                width: '24',
+                                height: '24',
+                                hideOnDesktop: true,
+                                noFollow: true,
+                                dataQA: 'footer-classicLink'
+                            }]);
+                        }
+                    }, [props.showClassicPageLink]);
+                    Object(react["useEffect"])(function() {
+                        setPriceministerCorporateGroup([Object(tslib_es6["a" /* __assign */ ])(Object(tslib_es6["a" /* __assign */ ])({}, initalPriceministerCorporateGroup[0]), {
+                            links: Object(tslib_es6["g" /* __spreadArray */ ])(Object(tslib_es6["g" /* __spreadArray */ ])(Object(tslib_es6["g" /* __spreadArray */ ])([], initalPriceministerCorporateGroup[0].links, true), logoutLink, true), siteClassicLink, true)
+                        }), initalPriceministerCorporateGroup[1], initalPriceministerCorporateGroup[2]]);
+                        // eslint-disable-next-line react-hooks/exhaustive-deps
+                    }, [logoutLink, siteClassicLink]);
+                    var links = [];
+                    if ((_a = graphQlData === null || graphQlData === void 0 ? void 0 : graphQlData.seoLinks) === null || _a === void 0 ? void 0 : _a.links) {
+                        // eslint-disable-next-line prefer-destructuring
+                        links = graphQlData.seoLinks.links;
+                    }
+                    var childContext = {
+                        displayLink: false
+                    };
+                    return /*#__PURE__*/ react_default.a.createElement("footer", {
+                        className: "".concat(t['bg-near-white'], " footer"),
+                        "data-qa": "footer-root"
+                    }, /*#__PURE__*/ react_default.a.createElement(LinkOrSpan["b" /* LinkOrSpanContext */ ].Provider, {
+                        value: childContext
+                    }, /*#__PURE__*/ react_default.a.createElement(footer_esm_Reinsurance, {
+                        links: footerStatic.reinsurance.links
+                    }), /*#__PURE__*/ react_default.a.createElement(footer_esm_PriceministerCorporate, {
+                        groups: priceministerCorporateGroup
+                    }), /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: "".concat(t.flex, " ").concat(t['flex-wrap'], " ").concat(t.pv3, " ").concat(t['bg-white'])
+                    }, /*#__PURE__*/ react_default.a.createElement(footer_esm_SocialLinks, {
+                        links: footerStatic.social.links
+                    }), /*#__PURE__*/ react_default.a.createElement(footer_esm_PaymentMethods, {
+                        icons: footerStatic.payment.icons
+                    })), /*#__PURE__*/ react_default.a.createElement(footer_esm_AppsLinks, {
+                        links: footerStatic.apps.links,
+                        link: footerStatic.apps.link,
+                        label: footerStatic.apps.label,
+                        mobileDetect: props.md
+                    }), /*#__PURE__*/ react_default.a.createElement(footer_esm_RakutenGroupLinks, {
+                        companies: footerStatic.rakutenGroup.companies,
+                        select: footerStatic.rakutenGroup.select,
+                        rakutenLogo: footerStatic.rakutenGroup.rakutenLogo
+                    }), /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: "".concat(t['dn-ns'])
+                    }, /*#__PURE__*/ react_default.a.createElement(LinkOrSpan["a" /* LinkOrSpan */ ], {
+                        className: "".concat(t['pa-8'], " ").concat(t.flex, " ").concat(t['justify-around'], " ").concat(t['w-100'], " ").concat(t['bg-white'], " ").concat(t.link, " ").concat(t.gray, " ").concat(t.f6),
+                        rel: "nofollow",
+                        href: "#",
+                        onClick: function onClick() {
+                            return onClickForRedirectionUSA();
+                        }
+                    }, "Rakuten.com")), /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: "".concat(t['bg-white'], " ").concat(s$3.rk_Pm_Copyright)
+                    }, /*#__PURE__*/ react_default.a.createElement("p", {
+                        className: "".concat(t['pa-8'], " ").concat(t.tc, " ").concat(t['bg-white'], " ").concat(t['dark-gray'], " ").concat(s$3.pmCopyright, " ").concat(t.f12)
+                    }, copyright)), /*#__PURE__*/ react_default.a.createElement(footer_esm_RakutenSdtLinks, {
+                        links: links
+                    })));
+                };
+                var footer_esm_Footer = /** @class */ function(_super) {
+                    Object(tslib_es6["c" /* __extends */ ])(Footer, _super);
+
+                    function Footer(props) {
+                        return _super.call(this, props) || this;
+                    }
+                    Footer.prototype.render = function() {
+                        var _a, _b;
+                        // retro compatible footer between next.js 
+                        // not using react-router and connected-react-router vs the other apps
+                        if (!this.props.router) {
+                            // next.js case, hypernova case or other -fo ===> No react router / connected react router available
+                            if (this.props.toggleFiltersAndUniverses !== null) {
+                                // next.js only
+                                if (this.props.toggleFiltersAndUniverses === false) {
+                                    return /*#__PURE__*/ react_default.a.createElement(footer_esm_RenderFooter, Object(tslib_es6["a" /* __assign */ ])({}, this.props));
+                                }
+                            } else {
+                                // hypernova case or other -fo => we render the footer
+                                return /*#__PURE__*/ react_default.a.createElement(footer_esm_RenderFooter, Object(tslib_es6["a" /* __assign */ ])({}, this.props));
+                            }
+                        }
+                        if (this.props.router) {
+                            // -fo case with connected-react-router
+                            if (!((_b = (_a = this.props.router.location) === null || _a === void 0 ? void 0 : _a.state) === null || _b === void 0 ? void 0 : _b.toggleFiltersAndUniverses)) {
+                                return /*#__PURE__*/ react_default.a.createElement(footer_esm_RenderFooter, Object(tslib_es6["a" /* __assign */ ])({}, this.props));
+                            }
+                        }
+                        return null;
+                    };
+                    Footer.defaultProps = {
+                        showClassicPageLink: false,
+                        md: {
+                            userAgent: null
+                        },
+                        toggleFiltersAndUniverses: false
+                    };
+                    Footer.initialFragments = {
+                        seoLinks: Object(lib["a" /* default */ ])(templateObject_1$1 || (templateObject_1$1 = Object(tslib_es6["e" /* __makeTemplateObject */ ])(["\n      fragment FooterSeoLinks on SeoLinks {\n        links {\n          id\n          link\n          label\n        }\n      }\n    "], ["\n      fragment FooterSeoLinks on SeoLinks {\n        links {\n          id\n          link\n          label\n        }\n      }\n    "])))
+                    };
+                    Footer.SSRFragment = Object(lib["a" /* default */ ])(templateObject_2 || (templateObject_2 = Object(tslib_es6["e" /* __makeTemplateObject */ ])(["\n    fragment FooterSSRFragment on Query {\n      seoLinks {\n        links {\n          id\n          link\n          label\n        }\n      }\n    }\n  "], ["\n    fragment FooterSSRFragment on Query {\n      seoLinks {\n        links {\n          id\n          link\n          label\n        }\n      }\n    }\n  "])));
+                    Footer.PersonalizeFragment = Object(lib["a" /* default */ ])(templateObject_3 || (templateObject_3 = Object(tslib_es6["e" /* __makeTemplateObject */ ])(["\n    fragment FooterpersonalizeFragment on Query {\n      profile {\n        firstNameOrPseudo\n      }\n    }\n  "], ["\n    fragment FooterpersonalizeFragment on Query {\n      profile {\n        firstNameOrPseudo\n      }\n    }\n  "])));
+                    Footer.personalizedFragments = {
+                        profile: Object(lib["a" /* default */ ])(templateObject_4 || (templateObject_4 = Object(tslib_es6["e" /* __makeTemplateObject */ ])(["\n      fragment FooterProfile on Profile {\n        firstNameOrPseudo\n      }\n    "], ["\n      fragment FooterProfile on Profile {\n        firstNameOrPseudo\n      }\n    "])))
+                    };
+                    return Footer;
+                }(react_default.a.Component);
+                var templateObject_1$1, templateObject_2, templateObject_3, templateObject_4;
+                var mapStateToProps = function mapStateToProps(state, ownProps) {
+                    var _a, _b, _c, _d;
+                    var data = ((_a = state.footer) === null || _a === void 0 ? void 0 : _a.data) || (ownProps === null || ownProps === void 0 ? void 0 : ownProps.data);
+                    return {
+                        footer: state.footer,
+                        data: data,
+                        toggleFiltersAndUniverses: (_c = (_b = state === null || state === void 0 ? void 0 : state.navandsearch) === null || _b === void 0 ? void 0 : _b.result.mob.toggleFiltersAndUniverses) !== null && _c !== void 0 ? _c : null,
+                        // toggleFiltersAndUniverses: !state?.router ? state.navandsearch.result.mob.toggleFiltersAndUniverses : null,
+                        router: (_d = state === null || state === void 0 ? void 0 : state.router) !== null && _d !== void 0 ? _d : null
+                    };
+                };
+                var SSRFallbackQuery = Object(lib["a" /* default */ ])(templateObject_1 || (templateObject_1 = Object(tslib_es6["e" /* __makeTemplateObject */ ])(["\n  query footerSSRFallback {\n    ...FooterSSRFragment\n  }\n  ", "\n"], ["\n  query footerSSRFallback {\n    ...FooterSSRFragment\n  }\n  ", "\n"])), footer_esm_Footer.SSRFragment);
+                var footer_esm_FooterWithGraphQl = function FooterWithGraphQl(props) {
+                    // let data: GraphQlData | undefined;
+                    var _a = Object(breakpointHook["b" /* useBreakpoint */ ])(),
+                        md = _a.md;
+                    _a.mdMatchesBrowser;
+                    var _b = props.PERSONALIZED_QUERY,
+                        PERSONALIZED_QUERY = _b === void 0 ? SSRFallbackQuery : _b,
+                        _c = props.PERSONALIZED_QUERY_OPTION,
+                        PERSONALIZED_QUERY_OPTION = _c === void 0 ? {
+                            ssr: true,
+                            skip: false
+                        } : _c;
+                    PERSONALIZED_QUERY_OPTION.ssr = true;
+                    PERSONALIZED_QUERY_OPTION.skip = false;
+                    PERSONALIZED_QUERY_OPTION.returnPartialData = true; // prevent hydration error
+                    var queryResult = Object(useQuery["a" /* useQuery */ ])(PERSONALIZED_QUERY, PERSONALIZED_QUERY_OPTION);
+                    return /*#__PURE__*/ react_default.a.createElement(footer_esm_Footer, Object(tslib_es6["a" /* __assign */ ])({}, props, {
+                        md: md,
+                        graphQlData: queryResult.data
+                    }));
+                };
+                var ConnectedFooter = Object(es["c" /* connect */ ])(mapStateToProps)(footer_esm_FooterWithGraphQl);
+                var HideInWebviewFooter = Object(HideInWebviewHoc["a" /* HideInWebviewHoc */ ])(ConnectedFooter);
+                // @ts-expect-error missing props
+                var footer_esm_BreakpointWrappedFooter = function BreakpointWrappedFooter(props) {
+                    return /*#__PURE__*/ react_default.a.createElement(BreakpointProvider["a" /* BreakpointProvider */ ], null, /*#__PURE__*/ react_default.a.createElement(HideInWebviewFooter, Object(tslib_es6["a" /* __assign */ ])({}, props)));
+                };
+                footer_esm_BreakpointWrappedFooter.personalizedFraments = footer_esm_Footer.personalizedFragments;
+                footer_esm_BreakpointWrappedFooter.initalFragments = footer_esm_Footer.initialFragments;
+                footer_esm_BreakpointWrappedFooter.SSRFragment = footer_esm_Footer.SSRFragment;
+                footer_esm_BreakpointWrappedFooter.PersonalizeFragment = footer_esm_Footer.PersonalizeFragment;
+                var FooterContainer = footer_esm_BreakpointWrappedFooter;
+                var templateObject_1;
+                var SHOW = 'footer/SHOW';
+                var HIDE = 'footer/HIDE';
+
+                function reducer(state, action) {
+                    if (state === void 0) {
+                        state = DEFAULT_STATE;
+                    }
+                    switch (action.type) {
+                        case SHOW:
+                            return Object(tslib_es6["a" /* __assign */ ])(Object(tslib_es6["a" /* __assign */ ])({}, state), {
+                                visible: true
+                            });
+                        case HIDE:
+                            return Object(tslib_es6["a" /* __assign */ ])(Object(tslib_es6["a" /* __assign */ ])({}, state), {
+                                visible: false
+                            });
+                        default:
+                            return state;
+                    }
+                }
+                var containers = {
+                    FooterContainer: FooterContainer
+                };
+                var footerModule = {
+                    containers: containers,
+                    constants: constants,
+                    reducer: reducer
+                };
+                var footerDefaultLinks = [{
+                    text: 'Besoin d’aide ?',
+                    href: 'https://fr.shopping.rakuten.com/newhelp/'
+                }, {
+                    text: 'FAQ / Contacts',
+                    href: 'https://fr.shopping.rakuten.com/newhelp/'
+                }, {
+                    text: 'Conditions générales',
+                    href: 'https://fr.shopping.rakuten.com/newhelp/conditions-generales/'
+                }, {
+                    text: 'Vie privée et cookies',
+                    href: 'https://fr.shopping.rakuten.com/newhelp/vie-privee-et-cookies/'
+                }];
+                var s = {
+                    "footerMinimalContainer": "_f-footerMinimalContainer-b8c603",
+                    "hyperlinksContainer": "_f-hyperlinksContainer-0ecfea",
+                    "hyperlinkWrapper": "_f-hyperlinkWrapper-d04ca1",
+                    "hyperlink": "_f-hyperlink-c19734",
+                    "hyperlinkDash": "_f-hyperlinkDash-22e83b",
+                    "footerDateContainer": "_f-footerDateContainer-dc034b",
+                    "footerDate": "_f-footerDate-c0198c"
+                };
+                var footer_esm_FooterMinimal = function FooterMinimal(_a) {
+                    var _b = _a.links,
+                        links = _b === void 0 ? footerDefaultLinks : _b;
+                    return /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: s.footerMinimalContainer,
+                        "data-qa": "footer-minimal"
+                    }, /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: s.hyperlinksContainer
+                    }, links.map(function(_a, i) {
+                        var text = _a.text,
+                            href = _a.href;
+                        return /*#__PURE__*/ react_default.a.createElement("div", {
+                            className: s.hyperlinkWrapper,
+                            key: text
+                        }, /*#__PURE__*/ react_default.a.createElement(Hyperlink_Hyperlink, {
+                            href: href,
+                            color: "gray800",
+                            fontSize: "1.2rem",
+                            extraClassName: s.hyperlink,
+                            openLinkInNewTab: true
+                        }, text), i < links.length - 1 && /*#__PURE__*/ react_default.a.createElement("div", {
+                            className: s.hyperlinkDash
+                        }, " - "));
+                    })), /*#__PURE__*/ react_default.a.createElement("div", {
+                        className: s.footerDateContainer
+                    }, /*#__PURE__*/ react_default.a.createElement("p", {
+                        className: s.footerDate
+                    }, "\xA9 RAKUTEN France SAS 2000-".concat(new Date().getFullYear()))));
+                };
+                var footer_esm_FooterMinimalWrapped = function FooterMinimalWrapped(props) {
+                    return /*#__PURE__*/ react_default.a.createElement(BreakpointProvider["a" /* BreakpointProvider */ ], null, /*#__PURE__*/ react_default.a.createElement(HideInWebView["a" /* HideInWebview */ ], null, /*#__PURE__*/ react_default.a.createElement(footer_esm_FooterMinimal, Object(tslib_es6["a" /* __assign */ ])({}, props))));
+                };
+
+
+                /***/
+            })
+
+    }
+]);

@@ -1,0 +1,1 @@
+if (window.queueit && window.queueit['rakuten'] && window.queueit['rakuten']['prodfullsite']) { window.queueit['rakuten']['prodfullsite'].enqueue({"inQueue":true,"redirect":false,"cookieValue":"EventId=prodfullsite&QueueId=00000000-0000-0000-0000-000000000000&RedirectType=disabled&IssueTime=1733997017&Hash=f52f84340496b7aa7579ca52c940017a62907f27ca5dc228d9797dab0209d3fa"}); }

@@ -1,0 +1,99 @@
+.line-through {
+    text-decoration-line: line-through;
+}
+
+.f10 {
+    font-size: 10px;
+}
+
+.f22 {
+    font-size: 22px;
+}
+
+.f34 {
+    font-size: 34px;
+}
+
+.f35 {
+    font-size: 35px;
+}
+
+.f54 {
+    font-size: 54px;
+}
+
+.red-rkt {
+    color: #bf0000;
+}
+
+.bg-red-rkt {
+    background-color: #bf0000;
+}
+
+.bg-blue-4x {
+    background-color: #479bd4;
+}
+
+.bg-lightgray {
+    background-color: #f6f6f6;
+}
+
+.main-black {
+    color: #4a4a4a;
+}
+
+.color_gray {
+    color: #929292;
+}
+
+.purple-c2c {
+    color: #520086;
+}
+
+.helper-pt-0_8 {
+    padding-top: 0.8rem;
+}
+
+.fixed-height-13 {
+    max-height: 13px;
+    min-height: 13px;
+}
+
+.fixed-height-15 {
+    max-height: 15px;
+    min-height: 15px;
+}
+
+.fixed-height-20 {
+    max-height: 2rem;
+    min-height: 2rem;
+    padding: .4rem 0 0;
+}
+
+.fixed-height-21 {
+    max-height: 21px;
+    min-height: 21px;
+}
+
+.fixed-height-24 {
+    max-height: 2.4rem;
+    min-height: 2.4rem;
+}
+
+.fixed-height-26 {
+    max-height: 2.6rem;
+    min-height: 2.6rem;
+}
+
+.fixed-height-31 {
+    max-height: 31px;
+    min-height: 31px;
+}
+
+.nl3 {
+    margin-left: -1rem;
+}
+
+.nl2 {
+    margin-left: -0.5rem;
+}

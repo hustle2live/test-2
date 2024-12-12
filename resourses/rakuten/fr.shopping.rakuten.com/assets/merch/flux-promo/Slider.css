@@ -1,0 +1,90 @@
+.slider-flux {
+    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-y: scroll;
+    -ms-overflow-scrolling: touch;
+    max-height: 466px;
+    scroll-behavior: smooth;
+    /* overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none; */
+}
+
+.slider-flux::-webkit-scrollbar {
+    display: none;
+    height: 0;
+}
+
+/* .slider-flux:hover::-webkit-scrollbar, .slider-flux:hover::-moz-scrollbar, .slider-flux:hover::-ms-scrollbar {
+    display: block;
+    height: 2px;
+    background-color: #F5F5F5;
+  } */
+
+.slider-flux:hover::-webkit-scrollbar-thumb,
+.slider-flux::-moz-scrollbar-thumb,
+.slider-flux::-ms-scrollbar-thumb {
+    /* background-color: #aaaaaa;
+     */
+    /* display: none;
+    height: 0; */
+    /* display: block;
+    height: 2px;
+    background-color:rgba(170,170,170,0.2);
+    border-radius: 10px; */
+}
+
+.slider-flux::-webkit-scrollbar-button {
+    display: none;
+}
+
+.item-flux-auto {
+    max-width: 220px;
+    min-width: 220px;
+}
+
+.arrow {
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    background-repeat: no-repeat;
+    box-shadow: 0 1px 3px #777777;
+    background-size: auto;
+    color: transparent;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    top: 37%;
+}
+
+.arrow:active,
+.arrow:focus,
+.arrow:visited {
+    outline: 0;
+}
+
+.arrow-left {
+    background-image: url('https://images.fr.shopping.rakuten.com/visuels/canopy-commons/left-arrow-grey.svg');
+    background-position-x: 12px;
+    background-position-y: 14px;
+    left: 8px;
+}
+
+.arrow-right {
+    background-image: url('https://images.fr.shopping.rakuten.com/visuels/canopy-commons/right-arrow-grey.svg');
+    background-position-x: 14px;
+    background-position-y: 14px;
+    right: 8px;
+}
+
+@media all and (max-width: 768px) {
+    .flux-promo-item-title-small_device {
+        white-space: normal;
+    }
+}
