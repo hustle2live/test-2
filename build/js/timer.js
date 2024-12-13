@@ -36,11 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
                   document.querySelectorAll('.content-first').forEach((el) => (el.style.display = 'block'));
                   document.querySelector('#next-footer-entrypoint').style.display = 'none';
                }
+               startCountdown();
             }, 1000);
          }
       }, 1000);
 
-      return setInterval(() => startCountdown(), (timerAmount + 2) * 1000);
    }
 
    startCountdown();

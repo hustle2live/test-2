@@ -2,163 +2,362 @@
 <html class="OpenSans-loaded OpenSans-semiBold-loaded OpenSans-extrabold-loaded OpenSans-light-loaded">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <script type="text/javascript" src="./Rakuten_files/1733996778180" async=""></script>
+      <script type="text/javascript" async="" src="./Rakuten_files/js"></script>
+      <script type="text/javascript" async="" src="./Rakuten_files/destination"></script>
+      <script type="text/javascript" async="" src="./Rakuten_files/destination(1)"></script>
+      <script async="" src="./Rakuten_files/gtm.js.download"></script>
+      <script
+         id="spcloader"
+         type="text/javascript"
+         async=""
+         src="./Rakuten_files/loader.js.download"
+         charset="utf-8"
+      ></script>
+      <!-- <script async="" src="./Rakuten_files/gtm(1).js.download"></script> -->
+      <script>
+         (function () {
+            function e(e, t) {
+               function s(t, n) {
+                  e.console && e.console.error('[smartcache] ' + t);
+                  const r = {};
+                  n.placeholders.forEach(function (e) {
+                     r[e.dataset.fstrzFragmentId] = { content: e.innerHTML, selector: e.dataset.fstrzFragmentSelector };
+                  });
+                  const i = { url: e.location.href, fragments: n.fragments, placeholders: r };
+                  try {
+                     e.localStorage && e.localStorage.setItem('fasterize-lastSmartcacheError', JSON.stringify(i));
+                  } catch (s) {
+                     e.console && e.console.error('[smartcache] ' + s), e.console && e.console.error(i);
+                  }
+               }
+               function o(t, r, i) {
+                  if (/googlebot/i.test(e.navigator.userAgent)) {
+                     e.console && e.console.error('[smartcache] No error handling for googlebots.'),
+                        (e.preventDeferJSStart = 0),
+                        (e.smartCacheInserted = !0);
+                     return;
+                  }
+                  if (typeof e.onFrzSmartcacheError == 'function') {
+                     const o = e.onFrzSmartcacheError(t, r, i);
+                     if (o) return;
+                  }
+                  var u = 'frz-flush=true&frz-reason=' + r;
+                  if (r === 'smartcache_missmatching') {
+                     var a = Object.keys(i.fragments).map(function (e) {
+                           return e + ':' + i.fragments[e].selector;
+                        }),
+                        f = i.placeholders.map(function (e) {
+                           return e.dataset.fstrzFragmentId + ':' + e.dataset.fstrzFragmentSelector;
+                        }),
+                        l = a
+                           .filter(function (e) {
+                              return f.indexOf(e) < 0;
+                           })
+                           .join(';'),
+                        c = f
+                           .filter(function (e) {
+                              return a.indexOf(e) < 0;
+                           })
+                           .join(';');
+                     (u =
+                        'frz-flush=true&frz-reason=smartcache_missmatching&frz-fragments=' +
+                        encodeURIComponent(l) +
+                        '&frz-placeholders=' +
+                        encodeURIComponent(c)),
+                        (u = u.substring(0, 3e3)),
+                        s(t, i);
+                  } else e.console && e.console.error('[smartcache] ' + t, i);
+                  n
+                     ? console.error('[smartcache] no redirection because an unload is ongoing')
+                     : (e.location.search = e.location.search === '' ? u : e.location.search + '&' + u);
+               }
+               function u(e) {
+                  var n = null;
+                  for (var r in e) {
+                     var i = t.querySelector('[data-fstrz-fragment-id=' + r + ']'),
+                        s = e[r];
+                     i && i.dataset.fstrzFragmentSelector === s.selector
+                        ? (i.innerHTML = s.content)
+                        : (n || (n = {}), (n[r] = s));
+                  }
+                  return n;
+               }
+               function a(e) {
+                  return e.protocol + '//' + e.host + e.pathname + (e.search ? e.search : '');
+               }
+               function f(n, s) {
+                  if (n.response && n.response.location) {
+                     const l = new URL(n.response.location, e.location.href);
+                     e.location.assign(n.response.location);
+                     if (a(e.location) === a(l) && !e.smartCacheRetryAfterRedirect) {
+                        e.smartCacheRetryAfterRedirect = !0;
+                        const c = t.querySelector("script[src*='smartcache-fragment=true']");
+                        if (c && c.parentNode) {
+                           const h = t.createElement('script');
+                           (h.src = c.src), c.parentNode.insertBefore(h, c.nextSibling), c.parentNode.removeChild(c);
+                        }
+                     }
+                     return;
+                  }
+                  if (e.smartCacheInserted) return;
+                  (e.smartCacheLoaded = !0),
+                     e.performance &&
+                        e.performance.mark &&
+                        e.performance.mark('frz_insert_fragments' + (s ? '(remaining)' : '')),
+                     !s && typeof e.onFrzSmartcachePreInsertion == 'function' && (n = e.onFrzSmartcachePreInsertion(n));
+                  var p = u(s || n);
+                  if (!p) {
+                     var d = [].filter.call(t.querySelectorAll('[data-fstrz-fragment-id]:empty'), function (e) {
+                        return n[e.dataset.fstrzFragmentId] === undefined;
+                     });
+                     if (d.length > 0) {
+                        o('Some placeholders are empty.', 'smartcache_missmatching', {
+                           fragments: n,
+                           placeholders: [].slice.call(t.querySelectorAll('[data-fstrz-fragment-id]'))
+                        });
+                        return;
+                     }
+                     if (typeof e.onFrzSmartcacheCompleted == 'function')
+                        try {
+                           e.onFrzSmartcacheCompleted();
+                        } catch (v) {
+                           e.console.error('[smartcache] Error on onFrzSmartcacheCompleted', v);
+                        }
+                     (e.preventDeferJSStart = 0), (e.smartCacheInserted = !0);
+                  } else
+                     i
+                        ? o('Some fragments cannot be inserted.', 'smartcache_missmatching', {
+                             fragments: n,
+                             placeholders: [].slice.call(t.querySelectorAll('[data-fstrz-fragment-id]'))
+                          })
+                        : r.call(t, 'DOMContentLoaded', function () {
+                             (i = !0), f(n, p);
+                          });
+               }
+               var n = !1;
+               e.addEventListener('beforeunload', function () {
+                  n = !0;
+               }),
+                  (e.fasterizeNs = e.fasterizeNs || {}),
+                  (e.onerror = function (t, n) {
+                     return (
+                        n &&
+                           n.indexOf('frz-smartcache-fragment') !== -1 &&
+                           e.fasterizeNs.handleError(
+                              'Error while inserting smartcache fragment. Fragment response is likely not a js response',
+                              'invalid_response',
+                              t
+                           ),
+                        !1
+                     );
+                  });
+               var r = t.addEventListener,
+                  i = !1;
+               r.call(t, 'DOMContentLoaded', function () {
+                  i = !0;
+               }),
+                  (e.smartCacheLoaded = !1),
+                  (e.smartCacheInserted = !1),
+                  (e.preventDeferJSStart = 1200),
+                  (e.fasterizeNs.processFragments = f),
+                  (e.fasterizeNs.handleError = o);
+            }
+            typeof window != 'undefined' && typeof document != 'undefined' ? e(window, document) : (module.exports = e);
+         })();
+      </script>
+      <script
+         async=""
+         fetchpriority="high"
+         src="./Rakuten_files/saved_resource"
+         onerror="fasterizeNs.handleError(&#39;Error while downloading smartcache fragments&#39;, &#39;invalid_status_code&#39;)"
+      ></script>
+      <script>
+         var frzScriptsToPreload = document.createDocumentFragment();
+         // keep for preload strategy
+         var frzScriptsToPreloadUrls = [
+            'https://fr.shopping.rakuten.com/assets/merch/flux-promo/main.chunk.v2-6.js',
+            'https://fr.shopping.rakuten.com/assets/merch/flux-promo/2.chunk.v2-6.js',
+            'https://fr.shopping.rakuten.com/assets/merch/flux-promo/runtime-main.v2-6.js',
+            'https://fr.shopping.rakuten.com/vstatic/1/javascripts/0.chunk-10e405e25b5906d6d437.js',
+            'https://fr.shopping.rakuten.com/vstatic/1/javascripts/2.chunk-10e405e25b5906d6d437.js',
+            'https://fr.shopping.rakuten.com/vstatic/1/javascripts/254.chunk-10e405e25b5906d6d437.js',
+            'https://fr.shopping.rakuten.com/vstatic/1/javascripts/238.chunk-10e405e25b5906d6d437.js',
+            'https://fr.shopping.rakuten.com/vstatic/1/javascripts/252.chunk-10e405e25b5906d6d437.js',
+            'https://fr.shopping.rakuten.com/vstatic/1/javascripts/4.chunk-10e405e25b5906d6d437.js',
+            'https://fr.shopping.rakuten.com/vstatic/1/javascripts/243.chunk-10e405e25b5906d6d437.js',
+            'https://fr.shopping.rakuten.com/vstatic/1/javascripts/247.chunk-10e405e25b5906d6d437.js'
+         ];
+         var frzScriptsToPreloadScripts = [
+            { src: 'https://fr.shopping.rakuten.com/assets/merch/flux-promo/main.chunk.v2-6.js', module: false },
+            { src: 'https://fr.shopping.rakuten.com/assets/merch/flux-promo/2.chunk.v2-6.js', module: false },
+            { src: 'https://fr.shopping.rakuten.com/assets/merch/flux-promo/runtime-main.v2-6.js', module: false },
+            {
+               src: 'https://fr.shopping.rakuten.com/vstatic/1/javascripts/0.chunk-10e405e25b5906d6d437.js',
+               module: false
+            },
+            {
+               src: 'https://fr.shopping.rakuten.com/vstatic/1/javascripts/2.chunk-10e405e25b5906d6d437.js',
+               module: false
+            },
+            {
+               src: 'https://fr.shopping.rakuten.com/vstatic/1/javascripts/254.chunk-10e405e25b5906d6d437.js',
+               module: false
+            },
+            {
+               src: 'https://fr.shopping.rakuten.com/vstatic/1/javascripts/238.chunk-10e405e25b5906d6d437.js',
+               module: false
+            },
+            {
+               src: 'https://fr.shopping.rakuten.com/vstatic/1/javascripts/252.chunk-10e405e25b5906d6d437.js',
+               module: false
+            },
+            {
+               src: 'https://fr.shopping.rakuten.com/vstatic/1/javascripts/4.chunk-10e405e25b5906d6d437.js',
+               module: false
+            },
+            {
+               src: 'https://fr.shopping.rakuten.com/vstatic/1/javascripts/243.chunk-10e405e25b5906d6d437.js',
+               module: false
+            },
+            {
+               src: 'https://fr.shopping.rakuten.com/vstatic/1/javascripts/247.chunk-10e405e25b5906d6d437.js',
+               module: false
+            }
+         ];
+         frzScriptsToPreloadScripts.forEach(function (script) {
+            var preload = document.createElement('link');
+            if (script.module) {
+               preload.setAttribute('rel', 'modulepreload');
+            } else {
+               preload.setAttribute('rel', 'preload');
+               preload.setAttribute('as', 'script');
+            }
+            preload.setAttribute('href', script.src);
+            preload.setAttribute('fetchpriority', 'low');
+            frzScriptsToPreload.appendChild(preload);
+         });
+      </script>
+      <script>
+         // retarder le téléchargement des scripts
+         var frzScriptsToPreload2 = document.createDocumentFragment();
+         frzScriptsToPreloadUrls
+            .filter(function (element, index) {
+               return (
+                  element.indexOf('selling') === -1 &&
+                  element.indexOf('front_main') === -1 &&
+                  element.indexOf('jquery.min') === -1 &&
+                  element.indexOf('smarttag') === -1
+               );
+            })
+            .forEach(function (script) {
+               var preload = document.createElement('link');
+               preload.setAttribute('rel', 'preload');
+               preload.setAttribute('href', script);
+               preload.setAttribute('as', 'script');
+               preload.setAttribute('importance', 'low');
+               frzScriptsToPreload2.appendChild(preload);
+            });
+         setTimeout(function () {
+            document.head.appendChild(frzScriptsToPreload2);
+         }, 200);
+      </script>
+      <script>
+         window.kameleoonDisplayPageTimeOut = true;
+      </script>
+      <link rel="preload" href="./Rakuten_files/smarttag.js.download" as="script" importance="high" />
+      <!--<link rel="preload" href="https://www.googletagmanager.com/gtm.js?id=GTM-PW57K8V&gtm_auth=Yc4c8ZVKIadZK1xM4afnPg&gtm_preview=env-2&gtm_cookies_win=x" as="script" importance="high" />-->
+      <link rel="preload" href="./Rakuten_files/js(1)" as="script" importance="high" />
+      <script>
+         window.kameleoonDisplayPageTimeOut = true;
+      </script>
+      <script>
+         frzCustomLazysizesConfig = {
+            loadMode: 1,
+            lazyClass: 'lazyfrz',
+            autosizesClass: 'lazyautosizes',
+            srcAttr: 'data-frz-src',
+            srcsetAttr: 'data-frz-srcset',
+            sizesAttr: 'data-frz-sizes',
+            init: false,
+            loadHidden: false
+         };
+      </script>
+
+      <script>
+         /*
+function getCSSSelector(el){
+    let selector = el.tagName.toLowerCase();
+    const attrs = el.attributes
+    for (var i = 0; i < attrs.length; i++) {
+        let attr = attrs.item(i)
+        if (attr.name === 'id') selector += `#${attr.value}`;
+        if (attr.name === 'class') selector += attr.value.split(' ').map((c) => `.${c}`).join('');
+        if (attr.name === 'name') selector += `[${attr.name}=${attr.value}]`;
+    }
+    return selector
+}
+
+
+let worstInp = 0;
+let worstInpInput = 0;
+let worstInpProcess = 0;
+let worstInpRender = 0;
+let worstInpType = '';
+let worstInpSelector = '';
+
+const observer = new PerformanceObserver((list, obs, options) => {
+  for (let entry of list.getEntries()) {
+    if (!entry.interactionId) continue;
+
+    entry.renderTime = entry.startTime + entry.duration;    
+
+    //console.log('[Interaction]', entry.duration, `type: ${entry.name} interactionCount: ${performance.interactionCount}, total INP: ${entry.duration}`, entry, options);
+    if(entry.duration >= worstInp) {
+      const adjustedPresentationTime = Math.max(
+        entry.processingEnd + 4,
+        entry.startTime + entry.duration,
+      );
+
+      worstInp = Math.max(entry.duration, worstInp);
+      worstInpType = entry.name;
+      worstInpSelector = entry.target;
+      worstInpInput = Math.round(entry.processingStart - entry.startTime, 0);
+      worstInpProcess = Math.round(entry.processingEnd - entry.processingStart,0);
+      worstInpRender = Math.round(adjustedPresentationTime - entry.processingEnd,0);
+
+      console.log('[Worst Interaction]', entry.duration, `type: ${entry.name} interactionCount: ${performance.interactionCount},
+      subdurations: ${worstInpInput}-${worstInpProcess}-${worstInpRender}, total INP: ${worstInp}`, entry, getCSSSelector(entry.target));
+    }
+    
+
+    
+  }
+});
+
+observer.observe({
+  type: 'event',
+  durationThreshold: 0, // 16 minimum by spec
+  buffered: true
+});
+
+
+
+
+window.onunload = function analytics(event) {
+if (!navigator.sendBeacon) return;
+    navigator.sendBeacon("/fstrz/r/s/edgepic.fzcdn.net/8c81b980ca.svg?inpmonitoring&url=" + window.location.pathname + "&inp=" + worstInp + "&input=" + worstInpInput + "&process=" + worstInpProcess + "&render=" + worstInpRender + "&inp_type=" + worstInpType + "&inp_selector=" + getCSSSelector(worstInpSelector),"");
+};
+*/
+      </script>
       <link rel="preload" as="image" fetchpriority="high" href="./Rakuten_files/8c81b980ca.svg" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=yes" />
-
+      <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+      <!--# Host: canopy_vis_fo_32104-dockerall-p601 - Version: [ahead 1] prepublish: 28.16.0 - Revision: release/SEO-111@r4eb01b3 - Date: 2023-06-14T12:35:53.885Z #-->
+      <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="theme-color" content="#fff" />
       <meta name="application-name" content="Rakuten" />
-
-      <!-- Icons -->
-
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <meta name="viewport" content="width=976" />
-
-      <link rel="preload" as="style" href="./next_files/Fonts.min.css" />
-      <link rel="stylesheet" href="./next_files/Fonts.min.css" />
-
-      <!-- ESI: HeaderPreload -->
-      <meta name="apple-mobile-web-app-title" content="Next" />
-      <meta name="application-name" content="Next" />
-
-      <link
-         rel="apple-touch-icon-precomposed"
-         sizes="60x60"
-         href="https://www.next.ie/static-content/icons/header/next/shared/splashicons/ios-notification-60x60.png"
-      />
-      <link
-         rel="apple-touch-icon-precomposed"
-         sizes="120x120"
-         href="https://www.next.ie/static-content/icons/header/next/shared/splashicons/ios-iphone-120x120.png"
-      />
-      <link
-         rel="apple-touch-icon-precomposed"
-         sizes="152x152"
-         href="https://www.next.ie/static-content/icons/header/next/shared/splashicons/ios-ipad-152x152.png"
-      />
-      <link
-         rel="apple-touch-icon-precomposed"
-         sizes="167x167"
-         href="https://www.next.ie/static-content/icons/header/next/shared/splashicons/ios-ipad-pro-167x167.png"
-      />
-      <link
-         rel="apple-touch-icon-precomposed"
-         sizes="180x180"
-         href="https://www.next.ie/static-content/icons/header/next/shared/splashicons/ios-iphone-180x180.png"
-      />
-
-      <link rel="preconnect" href="https://static.queue-it.net/" />
-      <link rel="preconnect" href="https://xcdn.next.co.uk/" />
-
-      <link href="./next_files/css" rel="stylesheet" />
-
-      <title>Mens Clothing | Mens Fashion | Mens Clothes | Next Official Site</title>
-
-      <meta
-         name="description"
-         content="Latest styles in men&#39;s clothing featuring on-trend men&#39;s fashion and clothing, a summer inspired range. Next day delivery &amp; free returns available."
-      />
-
-      <link rel="publisher" href="https://www.next.ie/humans.txt" />
-      <meta name="author" content="Next Retail Limited" />
-
-      <!-- Facebook URL Linter Setup -->
-      <!-- Icons -->
-      <!--New Favicon And Manifest Helper-->
-      <link rel="shortcut icon" href="https://www.next.ie/Images/Next/favicon.ico" type="image/x-icon" />
-      <link rel="icon" href="https://www.next.ie/Images/Next/favicon.ico" type="image/x-icon" />
-      <link
-         rel="apple-touch-icon"
-         sizes="180x180"
-         href="https://www.next.ie/Images/mobile/Next/iOS/app-icons-msite/apple-touch-icon.png"
-      />
-
-      <!-- iPhone SPLASHSCREEN-->
-      <link
-         href="https://www.next.ie/Images/mobile/iOS/ios-app-splashscreen/splashscreen_640x920.png"
-         media="(device-width: 320px)"
-         rel="apple-touch-startup-image"
-      />
-      <!-- iPhone (Retina) SPLASHSCREEN-->
-      <link
-         href="https://www.next.ie/Images/mobile/iOS/ios-app-splashscreen/splashscreen_640x920.png"
-         media="(device-width: 320px) and (device-height: 460px) and (-webkit-device-pixel-ratio: 2)"
-         rel="apple-touch-startup-image"
-      />
-      <!-- iPhone 5 (Retina) SPLASHSCREEN-->
-      <link
-         href="https://www.next.ie/Images/mobile/iOS/ios-app-splashscreen/splashscreen_640x1096.png"
-         media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
-         rel="apple-touch-startup-image"
-      />
-      <!-- iPad (non-Retina) (Portrait) -->
-      <link
-         href="https://www.next.ie/Images/mobile/iOS/ios-app-splashscreen/splashscreen_768x1004.png"
-         media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"
-         rel="apple-touch-startup-image"
-      />
-      <!-- iPad (non-Retina) (Landscape) -->
-      <link
-         href="https://www.next.ie/Images/mobile/iOS/ios-app-splashscreen/splashscreen_1024x748.png"
-         media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"
-         rel="apple-touch-startup-image"
-      />
-      <!-- iPad (Retina) (Portrait) -->
-      <link
-         href="https://www.next.ie/Images/mobile/iOS/ios-app-splashscreen/splashscreen_1536x2008.png"
-         media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) and (-webkit-min-device-pixel-ratio: 2)"
-         rel="apple-touch-startup-image"
-      />
-      <!-- iPad (Retina) (Landscape) -->
-      <link
-         href="https://www.next.ie/Images/mobile/iOS/ios-app-splashscreen/splashscreen_2048x1496.png"
-         media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) and (-webkit-min-device-pixel-ratio: 2)"
-         rel="apple-touch-startup-image"
-      />
-      <!-- iphone6 SPLASHSCREEN-->
-      <link
-         href="https://www.next.ie/Images/mobile/iOS/ios-app-splashscreen/splashscreen_750x1294.png"
-         media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 3)"
-         rel="apple-touch-startup-image"
-      />
-      <!-- iphone6 plus portrait SPLASHSCREEN-->
-      <link
-         href="https://www.next.ie/Images/mobile/iOS/ios-app-splashscreen/splashscreen_1242x2148.png"
-         media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
-         rel="apple-touch-startup-image"
-      />
-      <!-- iphone6 plus landscape SPLASHSCREEN-->
-      <link
-         href="https://www.next.ie/Images/mobile/iOS/ios-app-splashscreen/splashscreen_1182x2208.png"
-         media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
-         rel="apple-touch-startup-image"
-      />
-
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-
-      <link rel="Stylesheet" href="./next_files/modernised-header-preload-responsive.css" />
-      <link rel="canonical" href="https://www.next.ie/en/men" />
-
-      <!-- This script file makes older versions of IE aware of the new HTML5 elements so that it can attempt to render them in the HTML4 renderer  -->
-      <!--[if lt IE 9]> <![endif]-->
-
-      <link rel="Stylesheet" href="./next_files/storefronts.css" />
-      <link rel="Stylesheet" href="./next_files/UI_plugins.css" />
-      <link rel="Stylesheet" href="./next_files/CompetitionStorefront.css" />
-      <link rel="Stylesheet" href="./next_files/NextCreditPopup.css" />
-      <link rel="stylesheet" href="./next_files/body.css" />
-      <link rel="stylesheet" href="./next_files/body(1).css" />
-      <meta name="coremedia_content_id" content="341516" />
-
-      <meta name="apple-itunes-app" content="app-id=348364305, app-argument=https://www.next.ie/en/men?FSB=1" />
-
-      <meta
-         http-equiv="origin-trial"
-         content="A7JYkbIvWKmS8mWYjXO12SIIsfPdI7twY91Y3LWOV/YbZmN1ZhYv8O+Zs6/IPCfBE99aV9tIC8sWZSCN09vf7gkAAACWeyJvcmlnaW4iOiJodHRwczovL2N0LnBpbnRlcmVzdC5jb206NDQzIiwiZmVhdHVyZSI6IkRpc2FibGVUaGlyZFBhcnR5U3RvcmFnZVBhcnRpdGlvbmluZzIiLCJleHBpcnkiOjE3NDIzNDIzOTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"
-      />
-
-      <!-- next preload content -->
-
       <link
          rel="apple-touch-icon"
          sizes="57x57"
@@ -272,12 +471,1616 @@
       />
       <link rel="manifest" href="https://fr.shopping.rakuten.com/vstatic/1/images/icons/favicon-manifest.json" />
 
-      <link rel="stylesheet" href="./styles/css/styles.css" />
-      <link rel="stylesheet" href="./styles/css/styles_next.css" />
-      <link rel="stylesheet" href="./styles/css/styles_next_2.css" />
+      <script>
+         fstrz = !0;
+         window.frzCustomLazysizesConfig = window.frzCustomLazysizesConfig || {
+            lazyClass: 'lazyfrz',
+            autosizesClass: 'lazyautosizes',
+            srcAttr: 'data-frz-src',
+            srcsetAttr: 'data-frz-srcset',
+            sizesAttr: 'data-frz-sizes',
+            init: true,
+            loadHidden: false
+         }; /*! lazysizes - v4.1.5 */
+         !(function (a, b) {
+            var c = b(a, a.document);
+            (a.frzLazySizes = c), 'object' == typeof module && module.exports && (module.exports = c);
+         })(window, function (a, b) {
+            'use strict';
+            if (b.getElementsByClassName) {
+               var c,
+                  d,
+                  e = b.documentElement,
+                  f = a.Date,
+                  g = a.HTMLPictureElement,
+                  h = 'addEventListener',
+                  i = 'getAttribute',
+                  j = a[h],
+                  k = a.setTimeout,
+                  l = a.requestAnimationFrame || k,
+                  m = a.requestIdleCallback,
+                  n = /^picture$/i,
+                  o = ['load', 'error', 'lazyincluded', '_lazyloaded'],
+                  p = {},
+                  q = Array.prototype.forEach,
+                  r = function (a, b) {
+                     return (
+                        p[b] || (p[b] = new RegExp('(\\s|^)' + b + '(\\s|$)')), p[b].test(a[i]('class') || '') && p[b]
+                     );
+                  },
+                  s = function (a, b) {
+                     r(a, b) || a.setAttribute('class', (a[i]('class') || '').trim() + ' ' + b);
+                  },
+                  t = function (a, b) {
+                     var c;
+                     (c = r(a, b)) && a.setAttribute('class', (a[i]('class') || '').replace(c, ' '));
+                  },
+                  u = function (a, b, c) {
+                     var d = c ? h : 'removeEventListener';
+                     c && u(a, b),
+                        o.forEach(function (c) {
+                           a[d](c, b);
+                        });
+                  },
+                  v = function (a, d, e, f, g) {
+                     var h = b.createEvent('Event');
+                     return (
+                        e || (e = {}), (e.instance = c), h.initEvent(d, !f, !g), (h.detail = e), a.dispatchEvent(h), h
+                     );
+                  },
+                  w = function (b, c) {
+                     var e;
+                     !g && (e = a.picturefill || d.pf)
+                        ? (c && c.src && !b[i]('srcset') && b.setAttribute('srcset', c.src),
+                          e({ reevaluate: !0, elements: [b] }))
+                        : c && c.src && (b.src = c.src);
+                  },
+                  x = function (a, b) {
+                     return (getComputedStyle(a, null) || {})[b];
+                  },
+                  y = function (a, b, c) {
+                     for (c = c || a.offsetWidth; c < d.minSize && b && !a._lazysizesWidth; )
+                        (c = b.offsetWidth), (b = b.parentNode);
+                     return c;
+                  },
+                  z = (function () {
+                     var a,
+                        c,
+                        d = [],
+                        e = [],
+                        f = d,
+                        g = function () {
+                           var b = f;
+                           for (f = d.length ? e : d, a = !0, c = !1; b.length; ) b.shift()();
+                           a = !1;
+                        },
+                        h = function (d, e) {
+                           a && !e ? d.apply(this, arguments) : (f.push(d), c || ((c = !0), (b.hidden ? k : l)(g)));
+                        };
+                     return (h._lsFlush = g), h;
+                  })(),
+                  A = function (a, b) {
+                     return b
+                        ? function () {
+                             z(a);
+                          }
+                        : function () {
+                             var b = this,
+                                c = arguments;
+                             z(function () {
+                                a.apply(b, c);
+                             });
+                          };
+                  },
+                  B = function (a) {
+                     var b,
+                        c = 0,
+                        e = d.throttleDelay,
+                        g = d.ricTimeout,
+                        h = function () {
+                           (b = !1), (c = f.now()), a();
+                        },
+                        i =
+                           m && g > 49
+                              ? function () {
+                                   m(h, { timeout: g }), g !== d.ricTimeout && (g = d.ricTimeout);
+                                }
+                              : A(function () {
+                                   k(h);
+                                }, !0);
+                     return function (a) {
+                        var d;
+                        (a = !0 === a) && (g = 33),
+                           b || ((b = !0), (d = e - (f.now() - c)), d < 0 && (d = 0), a || d < 9 ? i() : k(i, d));
+                     };
+                  },
+                  C = function (a) {
+                     var b,
+                        c,
+                        d = 99,
+                        e = function () {
+                           (b = null), a();
+                        },
+                        g = function () {
+                           var a = f.now() - c;
+                           a < d ? k(g, d - a) : (m || e)(e);
+                        };
+                     return function () {
+                        (c = f.now()), b || (b = k(g, d));
+                     };
+                  };
+               !(function () {
+                  var b,
+                     c = {
+                        lazyClass: 'lazyload',
+                        loadedClass: 'lazyloaded',
+                        loadingClass: 'lazyloading',
+                        preloadClass: 'lazypreload',
+                        errorClass: 'lazyerror',
+                        autosizesClass: 'lazyautosizes',
+                        srcAttr: 'data-src',
+                        srcsetAttr: 'data-srcset',
+                        sizesAttr: 'data-sizes',
+                        minSize: 40,
+                        customMedia: {},
+                        init: !0,
+                        expFactor: 1.5,
+                        hFac: 0.8,
+                        loadMode: 2,
+                        loadHidden: !0,
+                        ricTimeout: 0,
+                        throttleDelay: 125
+                     };
+                  d = a.frzCustomLazysizesConfig || {};
+                  for (b in c) b in d || (d[b] = c[b]);
+                  (a.frzCustomLazysizesConfig = d),
+                     k(function () {
+                        d.init && F();
+                     });
+               })();
+               var D = (function () {
+                     var g,
+                        l,
+                        m,
+                        o,
+                        p,
+                        y,
+                        D,
+                        F,
+                        G,
+                        H,
+                        I,
+                        J,
+                        K = /^img$/i,
+                        L = /^iframe$/i,
+                        M = 'onscroll' in a && !/(gle|ing)bot/.test(navigator.userAgent),
+                        N = 0,
+                        O = 0,
+                        P = 0,
+                        Q = -1,
+                        R = function (a) {
+                           P--, a && a.target && u(a.target, R), (!a || P < 0 || !a.target) && (P = 0);
+                        },
+                        S = function (a) {
+                           return (
+                              null == J && (J = 'hidden' == x(b.body, 'visibility')),
+                              J || ('hidden' != x(a.parentNode, 'visibility') && 'hidden' != x(a, 'visibility'))
+                           );
+                        },
+                        T = function (a, c) {
+                           var d,
+                              f = a,
+                              g = S(a);
+                           for (F -= c, I += c, G -= c, H += c; g && (f = f.offsetParent) && f != b.body && f != e; )
+                              (g = (x(f, 'opacity') || 1) > 0) &&
+                                 'visible' != x(f, 'overflow') &&
+                                 ((d = f.getBoundingClientRect()),
+                                 (g = H > d.left && G < d.right && I > d.top - 1 && F < d.bottom + 1));
+                           return g;
+                        },
+                        U = function () {
+                           var a,
+                              f,
+                              h,
+                              j,
+                              k,
+                              m,
+                              n,
+                              p,
+                              q,
+                              r,
+                              s,
+                              t,
+                              u = c.elements;
+                           if ((o = d.loadMode) && P < 8 && (a = u.length)) {
+                              for (
+                                 f = 0,
+                                    Q++,
+                                    r =
+                                       !d.expand || d.expand < 1
+                                          ? e.clientHeight > 500 && e.clientWidth > 500
+                                             ? 500
+                                             : 370
+                                          : d.expand,
+                                    s = r * d.expFactor,
+                                    t = d.hFac,
+                                    J = null,
+                                    O < s && P < 1 && Q > 2 && o > 2 && !b.hidden
+                                       ? ((O = s), (Q = 0))
+                                       : (O = o > 1 && Q > 1 && P < 6 ? r : N);
+                                 f < a;
+                                 f++
+                              )
+                                 if (u[f] && !u[f]._lazyRace)
+                                    if (M)
+                                       if (
+                                          (((p = u[f][i]('data-expand')) && (m = 1 * p)) || (m = O),
+                                          q !== m &&
+                                             ((y = innerWidth + m * t), (D = innerHeight + m), (n = -1 * m), (q = m)),
+                                          (h = u[f].getBoundingClientRect()),
+                                          (I = h.bottom) >= n &&
+                                             (F = h.top) <= D &&
+                                             (H = h.right) >= n * t &&
+                                             (G = h.left) <= y &&
+                                             (I || H || G || F) &&
+                                             (d.loadHidden || S(u[f])) &&
+                                             ((l && P < 3 && !p && (o < 3 || Q < 4)) || T(u[f], m)))
+                                       ) {
+                                          if ((aa(u[f]), (k = !0), P > 9)) break;
+                                       } else
+                                          !k &&
+                                             l &&
+                                             !j &&
+                                             P < 4 &&
+                                             Q < 4 &&
+                                             o > 2 &&
+                                             (g[0] || d.preloadAfterLoad) &&
+                                             (g[0] || (!p && (I || H || G || F || 'auto' != u[f][i](d.sizesAttr)))) &&
+                                             (j = g[0] || u[f]);
+                                    else aa(u[f]);
+                              j && !k && aa(j);
+                           }
+                        },
+                        V = B(U),
+                        W = function (a) {
+                           s(a.target, d.loadedClass),
+                              t(a.target, d.loadingClass),
+                              u(a.target, Y),
+                              v(a.target, 'lazyloaded');
+                        },
+                        X = A(W),
+                        Y = function (a) {
+                           X({ target: a.target });
+                        },
+                        Z = function (a, b) {
+                           try {
+                              a.contentWindow.location.replace(b);
+                           } catch (c) {
+                              a.src = b;
+                           }
+                        },
+                        $ = function (a) {
+                           var b,
+                              c = a[i](d.srcsetAttr);
+                           (b = d.customMedia[a[i]('data-media') || a[i]('media')]) && a.setAttribute('media', b),
+                              c && a.setAttribute('srcset', c);
+                        },
+                        _ = A(function (a, b, c, e, f) {
+                           var g, h, j, l, o, p;
+                           (o = v(a, 'lazybeforeunveil', b)).defaultPrevented ||
+                              (e && (c ? s(a, d.autosizesClass) : a.setAttribute('sizes', e)),
+                              (h = a[i](d.srcsetAttr)),
+                              (g = a[i](d.srcAttr)),
+                              f && ((j = a.parentNode), (l = j && n.test(j.nodeName || ''))),
+                              (p = b.firesLoad || ('src' in a && (h || g || l))),
+                              (o = { target: a }),
+                              p && (u(a, R, !0), clearTimeout(m), (m = k(R, 2500)), s(a, d.loadingClass), u(a, Y, !0)),
+                              l && q.call(j.getElementsByTagName('source'), $),
+                              h ? a.setAttribute('srcset', h) : g && !l && (L.test(a.nodeName) ? Z(a, g) : (a.src = g)),
+                              f && (h || l) && w(a, { src: g })),
+                              a._lazyRace && delete a._lazyRace,
+                              t(a, d.lazyClass),
+                              z(function () {
+                                 (!p || (a.complete && a.naturalWidth > 1)) && (p ? R(o) : P--, W(o));
+                              }, !0);
+                        }),
+                        aa = function (a) {
+                           var b,
+                              c = K.test(a.nodeName),
+                              e = c && (a[i](d.sizesAttr) || a[i]('sizes')),
+                              f = 'auto' == e;
+                           ((!f && l) ||
+                              !c ||
+                              (!a[i]('src') && !a.srcset) ||
+                              a.complete ||
+                              r(a, d.errorClass) ||
+                              !r(a, d.lazyClass)) &&
+                              ((b = v(a, 'lazyunveilread').detail),
+                              f && E.updateElem(a, !0, a.offsetWidth),
+                              (a._lazyRace = !0),
+                              P++,
+                              _(a, b, f, e, c));
+                        },
+                        ba = function () {
+                           if (!l) {
+                              if (f.now() - p < 999) return void k(ba, 999);
+                              var a = C(function () {
+                                 (d.loadMode = 3), V();
+                              });
+                              (l = !0),
+                                 (d.loadMode = 3),
+                                 V(),
+                                 j(
+                                    'scroll',
+                                    function () {
+                                       3 == d.loadMode && (d.loadMode = 2), a();
+                                    },
+                                    !0
+                                 );
+                           }
+                        };
+                     return {
+                        _: function () {
+                           (p = f.now()),
+                              (c.elements = b.getElementsByClassName(d.lazyClass)),
+                              (g = b.getElementsByClassName(d.lazyClass + ' ' + d.preloadClass)),
+                              j('scroll', V, !0),
+                              j('resize', V, !0),
+                              a.MutationObserver
+                                 ? new MutationObserver(V).observe(e, { childList: !0, subtree: !0, attributes: !0 })
+                                 : (e[h]('DOMNodeInserted', V, !0),
+                                   e[h]('DOMAttrModified', V, !0),
+                                   setInterval(V, 999)),
+                              j('hashchange', V, !0),
+                              [
+                                 'focus',
+                                 'mouseover',
+                                 'click',
+                                 'load',
+                                 'transitionend',
+                                 'animationend',
+                                 'webkitAnimationEnd'
+                              ].forEach(function (a) {
+                                 b[h](a, V, !0);
+                              }),
+                              /d$|^c/.test(b.readyState)
+                                 ? ba()
+                                 : (j('load', ba), b[h]('DOMContentLoaded', V), k(ba, 2e4)),
+                              c.elements.length ? (U(), z._lsFlush()) : V();
+                        },
+                        checkElems: V,
+                        unveil: aa
+                     };
+                  })(),
+                  E = (function () {
+                     var a,
+                        c = A(function (a, b, c, d) {
+                           var e, f, g;
+                           if (
+                              ((a._lazysizesWidth = d),
+                              (d += 'px'),
+                              a.setAttribute('sizes', d),
+                              n.test(b.nodeName || ''))
+                           )
+                              for (e = b.getElementsByTagName('source'), f = 0, g = e.length; f < g; f++)
+                                 e[f].setAttribute('sizes', d);
+                           c.detail.dataAttr || w(a, c.detail);
+                        }),
+                        e = function (a, b, d) {
+                           var e,
+                              f = a.parentNode;
+                           f &&
+                              ((d = y(a, f, d)),
+                              (e = v(a, 'lazybeforesizes', { width: d, dataAttr: !!b })),
+                              e.defaultPrevented || ((d = e.detail.width) && d !== a._lazysizesWidth && c(a, f, e, d)));
+                        },
+                        f = function () {
+                           var b,
+                              c = a.length;
+                           if (c) for (b = 0; b < c; b++) e(a[b]);
+                        },
+                        g = C(f);
+                     return {
+                        _: function () {
+                           (a = b.getElementsByClassName(d.autosizesClass)), j('resize', g);
+                        },
+                        checkElems: g,
+                        updateElem: e
+                     };
+                  })(),
+                  F = function () {
+                     F.i || ((F.i = !0), E._(), D._());
+                  };
+               return (c = {
+                  cfg: d,
+                  autoSizer: E,
+                  loader: D,
+                  init: F,
+                  uP: w,
+                  aC: s,
+                  rC: t,
+                  hC: r,
+                  fire: v,
+                  gW: y,
+                  rAF: z
+               });
+            }
+         });
+      </script>
+      <script>
+         window.runtimePublicPath = 'https://fr.shopping.rakuten.com/vstatic/1/javascripts/';
+         window.CSS_MANIFEST = {
+            'vendor.css': 'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/0-vendor.10e405e25b5906d6d437.css',
+            'Carousel.css': 'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/4-Carousel.10e405e25b5906d6d437.css',
+            'pages/home.css':
+               'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/247-pages/home.10e405e25b5906d6d437.css',
+            'pages/nav.css':
+               'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/248-pages/nav.10e405e25b5906d6d437.css',
+            'pages/section.css':
+               'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/250-pages/section.10e405e25b5906d6d437.css',
+            'vendors~ClubRWelcomePopin.css':
+               'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/256-vendors~ClubRWelcomePopin.10e405e25b5906d6d437.css',
+            'vendors~CnilBanner.css':
+               'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/257-vendors~CnilBanner.10e405e25b5906d6d437.css',
+            'vendors~Didomi.css':
+               'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/259-vendors~Didomi.10e405e25b5906d6d437.css',
+            'defered-footer.css':
+               'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/defered-footer.040d2ffaa010423c0c11.css',
+            'global-home.css':
+               'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/global-home.040d2ffaa010423c0c11.css',
+            'global-inline.css':
+               'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/global-inline.040d2ffaa010423c0c11.css',
+            'global-nav.css':
+               'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/global-nav.040d2ffaa010423c0c11.css',
+            'global-section.css':
+               'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/global-section.040d2ffaa010423c0c11.css',
+            'global-vendor.css':
+               'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/global-vendor.040d2ffaa010423c0c11.css',
+            'critical-global.css': 'https://fr.shopping.rakuten.com/vstatic/1/stylesheets/critical-global.css'
+         };
+         window.CONF_MANIFEST = { onload: 0, lazyOffsetMobile: '2000', lazyOffsetDesktop: '2000', lockMaxFlux: '0' };
+         window.TEMPLATE_MANIFEST = {
+            chunkCrew: 'https://fr.shopping.rakuten.com/vstatic/1/templates/chunkCrew.jst',
+            chunkError: 'https://fr.shopping.rakuten.com/vstatic/1/templates/chunkError.jst',
+            chunkEvent: 'https://fr.shopping.rakuten.com/vstatic/1/templates/chunkEvent.jst',
+            chunkHead: 'https://fr.shopping.rakuten.com/vstatic/1/templates/chunkHead.jst',
+            chunkHome: 'https://fr.shopping.rakuten.com/vstatic/1/templates/chunkHome.jst',
+            chunkNav: 'https://fr.shopping.rakuten.com/vstatic/1/templates/chunkNav.jst',
+            chunkProduct: 'https://fr.shopping.rakuten.com/vstatic/1/templates/chunkProduct.jst',
+            chunkRayon: 'https://fr.shopping.rakuten.com/vstatic/1/templates/chunkRayon.jst',
+            error: 'https://fr.shopping.rakuten.com/vstatic/1/templates/error.jst',
+            pageError: 'https://fr.shopping.rakuten.com/vstatic/1/templates/pageError.jst',
+            sitemap: 'https://fr.shopping.rakuten.com/vstatic/1/templates/sitemap.jst',
+            sitemapCategory: 'https://fr.shopping.rakuten.com/vstatic/1/templates/sitemapCategory.jst'
+         };
+         window.API_MANIFEST = {
+            cdn: 'https://fr.shopping.rakuten.com/vstatic/1/',
+            cdnStatic: 'https://fr.shopping.rakuten.com/vstatic/1/',
+            cdnImages: 'https://fr.shopping.rakuten.com/',
+            apiURL: 'https://fr.shopping.rakuten.com',
+            reco: 'https://fr.shopping.rakuten.com',
+            timeout: { default: 2000, long: '7000', cdn: 1000 },
+            hasCanopy: false,
+            jahiaCdn: 'https://static.fr.shopping.rakuten.com',
+            jahiaCdnImg: 'https://images.fr.shopping.rakuten.com'
+         };
+         var isEmbbedInBuyerApp =
+            window.navigator.userAgent.indexOf('BuyerApp') >= 0 || window.navigator.userAgent.indexOf('MSAppHost') >= 0;
+         if (isEmbbedInBuyerApp) {
+            document.getElementsByTagName('HTML')[0].classList.add('is-in-webview');
+         }
+         var rktDefer = (function () {
+            var registry = {};
+            var pageLoaded = false;
+            function add(key, f) {
+               var ctx = registry[key];
+               if (!ctx) {
+                  registry[key] = { loaded: false, onscript: [], onwindow: [] };
+               }
+               if (typeof f === 'function') {
+                  registry[key].f = f;
+               }
+            }
+            function reg() {
+               var args = Array.prototype.slice.call(arguments);
+               if (args.length >= 1) {
+                  var key = args[0];
+                  add(key);
+                  var ctx = registry[key];
+                  if (!ctx.loaded) {
+                     ctx.onscript.push(args.splice(1));
+                  } else {
+                     ctx.f && ctx.f.apply(null, args.splice(1));
+                  }
+               }
+            }
+            function defer() {
+               var args = Array.prototype.slice.call(arguments);
+               if (args.length >= 1) {
+                  var key = args[0];
+                  add(key);
+                  var ctx = registry[key];
+                  ctx.onwindow.push(args.splice(1));
+               }
+            }
+            function applyDefer(key) {
+               window.removeEventListener('load', applyDefer);
+               document.querySelector('body').classList.add('pgLoaded');
+               pageLoaded = true;
+               Object.keys(registry)
+                  .sort()
+                  .forEach(function (key) {
+                     var ctx = registry[key];
+                     ctx.onwindow.forEach(function (args) {
+                        try {
+                           ctx.f.apply(null, args);
+                        } catch (err) {
+                           try {
+                              console.log('key=' + key + ' args=' + JSON.stringify(args) + 'err=' + err);
+                           } catch (err) {
+                              console.log('key=' + key + 'err=' + err);
+                           }
+                        }
+                     });
+                  });
+            }
+            function load(key, f) {
+               add(key, f);
+               var ctx = registry[key];
+               ctx.onscript.forEach(function (args) {
+                  ctx.f.apply(null, args);
+               });
+               ctx.loaded = true;
+               if (pageLoaded) {
+                  applyDefer(key);
+               }
+            }
+            load.add = add;
+            load.register = reg;
+            load.defer = defer;
+            load.scriptLoaded = reg;
+            load.pageLoaded = defer;
+            window.addEventListener('load', applyDefer);
+            load.registry = registry;
+            load.eventPageLoaded = pageLoaded;
+            return load;
+         })();
+         /******/ (function (modules) {
+            // webpackBootstrap
+            /******/ // install a JSONP callback for chunk loading
+            /******/ function webpackJsonpCallback(data) {
+               /******/ var chunkIds = data[0];
+               /******/ var moreModules = data[1];
+               /******/ var executeModules = data[2];
+               /******/
+               /******/ // add "moreModules" to the modules object,
+               /******/ // then flag all "chunkIds" as loaded and fire callback
+               /******/ var moduleId,
+                  chunkId,
+                  i = 0,
+                  resolves = [];
+               /******/ for (; i < chunkIds.length; i++) {
+                  /******/ chunkId = chunkIds[i];
+                  /******/ if (
+                     Object.prototype.hasOwnProperty.call(installedChunks, chunkId) &&
+                     installedChunks[chunkId]
+                  ) {
+                     /******/ resolves.push(installedChunks[chunkId][0]);
+                     /******/
+                  }
+                  /******/ installedChunks[chunkId] = 0;
+                  /******/
+               }
+               /******/ for (moduleId in moreModules) {
+                  /******/ if (Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+                     /******/ modules[moduleId] = moreModules[moduleId];
+                     /******/
+                  }
+                  /******/
+               }
+               /******/ if (parentJsonpFunction) parentJsonpFunction(data);
+               /******/
+               /******/ while (resolves.length) {
+                  /******/ resolves.shift()();
+                  /******/
+               }
+               /******/
+               /******/ // add entry modules from loaded chunk to deferred list
+               /******/ deferredModules.push.apply(deferredModules, executeModules || []);
+               /******/
+               /******/ // run deferred modules when all chunks ready
+               /******/ return checkDeferredModules();
+               /******/
+            }
+            /******/ function checkDeferredModules() {
+               /******/ var result;
+               /******/ for (var i = 0; i < deferredModules.length; i++) {
+                  /******/ var deferredModule = deferredModules[i];
+                  /******/ var fulfilled = true;
+                  /******/ for (var j = 1; j < deferredModule.length; j++) {
+                     /******/ var depId = deferredModule[j];
+                     /******/ if (installedChunks[depId] !== 0) fulfilled = false;
+                     /******/
+                  }
+                  /******/ if (fulfilled) {
+                     /******/ deferredModules.splice(i--, 1);
+                     /******/ result = __webpack_require__((__webpack_require__.s = deferredModule[0]));
+                     /******/
+                  }
+                  /******/
+               }
+               /******/
+               /******/ return result;
+               /******/
+            }
+            /******/
+            /******/ // The module cache
+            /******/ var installedModules = {};
+            /******/
+            /******/ // object to store loaded CSS chunks
+            /******/ var installedCssChunks = {
+               /******/ 1: 0
+               /******/
+            };
+            /******/
+            /******/ // object to store loaded and loading chunks
+            /******/ // undefined = chunk not loaded, null = chunk preloaded/prefetched
+            /******/ // Promise = chunk loading, 0 = chunk loaded
+            /******/ var installedChunks = {
+               /******/ 1: 0
+               /******/
+            };
+            /******/
+            /******/ var deferredModules = [];
+            /******/
+            /******/ // script path function
+            /******/ function jsonpScriptSrc(chunkId) {
+               /******/ return __webpack_require__.p + '' + chunkId + '.chunk-' + '10e405e25b5906d6d437' + '.js';
+               /******/
+            }
+            /******/
+            /******/ // The require function
+            /******/ function __webpack_require__(moduleId) {
+               /******/
+               /******/ // Check if module is in cache
+               /******/ if (installedModules[moduleId]) {
+                  /******/ return installedModules[moduleId].exports;
+                  /******/
+               }
+               /******/ // Create a new module (and put it into the cache)
+               /******/ var module = (installedModules[moduleId] = {
+                  /******/ i: moduleId,
+                  /******/ l: false,
+                  /******/ exports: {}
+                  /******/
+               });
+               /******/
+               /******/ // Execute the module function
+               /******/ modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+               /******/
+               /******/ // Flag the module as loaded
+               /******/ module.l = true;
+               /******/
+               /******/ // Return the exports of the module
+               /******/ return module.exports;
+               /******/
+            }
+            /******/
+            /******/ // This file contains only the entry chunk.
+            /******/ // The chunk loading function for additional chunks
+            /******/ __webpack_require__.e = function requireEnsure(chunkId) {
+               /******/ var promises = [];
+               /******/
+               /******/
+               /******/ // extract-css-chunks-webpack-plugin CSS loading
+               /******/ var supportsPreload = (function () {
+                  try {
+                     return document.createElement('link').relList.supports('preload');
+                  } catch (e) {
+                     return false;
+                  }
+               })();
+               /******/ var linkExists = false;
+               /******/ var cssChunks = { 0: 1, 256: 1, 257: 1, 259: 1 };
+               /******/ if (installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
+               /******/ else if (installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
+                  /******/ promises.push(
+                     (installedCssChunks[chunkId] = new Promise(function (resolve, reject) {
+                        /******/ var href =
+                           '../stylesheets/' +
+                           chunkId +
+                           '-' +
+                           ({
+                              0: 'vendor',
+                              3: 'vendors~PriceClubTooltip',
+                              5: 'CartTooltip',
+                              6: 'CrewPartnerModal',
+                              7: 'FavoritesTooltip',
+                              8: 'Header',
+                              9: 'IconAnalytics',
+                              10: 'IconArrowDown',
+                              11: 'IconArrowIcon',
+                              12: 'IconArrowLeft',
+                              13: 'IconArrowUp',
+                              14: 'IconBanFilled',
+                              15: 'IconBanOutlined',
+                              16: 'IconBarcodeFilled',
+                              17: 'IconBarcodeOutlined',
+                              18: 'IconBrowsingHistoryFilled',
+                              19: 'IconBrowsingHistoryOutlined',
+                              20: 'IconBuildingFilled',
+                              21: 'IconBuildingOutlined',
+                              22: 'IconBusFilled',
+                              23: 'IconBusOutlined',
+                              24: 'IconCalculatorFilled',
+                              25: 'IconCalculatorOutlined',
+                              26: 'IconCalendarFilled',
+                              27: 'IconCalendarOutlined',
+                              28: 'IconCallMade',
+                              29: 'IconCampaignFilled',
+                              30: 'IconCampaignOutlined',
+                              31: 'IconCarFilled',
+                              32: 'IconCarOutlined',
+                              33: 'IconChangeOrder',
+                              34: 'IconChatBubble',
+                              35: 'IconChatFilled',
+                              36: 'IconChatOutlined',
+                              37: 'IconChatSquared',
+                              38: 'IconCheckCircleFilled',
+                              39: 'IconCheckCircleOutlined',
+                              40: 'IconCheckboxOff',
+                              41: 'IconCheckboxOn',
+                              42: 'IconChevronDownFilled',
+                              43: 'IconChevronLeftFilled',
+                              44: 'IconChevronLeftOutlined',
+                              45: 'IconChevronRightFilled',
+                              46: 'IconChevronRightOutlined',
+                              47: 'IconChevronUpFilled',
+                              48: 'IconChevronUpOutlined',
+                              49: 'IconClickCollect',
+                              50: 'IconCloseAccountFilled',
+                              51: 'IconCloseAccountOutlined',
+                              52: 'IconCloseFilled',
+                              53: 'IconCloseOutlined',
+                              54: 'IconCloudFilled',
+                              55: 'IconCloudOutlined',
+                              56: 'IconCommentFilled',
+                              57: 'IconCommentOutlined',
+                              58: 'IconCompareFilled',
+                              59: 'IconCompareOutlined',
+                              60: 'IconCouponsFilled',
+                              61: 'IconCouponsOutlined',
+                              62: 'IconCreditCardFilled',
+                              63: 'IconCreditCardOutlined',
+                              64: 'IconCurrencyFilled',
+                              65: 'IconCurrencyOutlined',
+                              66: 'IconDashboard',
+                              67: 'IconDeleteFilled',
+                              68: 'IconDeleteOutlined',
+                              69: 'IconDesktopFilled',
+                              70: 'IconDesktopOutlined',
+                              71: 'IconDomesticAreaFilled',
+                              72: 'IconDomesticAreaOutlined',
+                              73: 'IconDownloadFilled',
+                              74: 'IconDownloadOutlined',
+                              75: 'IconEbook',
+                              76: 'IconEditFilled',
+                              77: 'IconEditOutlined',
+                              78: 'IconEshop',
+                              79: 'IconExpandLess',
+                              80: 'IconExpandMore',
+                              81: 'IconExternalLink',
+                              82: 'IconEyeBanFilled',
+                              83: 'IconEyeBanOutlined',
+                              84: 'IconEyeFilled',
+                              85: 'IconEyeOutlined',
+                              86: 'IconFastShippingOutlined',
+                              87: 'IconFavoriteFilled',
+                              88: 'IconFavoriteOutlined',
+                              89: 'IconFerryFilled',
+                              90: 'IconFerryOutlined',
+                              91: 'IconFilterFilled',
+                              92: 'IconFilterOutlined',
+                              93: 'IconFinance',
+                              94: 'IconFolderFilled',
+                              95: 'IconFolderOutlined',
+                              96: 'IconFulfilment',
+                              97: 'IconGiftFilled',
+                              98: 'IconGiftOutlined',
+                              99: 'IconHelpFilled',
+                              100: 'IconHelpOutlined',
+                              101: 'IconHomeFilled',
+                              102: 'IconHomeOutlined',
+                              103: 'IconHorizontalDots',
+                              104: 'IconImageFilled',
+                              105: 'IconImageOutlined',
+                              106: 'IconInfoFilled',
+                              107: 'IconInventory',
+                              108: 'IconKeyboardFilled',
+                              109: 'IconKeyboardOutlined',
+                              110: 'IconLanguageFilled',
+                              111: 'IconLanguageOutlined',
+                              112: 'IconLaptopFilled',
+                              113: 'IconLaptopOutlined',
+                              114: 'IconLeafFilled',
+                              115: 'IconLikeFilled',
+                              116: 'IconLikeOutlined',
+                              117: 'IconListFilled',
+                              118: 'IconListOutlined',
+                              119: 'IconLoad',
+                              120: 'IconLocationFilled',
+                              121: 'IconLocationOutlined',
+                              122: 'IconLogin',
+                              123: 'IconLogout',
+                              124: 'IconLuckyKujiFilled',
+                              125: 'IconLuckyKujiOutlined',
+                              126: 'IconMailFilled',
+                              127: 'IconMailOutlined',
+                              128: 'IconMapFilled',
+                              129: 'IconMapOutlined',
+                              130: 'IconMarketing',
+                              131: 'IconMenu',
+                              132: 'IconMinus',
+                              133: 'IconMobileFilled',
+                              134: 'IconMobileOutlined',
+                              135: 'IconMovieFilled',
+                              136: 'IconMovieOutlined',
+                              137: 'IconMyPageFilled',
+                              138: 'IconMyPageOutlined',
+                              139: 'IconNewUser',
+                              140: 'IconNewWindowFilled',
+                              141: 'IconNewWindowOutlined',
+                              142: 'IconNewsFilled',
+                              143: 'IconNewsOutlined',
+                              144: 'IconNoticeGenericFilled',
+                              145: 'IconNoticeGenericOutlined',
+                              146: 'IconNoticeUserFilled',
+                              147: 'IconNoticeUserOutlined',
+                              148: 'IconOrders',
+                              149: 'IconPDFFilled',
+                              150: 'IconPDFOutlined',
+                              151: 'IconPaintFilled',
+                              152: 'IconPaintOutlined',
+                              153: 'IconPhoneFilled',
+                              154: 'IconPhoneOutlined',
+                              155: 'IconPhotographFilled',
+                              156: 'IconPhotographOutlined',
+                              157: 'IconPinFilled',
+                              158: 'IconPinOutlined',
+                              159: 'IconPlaneFilled',
+                              160: 'IconPlaneOutlined',
+                              161: 'IconPlus',
+                              162: 'IconPlusFilled',
+                              163: 'IconPlusOutlined',
+                              164: 'IconPointFilled',
+                              165: 'IconPointOutlined',
+                              166: 'IconPriceYenFilled',
+                              167: 'IconPriceYenOutlined',
+                              168: 'IconPrintFilled',
+                              169: 'IconPrintOutlined',
+                              170: 'IconPurchaseHistoryFilled',
+                              171: 'IconPurchaseHistoryOutlined',
+                              172: 'IconPushNotificationFilled',
+                              173: 'IconPushNotificationOutlined',
+                              174: 'IconQRCodeFilled',
+                              175: 'IconQRCodeOutlined',
+                              176: 'IconRSSFilled',
+                              177: 'IconRSSOutlined',
+                              178: 'IconRSSSymbol',
+                              179: 'IconRakutenSymbol',
+                              180: 'IconRankingFilled',
+                              181: 'IconRankingOutlined',
+                              182: 'IconRatingFilled',
+                              183: 'IconRatingOutlined',
+                              184: 'IconRefresh',
+                              185: 'IconRegisterAccountFilled',
+                              186: 'IconRegisterAccountOutlined',
+                              187: 'IconRewardsFilled',
+                              188: 'IconRewardsOutlined',
+                              189: 'IconSaveFilled',
+                              190: 'IconSaveOutlined',
+                              191: 'IconSearch',
+                              192: 'IconSearchHistoryFilled',
+                              193: 'IconSearchHistoryOutlined',
+                              194: 'IconSecurityFilled',
+                              195: 'IconSecurityOutlined',
+                              196: 'IconSettingsFilled',
+                              197: 'IconSettingsOutlined',
+                              198: 'IconShareFilled',
+                              199: 'IconShareOutlined',
+                              200: 'IconShippingFilled',
+                              201: 'IconShippingOutlined',
+                              202: 'IconShopFilled',
+                              203: 'IconShopOutlined',
+                              204: 'IconShoppingCartFilled',
+                              205: 'IconShoppingCartOutlined',
+                              206: 'IconSliderFilled',
+                              207: 'IconSliderOutlined',
+                              208: 'IconSmartphoneFilled',
+                              209: 'IconSmartphoneOutlined',
+                              210: 'IconSurveyFilled',
+                              211: 'IconSurveyOutlined',
+                              212: 'IconSustainabilityFilled',
+                              213: 'IconSustainabilityOutlined',
+                              214: 'IconTabletFilled',
+                              215: 'IconTabletOutlined',
+                              216: 'IconTagFilled',
+                              217: 'IconTagOutlined',
+                              218: 'IconTimeFilled',
+                              219: 'IconTimeOutlined',
+                              220: 'IconTrainFilled',
+                              221: 'IconTrainOutlined',
+                              222: 'IconUploadFilled',
+                              223: 'IconUploadOutlined',
+                              224: 'IconUserOutlined',
+                              225: 'IconVerticalDots',
+                              226: 'IconVoiceInputFilled',
+                              227: 'IconVoiceInputOutlined',
+                              228: 'IconWalking',
+                              229: 'IconWarningFilled',
+                              230: 'IconWorldFilled',
+                              231: 'IconWorldOutlined',
+                              232: 'IconZipFilled',
+                              233: 'IconZipOutlined',
+                              234: 'IconZoomInFilled',
+                              235: 'IconZoomInOutlined',
+                              236: 'IconZoomOutFilled',
+                              237: 'IconZoomOutOutlined',
+                              239: 'ProfileTooltip',
+                              240: 'RakutenSistersTooltip',
+                              241: 'SalesTooltip',
+                              242: 'TooltipGeoloc',
+                              255: 'vendors~AppStoreBanner',
+                              256: 'vendors~ClubRWelcomePopin',
+                              257: 'vendors~CnilBanner',
+                              258: 'vendors~CrewPartnerModal',
+                              259: 'vendors~Didomi',
+                              260: 'vendors~EshopHeader',
+                              261: 'vendors~Footer',
+                              262: 'vendors~Menu',
+                              263: 'vendors~ModalGeoloc',
+                              264: 'vendors~ReactLottie'
+                           }[chunkId] || chunkId) +
+                           '.' +
+                           '10e405e25b5906d6d437' +
+                           '.css';
+                        /******/ var fullhref = __webpack_require__.p + href;
+                        /******/ var existingLinkTags = document.getElementsByTagName('link');
+                        /******/ for (var i = 0; i < existingLinkTags.length; i++) {
+                           /******/ var tag = existingLinkTags[i];
+                           /******/ var dataHref = tag.getAttribute('data-href') || tag.getAttribute('href');
+                           /******/ if (
+                              (tag.rel === 'stylesheet' || tag.rel === 'preload') &&
+                              (dataHref === href || dataHref === fullhref)
+                           ) {
+                              /******/ linkExists = true;
+                              /******/ return resolve();
+                              /******/
+                           }
+                           /******/
+                        }
+                        /******/ var existingStyleTags = document.getElementsByTagName('style');
+                        /******/ for (var i = 0; i < existingStyleTags.length; i++) {
+                           /******/ var tag = existingStyleTags[i];
+                           /******/ var dataHref = tag.getAttribute('data-href');
+                           /******/ if (dataHref === href || dataHref === fullhref) return resolve();
+                           /******/
+                        }
+                        /******/ var linkTag = document.createElement('link');
+                        /******/ linkTag.rel = supportsPreload ? 'preload' : 'stylesheet';
+                        /******/ supportsPreload ? (linkTag.as = 'style') : (linkTag.type = 'text/css');
+                        /******/ linkTag.onload = resolve;
+                        /******/ linkTag.onerror = function (event) {
+                           /******/ var request = (event && event.target && event.target.src) || fullhref;
+                           /******/ var err = new Error('Loading CSS chunk ' + chunkId + ' failed.\n(' + request + ')');
+                           /******/ err.code = 'CSS_CHUNK_LOAD_FAILED';
+                           /******/ err.request = request;
+                           /******/ delete installedCssChunks[chunkId];
+                           /******/ linkTag.parentNode.removeChild(linkTag);
+                           /******/ reject(err);
+                           /******/
+                        };
+                        /******/ linkTag.href = fullhref;
+                        /******/
+                        /******/ var head = document.getElementsByTagName('head')[0];
+                        head.appendChild(linkTag);
+                        /******/
+                     }).then(function () {
+                        /******/ installedCssChunks[chunkId] = 0;
+                        /******/ if (!linkExists && supportsPreload) {
+                           /******/ var execLinkTag = document.createElement('link');
+                           /******/ execLinkTag.href =
+                              __webpack_require__.p +
+                              '../stylesheets/' +
+                              chunkId +
+                              '-' +
+                              ({
+                                 0: 'vendor',
+                                 3: 'vendors~PriceClubTooltip',
+                                 5: 'CartTooltip',
+                                 6: 'CrewPartnerModal',
+                                 7: 'FavoritesTooltip',
+                                 8: 'Header',
+                                 9: 'IconAnalytics',
+                                 10: 'IconArrowDown',
+                                 11: 'IconArrowIcon',
+                                 12: 'IconArrowLeft',
+                                 13: 'IconArrowUp',
+                                 14: 'IconBanFilled',
+                                 15: 'IconBanOutlined',
+                                 16: 'IconBarcodeFilled',
+                                 17: 'IconBarcodeOutlined',
+                                 18: 'IconBrowsingHistoryFilled',
+                                 19: 'IconBrowsingHistoryOutlined',
+                                 20: 'IconBuildingFilled',
+                                 21: 'IconBuildingOutlined',
+                                 22: 'IconBusFilled',
+                                 23: 'IconBusOutlined',
+                                 24: 'IconCalculatorFilled',
+                                 25: 'IconCalculatorOutlined',
+                                 26: 'IconCalendarFilled',
+                                 27: 'IconCalendarOutlined',
+                                 28: 'IconCallMade',
+                                 29: 'IconCampaignFilled',
+                                 30: 'IconCampaignOutlined',
+                                 31: 'IconCarFilled',
+                                 32: 'IconCarOutlined',
+                                 33: 'IconChangeOrder',
+                                 34: 'IconChatBubble',
+                                 35: 'IconChatFilled',
+                                 36: 'IconChatOutlined',
+                                 37: 'IconChatSquared',
+                                 38: 'IconCheckCircleFilled',
+                                 39: 'IconCheckCircleOutlined',
+                                 40: 'IconCheckboxOff',
+                                 41: 'IconCheckboxOn',
+                                 42: 'IconChevronDownFilled',
+                                 43: 'IconChevronLeftFilled',
+                                 44: 'IconChevronLeftOutlined',
+                                 45: 'IconChevronRightFilled',
+                                 46: 'IconChevronRightOutlined',
+                                 47: 'IconChevronUpFilled',
+                                 48: 'IconChevronUpOutlined',
+                                 49: 'IconClickCollect',
+                                 50: 'IconCloseAccountFilled',
+                                 51: 'IconCloseAccountOutlined',
+                                 52: 'IconCloseFilled',
+                                 53: 'IconCloseOutlined',
+                                 54: 'IconCloudFilled',
+                                 55: 'IconCloudOutlined',
+                                 56: 'IconCommentFilled',
+                                 57: 'IconCommentOutlined',
+                                 58: 'IconCompareFilled',
+                                 59: 'IconCompareOutlined',
+                                 60: 'IconCouponsFilled',
+                                 61: 'IconCouponsOutlined',
+                                 62: 'IconCreditCardFilled',
+                                 63: 'IconCreditCardOutlined',
+                                 64: 'IconCurrencyFilled',
+                                 65: 'IconCurrencyOutlined',
+                                 66: 'IconDashboard',
+                                 67: 'IconDeleteFilled',
+                                 68: 'IconDeleteOutlined',
+                                 69: 'IconDesktopFilled',
+                                 70: 'IconDesktopOutlined',
+                                 71: 'IconDomesticAreaFilled',
+                                 72: 'IconDomesticAreaOutlined',
+                                 73: 'IconDownloadFilled',
+                                 74: 'IconDownloadOutlined',
+                                 75: 'IconEbook',
+                                 76: 'IconEditFilled',
+                                 77: 'IconEditOutlined',
+                                 78: 'IconEshop',
+                                 79: 'IconExpandLess',
+                                 80: 'IconExpandMore',
+                                 81: 'IconExternalLink',
+                                 82: 'IconEyeBanFilled',
+                                 83: 'IconEyeBanOutlined',
+                                 84: 'IconEyeFilled',
+                                 85: 'IconEyeOutlined',
+                                 86: 'IconFastShippingOutlined',
+                                 87: 'IconFavoriteFilled',
+                                 88: 'IconFavoriteOutlined',
+                                 89: 'IconFerryFilled',
+                                 90: 'IconFerryOutlined',
+                                 91: 'IconFilterFilled',
+                                 92: 'IconFilterOutlined',
+                                 93: 'IconFinance',
+                                 94: 'IconFolderFilled',
+                                 95: 'IconFolderOutlined',
+                                 96: 'IconFulfilment',
+                                 97: 'IconGiftFilled',
+                                 98: 'IconGiftOutlined',
+                                 99: 'IconHelpFilled',
+                                 100: 'IconHelpOutlined',
+                                 101: 'IconHomeFilled',
+                                 102: 'IconHomeOutlined',
+                                 103: 'IconHorizontalDots',
+                                 104: 'IconImageFilled',
+                                 105: 'IconImageOutlined',
+                                 106: 'IconInfoFilled',
+                                 107: 'IconInventory',
+                                 108: 'IconKeyboardFilled',
+                                 109: 'IconKeyboardOutlined',
+                                 110: 'IconLanguageFilled',
+                                 111: 'IconLanguageOutlined',
+                                 112: 'IconLaptopFilled',
+                                 113: 'IconLaptopOutlined',
+                                 114: 'IconLeafFilled',
+                                 115: 'IconLikeFilled',
+                                 116: 'IconLikeOutlined',
+                                 117: 'IconListFilled',
+                                 118: 'IconListOutlined',
+                                 119: 'IconLoad',
+                                 120: 'IconLocationFilled',
+                                 121: 'IconLocationOutlined',
+                                 122: 'IconLogin',
+                                 123: 'IconLogout',
+                                 124: 'IconLuckyKujiFilled',
+                                 125: 'IconLuckyKujiOutlined',
+                                 126: 'IconMailFilled',
+                                 127: 'IconMailOutlined',
+                                 128: 'IconMapFilled',
+                                 129: 'IconMapOutlined',
+                                 130: 'IconMarketing',
+                                 131: 'IconMenu',
+                                 132: 'IconMinus',
+                                 133: 'IconMobileFilled',
+                                 134: 'IconMobileOutlined',
+                                 135: 'IconMovieFilled',
+                                 136: 'IconMovieOutlined',
+                                 137: 'IconMyPageFilled',
+                                 138: 'IconMyPageOutlined',
+                                 139: 'IconNewUser',
+                                 140: 'IconNewWindowFilled',
+                                 141: 'IconNewWindowOutlined',
+                                 142: 'IconNewsFilled',
+                                 143: 'IconNewsOutlined',
+                                 144: 'IconNoticeGenericFilled',
+                                 145: 'IconNoticeGenericOutlined',
+                                 146: 'IconNoticeUserFilled',
+                                 147: 'IconNoticeUserOutlined',
+                                 148: 'IconOrders',
+                                 149: 'IconPDFFilled',
+                                 150: 'IconPDFOutlined',
+                                 151: 'IconPaintFilled',
+                                 152: 'IconPaintOutlined',
+                                 153: 'IconPhoneFilled',
+                                 154: 'IconPhoneOutlined',
+                                 155: 'IconPhotographFilled',
+                                 156: 'IconPhotographOutlined',
+                                 157: 'IconPinFilled',
+                                 158: 'IconPinOutlined',
+                                 159: 'IconPlaneFilled',
+                                 160: 'IconPlaneOutlined',
+                                 161: 'IconPlus',
+                                 162: 'IconPlusFilled',
+                                 163: 'IconPlusOutlined',
+                                 164: 'IconPointFilled',
+                                 165: 'IconPointOutlined',
+                                 166: 'IconPriceYenFilled',
+                                 167: 'IconPriceYenOutlined',
+                                 168: 'IconPrintFilled',
+                                 169: 'IconPrintOutlined',
+                                 170: 'IconPurchaseHistoryFilled',
+                                 171: 'IconPurchaseHistoryOutlined',
+                                 172: 'IconPushNotificationFilled',
+                                 173: 'IconPushNotificationOutlined',
+                                 174: 'IconQRCodeFilled',
+                                 175: 'IconQRCodeOutlined',
+                                 176: 'IconRSSFilled',
+                                 177: 'IconRSSOutlined',
+                                 178: 'IconRSSSymbol',
+                                 179: 'IconRakutenSymbol',
+                                 180: 'IconRankingFilled',
+                                 181: 'IconRankingOutlined',
+                                 182: 'IconRatingFilled',
+                                 183: 'IconRatingOutlined',
+                                 184: 'IconRefresh',
+                                 185: 'IconRegisterAccountFilled',
+                                 186: 'IconRegisterAccountOutlined',
+                                 187: 'IconRewardsFilled',
+                                 188: 'IconRewardsOutlined',
+                                 189: 'IconSaveFilled',
+                                 190: 'IconSaveOutlined',
+                                 191: 'IconSearch',
+                                 192: 'IconSearchHistoryFilled',
+                                 193: 'IconSearchHistoryOutlined',
+                                 194: 'IconSecurityFilled',
+                                 195: 'IconSecurityOutlined',
+                                 196: 'IconSettingsFilled',
+                                 197: 'IconSettingsOutlined',
+                                 198: 'IconShareFilled',
+                                 199: 'IconShareOutlined',
+                                 200: 'IconShippingFilled',
+                                 201: 'IconShippingOutlined',
+                                 202: 'IconShopFilled',
+                                 203: 'IconShopOutlined',
+                                 204: 'IconShoppingCartFilled',
+                                 205: 'IconShoppingCartOutlined',
+                                 206: 'IconSliderFilled',
+                                 207: 'IconSliderOutlined',
+                                 208: 'IconSmartphoneFilled',
+                                 209: 'IconSmartphoneOutlined',
+                                 210: 'IconSurveyFilled',
+                                 211: 'IconSurveyOutlined',
+                                 212: 'IconSustainabilityFilled',
+                                 213: 'IconSustainabilityOutlined',
+                                 214: 'IconTabletFilled',
+                                 215: 'IconTabletOutlined',
+                                 216: 'IconTagFilled',
+                                 217: 'IconTagOutlined',
+                                 218: 'IconTimeFilled',
+                                 219: 'IconTimeOutlined',
+                                 220: 'IconTrainFilled',
+                                 221: 'IconTrainOutlined',
+                                 222: 'IconUploadFilled',
+                                 223: 'IconUploadOutlined',
+                                 224: 'IconUserOutlined',
+                                 225: 'IconVerticalDots',
+                                 226: 'IconVoiceInputFilled',
+                                 227: 'IconVoiceInputOutlined',
+                                 228: 'IconWalking',
+                                 229: 'IconWarningFilled',
+                                 230: 'IconWorldFilled',
+                                 231: 'IconWorldOutlined',
+                                 232: 'IconZipFilled',
+                                 233: 'IconZipOutlined',
+                                 234: 'IconZoomInFilled',
+                                 235: 'IconZoomInOutlined',
+                                 236: 'IconZoomOutFilled',
+                                 237: 'IconZoomOutOutlined',
+                                 239: 'ProfileTooltip',
+                                 240: 'RakutenSistersTooltip',
+                                 241: 'SalesTooltip',
+                                 242: 'TooltipGeoloc',
+                                 255: 'vendors~AppStoreBanner',
+                                 256: 'vendors~ClubRWelcomePopin',
+                                 257: 'vendors~CnilBanner',
+                                 258: 'vendors~CrewPartnerModal',
+                                 259: 'vendors~Didomi',
+                                 260: 'vendors~EshopHeader',
+                                 261: 'vendors~Footer',
+                                 262: 'vendors~Menu',
+                                 263: 'vendors~ModalGeoloc',
+                                 264: 'vendors~ReactLottie'
+                              }[chunkId] || chunkId) +
+                              '.' +
+                              '10e405e25b5906d6d437' +
+                              '.css';
+                           /******/ execLinkTag.rel = 'stylesheet';
+                           /******/ execLinkTag.type = 'text/css';
+                           /******/ document.body.appendChild(execLinkTag);
+                           /******/
+                        }
+                        /******/
+                     }))
+                  );
+                  /******/
+               }
+               /******/
+               /******/ // JSONP chunk loading for javascript
+               /******/
+               /******/ var installedChunkData = installedChunks[chunkId];
+               /******/ if (installedChunkData !== 0) {
+                  // 0 means "already installed".
+                  /******/
+                  /******/ // a Promise means "currently loading".
+                  /******/ if (installedChunkData) {
+                     /******/ promises.push(installedChunkData[2]);
+                     /******/
+                  } else {
+                     /******/ // setup Promise in chunk cache
+                     /******/ var promise = new Promise(function (resolve, reject) {
+                        /******/ installedChunkData = installedChunks[chunkId] = [resolve, reject];
+                        /******/
+                     });
+                     /******/ promises.push((installedChunkData[2] = promise));
+                     /******/
+                     /******/ // start chunk loading
+                     /******/ var script = document.createElement('script');
+                     /******/ var onScriptComplete;
+                     /******/
+                     /******/ script.charset = 'utf-8';
+                     /******/ script.timeout = 120;
+                     /******/ if (__webpack_require__.nc) {
+                        /******/ script.setAttribute('nonce', __webpack_require__.nc);
+                        /******/
+                     }
+                     /******/ script.src = jsonpScriptSrc(chunkId);
+                     /******/
+                     /******/ // create error before stack unwound to get useful stacktrace later
+                     /******/ var error = new Error();
+                     /******/ onScriptComplete = function (event) {
+                        /******/ // avoid mem leaks in IE.
+                        /******/ script.onerror = script.onload = null;
+                        /******/ clearTimeout(timeout);
+                        /******/ var chunk = installedChunks[chunkId];
+                        /******/ if (chunk !== 0) {
+                           /******/ if (chunk) {
+                              /******/ var errorType = event && (event.type === 'load' ? 'missing' : event.type);
+                              /******/ var realSrc = event && event.target && event.target.src;
+                              /******/ error.message =
+                                 'Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')';
+                              /******/ error.name = 'ChunkLoadError';
+                              /******/ error.type = errorType;
+                              /******/ error.request = realSrc;
+                              /******/ chunk[1](error);
+                              /******/
+                           }
+                           /******/ installedChunks[chunkId] = undefined;
+                           /******/
+                        }
+                        /******/
+                     };
+                     /******/ var timeout = setTimeout(function () {
+                        /******/ onScriptComplete({ type: 'timeout', target: script });
+                        /******/
+                     }, 120000);
+                     /******/ script.onerror = script.onload = onScriptComplete;
+                     /******/ document.head.appendChild(script);
+                     /******/
+                  }
+                  /******/
+               }
+               /******/ return Promise.all(promises);
+               /******/
+            };
+            /******/
+            /******/ // expose the modules object (__webpack_modules__)
+            /******/ __webpack_require__.m = modules;
+            /******/
+            /******/ // expose the module cache
+            /******/ __webpack_require__.c = installedModules;
+            /******/
+            /******/ // define getter function for harmony exports
+            /******/ __webpack_require__.d = function (exports, name, getter) {
+               /******/ if (!__webpack_require__.o(exports, name)) {
+                  /******/ Object.defineProperty(exports, name, { enumerable: true, get: getter });
+                  /******/
+               }
+               /******/
+            };
+            /******/
+            /******/ // define __esModule on exports
+            /******/ __webpack_require__.r = function (exports) {
+               /******/ if (typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+                  /******/ Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+                  /******/
+               }
+               /******/ Object.defineProperty(exports, '__esModule', { value: true });
+               /******/
+            };
+            /******/
+            /******/ // create a fake namespace object
+            /******/ // mode & 1: value is a module id, require it
+            /******/ // mode & 2: merge all properties of value into the ns
+            /******/ // mode & 4: return value when already ns object
+            /******/ // mode & 8|1: behave like require
+            /******/ __webpack_require__.t = function (value, mode) {
+               /******/ if (mode & 1) value = __webpack_require__(value);
+               /******/ if (mode & 8) return value;
+               /******/ if (mode & 4 && typeof value === 'object' && value && value.__esModule) return value;
+               /******/ var ns = Object.create(null);
+               /******/ __webpack_require__.r(ns);
+               /******/ Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+               /******/ if (mode & 2 && typeof value != 'string')
+                  for (var key in value)
+                     __webpack_require__.d(
+                        ns,
+                        key,
+                        function (key) {
+                           return value[key];
+                        }.bind(null, key)
+                     );
+               /******/ return ns;
+               /******/
+            };
+            /******/
+            /******/ // getDefaultExport function for compatibility with non-harmony modules
+            /******/ __webpack_require__.n = function (module) {
+               /******/ var getter =
+                  module && module.__esModule
+                     ? /******/ function getDefault() {
+                          return module['default'];
+                       }
+                     : /******/ function getModuleExports() {
+                          return module;
+                       };
+               /******/ __webpack_require__.d(getter, 'a', getter);
+               /******/ return getter;
+               /******/
+            };
+            /******/
+            /******/ // Object.prototype.hasOwnProperty.call
+            /******/ __webpack_require__.o = function (object, property) {
+               return Object.prototype.hasOwnProperty.call(object, property);
+            };
+            /******/
+            /******/ // __webpack_public_path__
+            /******/ __webpack_require__.p = '/vstatic/0/javascripts/';
+            /******/
+            /******/ // on error function for async loading
+            /******/ __webpack_require__.oe = function (err) {
+               console.error(err);
+               throw err;
+            };
+            /******/ // WebpackRequireFrom
+            /******/ typeof __webpack_require__ !== 'undefined' &&
+               Object.defineProperty(__webpack_require__, 'p', {
+                  /******/ get: function () {
+                     /******/ try {
+                        /******/ if (typeof runtimePublicPath !== 'string') {
+                           /******/ throw new Error(
+                              "WebpackRequireFrom: 'runtimePublicPath' is not a string or not available at runtime. See https://github.com/agoldis/webpack-require-from#troubleshooting"
+                           );
+                           /******/
+                        }
+                        /******/ return runtimePublicPath;
+                        /******/
+                     } catch (e) {
+                        /******/ if (!true) {
+                           /******/ console.error(e);
+                           /******/
+                        }
+                        /******/ return '/vstatic/0/javascripts/';
+                        /******/
+                     }
+                     /******/
+                  },
+                  /******/ set: function (newPublicPath) {
+                     /******/ console.warn(
+                        'WebpackRequireFrom: something is trying to override webpack public path. Ignoring the new value' +
+                           newPublicPath +
+                           '.'
+                     );
+                     /******/
+                  }
+                  /******/
+               });
+            /******/
+            /******/ var jsonpArray = (window['webpackJsonp_name_iso'] = window['webpackJsonp_name_iso'] || []);
+            /******/ var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
+            /******/ jsonpArray.push = webpackJsonpCallback;
+            /******/ jsonpArray = jsonpArray.slice();
+            /******/ for (var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
+            /******/ var parentJsonpFunction = oldJsonpFunction;
+            /******/
+            /******/
+            /******/ // run deferred modules from other chunks
+            /******/ checkDeferredModules();
+            /******/
+         })(
+            /************************************************************************/
+            /******/ []
+         );
+      </script>
+      <script async="async" src="./Rakuten_files/253.chunk-10e405e25b5906d6d437.js.download"></script>
+      <script>
+         rktDefer.scriptLoaded('a-load', [
+            { type: 'hash', path: 'global-vendor.css' },
+            { type: 'hash', path: 'Carousel.css' },
+            { type: 'hash', path: 'pages/home.css' }
+         ]);
+         rktDefer.pageLoaded('a-load', [
+            { type: 'hash', path: 'global-home.css' },
+            { type: 'hash', path: 'defered-footer.css' }
+         ]);
+      </script>
+      <script type="application/ld+json" data-qa="md_organization">
+         {
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "name": "Rakuten France",
+            "url": "https://fr.shopping.rakuten.com",
+            "logo": "https://images.fr.shopping.rakuten.com/corporate/v1/rakuten.png",
+            "sameAs": [
+               "https://www.facebook.com/RakutenFrance/",
+               "https://twitter.com/RakutenFrance",
+               "https://www.instagram.com/rakutenfrance",
+               "https://www.pinterest.com/rakutenfrance"
+            ]
+         }
+      </script>
 
-      <script src="./js/script.js"></script>
-      <script src="./js/timer.js"></script>
+      <script>
+         var kameleoonIframeURL = '/visuels/0_Kameleoon/tagIntegration/kameleoon-iframe.html';
+         var kameleoonLoadingTimeout = 1000;
+         var kameleoonIframeOriginElement = document.createElement('a');
+         kameleoonIframeOriginElement.href = kameleoonIframeURL;
+         var kameleoonIframeOrigin =
+            kameleoonIframeOriginElement.origin ||
+            kameleoonIframeOriginElement.protocol + '//' + kameleoonIframeOriginElement.hostname;
+         var kameleoonQueue = kameleoonQueue || [];
+         var kameleoonLightIframe = false;
+         var kameleoonStartLoadTime = new Date().getTime();
+         if (!document.getElementById('kameleoonLoadingStyleSheet') && !window.kameleoonDisplayPageTimeOut) {
+            var kameleoonS = document.getElementsByTagName('script')[0];
+            var kameleoonCc = '* { visibility: hidden !important; background-image: none !important; }';
+            var kameleoonStn = document.createElement('style');
+            kameleoonStn.type = 'text/css';
+            kameleoonStn.id = 'kameleoonLoadingStyleSheet';
+            if (kameleoonStn.styleSheet) {
+               kameleoonStn.styleSheet.cssText = kameleoonCc;
+            } else {
+               kameleoonStn.appendChild(document.createTextNode(kameleoonCc));
+            }
+            kameleoonS.parentNode.insertBefore(kameleoonStn, kameleoonS);
+            window.kameleoonDisplayPage = function (fromEngine) {
+               if (!fromEngine) {
+                  window.kameleoonTimeout = true;
+               }
+               if (kameleoonStn.parentNode) {
+                  kameleoonStn.parentNode.removeChild(kameleoonStn);
+               }
+            };
+            window.setTimeout(function () {}, 25);
+            window.kameleoonDisplayPageTimeOut = window.setTimeout(
+               window.kameleoonDisplayPage,
+               kameleoonLoadingTimeout
+            );
+         }
+         if (location.href.indexOf(kameleoonIframeOrigin) == -1) {
+            kameleoonLightIframe = true;
+            var kameleoonProcessMessageEvent = function (event) {
+               if (kameleoonIframeOrigin == event.origin) {
+                  window.removeEventListener('message', kameleoonProcessMessageEvent);
+                  window.kameleoonExternalIFrameLoaded = true;
+                  if (window.Kameleoon) {
+                     eval(event.data);
+                     Kameleoon.Analyst.load();
+                  } else {
+                     window.kameleoonExternalIFrameLoadedData = event.data;
+                  }
+               }
+            };
+            if (window.addEventListener) {
+               window.addEventListener('message', kameleoonProcessMessageEvent, false);
+            }
+            var iframeNode = document.createElement('iframe');
+            iframeNode.src = kameleoonIframeURL;
+            iframeNode.id = 'kameleoonExternalIframe';
+            iframeNode.style =
+               'float: left !important; opacity: 0.0 !important; width: 0px !important; height: 0px !important;';
+            document.head.appendChild(iframeNode);
+         }
+      </script>
+
+      <script>
+         if (navigator.userAgent.indexOf('Lighthouse') !== -1 || navigator.userAgent.indexOf('moto g') !== -1) {
+            window.fasterizeNs = { blockDeferJsStart: true };
+         }
+      </script>
+      <script>
+         (function () {
+            if (window.location && window.location.pathname) {
+               const url = window.location.pathname;
+               let pageType = 'others';
+
+               if (url === '/') {
+                  pageType = 'hp';
+               } else if (url.includes('/offer/') || url.includes('/mfp/')) {
+                  pageType = 'pdp';
+               } else if (url.includes('/nav/')) {
+                  pageType = 'plp';
+               } else if (url.includes('/event/')) {
+                  pageType = 'boutique';
+               } else if (url.includes('/search')) {
+                  pageType = 'search';
+               } else if (url.includes('/connect') || url.includes('/user')) {
+                  pageType = 'account';
+               } else if (url.includes('/cart')) {
+                  pageType = 'checkout-cart';
+               } else if (url.includes('paymentprocessout')) {
+                  pageType = 'checkout-payment';
+               } else if (url.includes('/checkout')) {
+                  pageType = 'checkout-delivery';
+               }
+
+               window.FRZ_PAGE_TYPE = pageType;
+            }
+         })();
+      </script>
 
       <link rel="alternate" hreflang="fr" href="https://fr.shopping.rakuten.com/" />
       <link rel="alternate" hreflang="en" href="https://www.rakuten.com/" />
@@ -299,94 +2102,62 @@
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://fr.shopping.rakuten.com/" />
 
+      <link rel="preload" href="./Rakuten_files/main.chunk.v2-6.js.download" as="script" importance="low" />
+      <link rel="preload" href="./Rakuten_files/2.chunk.v2-6.js.download" as="script" importance="low" />
+      <link rel="preload" href="./Rakuten_files/runtime-main.v2-6.js.download" as="script" importance="low" />
+      <link
+         rel="preload"
+         href="./Rakuten_files/0.chunk-10e405e25b5906d6d437.js.download"
+         as="script"
+         importance="low"
+      />
+      <link
+         rel="preload"
+         href="./Rakuten_files/2.chunk-10e405e25b5906d6d437.js.download"
+         as="script"
+         importance="low"
+      />
+      <link
+         rel="preload"
+         href="./Rakuten_files/254.chunk-10e405e25b5906d6d437.js.download"
+         as="script"
+         importance="low"
+      />
+      <link
+         rel="preload"
+         href="./Rakuten_files/238.chunk-10e405e25b5906d6d437.js.download"
+         as="script"
+         importance="low"
+      />
+      <link
+         rel="preload"
+         href="./Rakuten_files/252.chunk-10e405e25b5906d6d437.js.download"
+         as="script"
+         importance="low"
+      />
+      <link
+         rel="preload"
+         href="./Rakuten_files/4.chunk-10e405e25b5906d6d437.js.download"
+         as="script"
+         importance="low"
+      />
+      <link
+         rel="preload"
+         href="./Rakuten_files/243.chunk-10e405e25b5906d6d437.js.download"
+         as="script"
+         importance="low"
+      />
+      <link
+         rel="preload"
+         href="./Rakuten_files/247.chunk-10e405e25b5906d6d437.js.download"
+         as="script"
+         importance="low"
+      />
       <link rel="preload" as="style" href="./Rakuten_files/0-vendor.10e405e25b5906d6d437.css" />
       <link rel="preload" as="style" href="./Rakuten_files/259-vendors~Didomi.10e405e25b5906d6d437.css" />
       <link rel="preload" as="style" href="./Rakuten_files/256-vendors~ClubRWelcomePopin.10e405e25b5906d6d437.css" />
 
-      <style data-emotion="css oo0okb" data-s="">
-         .css-oo0okb {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            box-sizing: border-box;
-            -webkit-text-size-adjust: 100%;
-            color: #000000;
-            font-size: 1.4rem;
-            line-height: 1.214;
-            font-family: RakutenSansUi, RakutenSansUiBlack, RakutenSansUiLight, RakutenSansUiSemiBold, sans-serif;
-            font-weight: 400;
-            background-color: #ffffff;
-         }
-         @media print {
-            .css-oo0okb {
-               background-color: #ffffff;
-            }
-         }
-         .css-oo0okb *,
-         .css-oo0okb *::before,
-         .css-oo0okb *::after {
-            box-sizing: inherit;
-         }
-         .css-oo0okb strong,
-         .css-oo0okb b {
-            font-weight: 700;
-         }
-      </style>
-      <style data-emotion="css oo0okb" data-s="">
-         .css-oo0okb {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            box-sizing: border-box;
-            -webkit-text-size-adjust: 100%;
-            color: #000000;
-            font-size: 1.4rem;
-            line-height: 1.214;
-            font-family: RakutenSansUi, RakutenSansUiBlack, RakutenSansUiLight, RakutenSansUiSemiBold, sans-serif;
-            font-weight: 400;
-            background-color: #ffffff;
-         }
-         @media print {
-            .css-oo0okb {
-               background-color: #ffffff;
-            }
-         }
-         .css-oo0okb *,
-         .css-oo0okb *::before,
-         .css-oo0okb *::after {
-            box-sizing: inherit;
-         }
-         .css-oo0okb strong,
-         .css-oo0okb b {
-            font-weight: 700;
-         }
-      </style>
-      <style data-emotion="css oo0okb" data-s="">
-         .css-oo0okb {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            box-sizing: border-box;
-            -webkit-text-size-adjust: 100%;
-            color: #000000;
-            font-size: 1.4rem;
-            line-height: 1.214;
-            font-family: RakutenSansUi, RakutenSansUiBlack, RakutenSansUiLight, RakutenSansUiSemiBold, sans-serif;
-            font-weight: 400;
-            background-color: #ffffff;
-         }
-         @media print {
-            .css-oo0okb {
-               background-color: #ffffff;
-            }
-         }
-         .css-oo0okb *,
-         .css-oo0okb *::before,
-         .css-oo0okb *::after {
-            box-sizing: inherit;
-         }
-         .css-oo0okb strong,
-         .css-oo0okb b {
-            font-weight: 700;
-         }
-      </style>
+
       <link href="./Rakuten_files/styles.css" charset="utf-8" type="text/css" rel="stylesheet" media="all" />
       <link
          href="./Rakuten_files/global-vendor.040d2ffaa010423c0c11.css"
@@ -409,277 +2180,21 @@
          rel="stylesheet"
          media="all"
       />
-      <style data-jss="" data-meta="MuiScopedCssBaseline">
-         .Hea1 {
-            color: #000000;
-            font-size: 1.4rem;
-            box-sizing: border-box;
-            font-family: RakutenSansUi, RakutenSansUiBlack, RakutenSansUiLight, RakutenSansUiSemiBold, sans-serif;
-            font-weight: 400;
-            line-height: 1.214;
-            background-color: #ffffff;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-         }
-         @media print {
-            .Hea1 {
-               background-color: #ffffff;
-            }
-         }
-         .Hea1 *,
-         .Hea1 *::before,
-         .Hea1 *::after {
-            box-sizing: inherit;
-         }
-         .Hea1 strong,
-         .Hea1 b {
-            font-weight: 700;
-         }
-      </style>
-      <style data-jss="" data-meta="MuiScopedCssBaseline">
-         .Foo1 {
-            color: #000000;
-            font-size: 1.4rem;
-            box-sizing: border-box;
-            font-family: RakutenSansUi, RakutenSansUiBlack, RakutenSansUiLight, RakutenSansUiSemiBold, sans-serif;
-            font-weight: 400;
-            line-height: 1.214;
-            background-color: #ffffff;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-         }
-         @media print {
-            .Foo1 {
-               background-color: #ffffff;
-            }
-         }
-         .Foo1 *,
-         .Foo1 *::before,
-         .Foo1 *::after {
-            box-sizing: inherit;
-         }
-         .Foo1 strong,
-         .Foo1 b {
-            font-weight: 700;
-         }
-      </style>
-      <style data-jss="" data-meta="MuiScopedCssBaseline">
-         .Did1 {
-            color: #000000;
-            font-size: 1.4rem;
-            box-sizing: border-box;
-            font-family: RakutenSansUi, RakutenSansUiBlack, RakutenSansUiLight, RakutenSansUiSemiBold, sans-serif;
-            font-weight: 400;
-            line-height: 1.214;
-            background-color: #ffffff;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-         }
-         @media print {
-            .Did1 {
-               background-color: #ffffff;
-            }
-         }
-         .Did1 *,
-         .Did1 *::before,
-         .Did1 *::after {
-            box-sizing: inherit;
-         }
-         .Did1 strong,
-         .Did1 b {
-            font-weight: 700;
-         }
-      </style>
-      <style data-jss="" data-meta="MuiScopedCssBaseline">
-         .Jah1 {
-            color: #000000;
-            font-size: 1.4rem;
-            box-sizing: border-box;
-            font-family: RakutenSansUi, RakutenSansUiBlack, RakutenSansUiLight, RakutenSansUiSemiBold, sans-serif;
-            font-weight: 400;
-            line-height: 1.214;
-            background-color: #ffffff;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-         }
-         @media print {
-            .Jah1 {
-               background-color: #ffffff;
-            }
-         }
-         .Jah1 *,
-         .Jah1 *::before,
-         .Jah1 *::after {
-            box-sizing: inherit;
-         }
-         .Jah1 strong,
-         .Jah1 b {
-            font-weight: 700;
-         }
-      </style>
-      <style data-jss="" data-meta="MuiScopedCssBaseline">
-         .Clu1 {
-            color: #000000;
-            font-size: 1.4rem;
-            box-sizing: border-box;
-            font-family: RakutenSansUi, RakutenSansUiBlack, RakutenSansUiLight, RakutenSansUiSemiBold, sans-serif;
-            font-weight: 400;
-            line-height: 1.214;
-            background-color: #ffffff;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-         }
-         @media print {
-            .Clu1 {
-               background-color: #ffffff;
-            }
-         }
-         .Clu1 *,
-         .Clu1 *::before,
-         .Clu1 *::after {
-            box-sizing: inherit;
-         }
-         .Clu1 strong,
-         .Clu1 b {
-            font-weight: 700;
-         }
-      </style>
-      <style data-jss="" data-meta="MuiScopedCssBaseline">
-         .Cre1 {
-            color: #000000;
-            font-size: 1.4rem;
-            box-sizing: border-box;
-            font-family: RakutenSansUi, RakutenSansUiBlack, RakutenSansUiLight, RakutenSansUiSemiBold, sans-serif;
-            font-weight: 400;
-            line-height: 1.214;
-            background-color: #ffffff;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-         }
-         @media print {
-            .Cre1 {
-               background-color: #ffffff;
-            }
-         }
-         .Cre1 *,
-         .Cre1 *::before,
-         .Cre1 *::after {
-            box-sizing: inherit;
-         }
-         .Cre1 strong,
-         .Cre1 b {
-            font-weight: 700;
-         }
-      </style>
-      <style data-jss="" data-meta="MuiScopedCssBaseline">
-         .App1 {
-            color: #000000;
-            font-size: 1.4rem;
-            box-sizing: border-box;
-            font-family: RakutenSansUi, RakutenSansUiBlack, RakutenSansUiLight, RakutenSansUiSemiBold, sans-serif;
-            font-weight: 400;
-            line-height: 1.214;
-            background-color: #ffffff;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-         }
-         @media print {
-            .App1 {
-               background-color: #ffffff;
-            }
-         }
-         .App1 *,
-         .App1 *::before,
-         .App1 *::after {
-            box-sizing: inherit;
-         }
-         .App1 strong,
-         .App1 b {
-            font-weight: 700;
-         }
-      </style>
-      <style data-jss="" data-meta="MuiScopedCssBaseline">
-         .Hom1 {
-            color: #000000;
-            font-size: 1.4rem;
-            box-sizing: border-box;
-            font-family: RakutenSansUi, RakutenSansUiBlack, RakutenSansUiLight, RakutenSansUiSemiBold, sans-serif;
-            font-weight: 400;
-            line-height: 1.214;
-            background-color: #ffffff;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-         }
-         @media print {
-            .Hom1 {
-               background-color: #ffffff;
-            }
-         }
-         .Hom1 *,
-         .Hom1 *::before,
-         .Hom1 *::after {
-            box-sizing: inherit;
-         }
-         .Hom1 strong,
-         .Hom1 b {
-            font-weight: 700;
-         }
-      </style>
-      <style data-jss="" data-meta="makeStyles">
-         .App2 {
-            width: 100%;
-         }
-         .App3 {
-            width: 100%;
-            display: block;
-         }
-         .App4 {
-            top: 0;
-            zoom: 1;
-            width: 100%;
-            background: #f7f7f7;
-            border-bottom: 1px solid #d0d5d8;
-         }
-         .App5 {
-            margin: 0 auto;
-            display: flex;
-            padding: 1.06vh 0;
-            max-width: 37rem;
-            align-items: center;
-            justify-content: space-between;
-         }
-         .App6 {
-            font-size: 1.4rem;
-            text-align: center;
-         }
-         .App7 {
-            width: 3.5rem;
-            height: 3.5rem;
-            margin-left: 1rem;
-         }
-         .App8 {
-            padding: 0.8rem 1.7rem;
-            line-height: 1rem;
-            border-radius: 1rem;
-         }
-         .App9 {
-            float: right;
-            display: inline;
-         }
-      </style>
 
-      <style type="text/css">
-         .gtm_ads_caption {
-            font-family: RakutenSansUI, Arial, sans-serif;
-            font-size: 10px;
-            font-weight: 400;
-            line-height: 13px;
-            letter-spacing: 0px;
-            text-align: left;
-            color: #686868;
-            padding: 4px !important;
-         }
-      </style>
+      <link
+         href="./Rakuten_files/global-home.040d2ffaa010423c0c11.css"
+         charset="utf-8"
+         type="text/css"
+         rel="stylesheet"
+         media="all"
+      />
+      <link
+         href="./Rakuten_files/defered-footer.040d2ffaa010423c0c11.css"
+         charset="utf-8"
+         type="text/css"
+         rel="stylesheet"
+         media="all"
+      />
 
       <style class="KameleoonStyleSheet" id="kameleoonStyleSheet-89242" rel="stylesheet" type="text/css" media="screen">
          .design2016.fp:not(.fpV3) .container-fluid {
@@ -1054,163 +2569,11 @@
          }
       </style>
 
-      <style
-         class="KameleoonStyleSheet"
-         id="kameleoonStyleSheet-143626"
-         rel="stylesheet"
-         type="text/css"
-         media="screen"
-      >
-         .kml-modale {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: #000;
-            background-color: rgba(0, 0, 0, 0.4);
-            animation-name: opacityTransition;
-            animation-duration: 0.3s;
-         }
-         .kml-modale.popin-newsletter .modal-content {
-            max-width: 420px;
-         }
-         @keyframes opacityTransition {
-            from {
-               opacity: 0;
-            }
-            to {
-               opacity: 1;
-            }
-         }
-         .kml-modale .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-         }
-         .kml-modale .modal-content {
-            box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 600px;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-         }
-         .kml-modale .kml-modal-wrapper {
-            padding: 50px 30px 30px 30px;
-            background: #fff;
-            border-radius: 5px;
-         }
-         .kml-modale .kml-modal-wrapper .panel1,
-         .kml-modale .kml-modal-wrapper .panel2 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-         }
-         .kml-modale .kml-modal-wrapper .panel2 {
-            display: none;
-         }
-         .kml-modale .form {
-            display: flex;
-            width: 100%;
-            margin-bottom: 30px;
-         }
-         .kml-modale .form input {
-            border-color: #d1d1d1;
-            border-radius: 0.5rem;
-            font-size: 2rem;
-            height: 49px;
-            border-style: solid;
-            border-width: 1px;
-            flex-grow: 1;
-            padding: 0 20px;
-            font-size: 14px;
-         }
-         .kml-modale .title {
-            text-align: center;
-            max-width: 310px;
-            margin-bottom: 10px;
-         }
-         .kml-modale .title span {
-            color: #bf0000;
-         }
-         .kml-modale .picto {
-            margin-bottom: 20px;
-         }
-         .kml-modale .subtitle {
-            text-align: center;
-            font-size: 16px;
-            max-width: 330px;
-            margin-bottom: 30px;
-         }
-         .kml-modale .conditions,
-         .kml-modale .conditions a {
-            font-size: 12px;
-            color: #9c9c9c !important;
-         }
-         .kml-modale .form button {
-            background-color: #bf0000;
-            border-radius: 3px;
-            margin-left: 10px;
-            border: none;
-            padding: 0 20px;
-            font-size: 14px;
-            color: #fff;
-            cursor: pointer;
-         }
-         .kml-modale .error {
-            margin: -22px 0 30px 0;
-            font-size: 14px;
-            color: red;
-            display: none;
-         }
-         @media screen and (max-width: 900px) {
-            .kml-modale .modal-content {
-               width: 90%;
-            }
-            .kml-modale .form button {
-               height: 44px;
-               margin: 13px 0 0 0;
-            }
-            .kml-modale .form {
-               flex-direction: column;
-            }
-         }
-      </style>
-
-      <style class="KML-onglet">
-         #kml-onglet {
-            margin: 0 0 0 20px;
-            width: 190px;
-            display: inline-block;
-         }
-         #jahiaOnglet,
-         .header_jahia_3Km {
-            display: none;
-         }
-      </style>
-
-      <link
-         href="./Rakuten_files/global-home.040d2ffaa010423c0c11.css"
-         charset="utf-8"
-         type="text/css"
-         rel="stylesheet"
-         media="all"
-      />
-      <link
-         href="./Rakuten_files/defered-footer.040d2ffaa010423c0c11.css"
-         charset="utf-8"
-         type="text/css"
-         rel="stylesheet"
-         media="all"
-      />
+      <link rel="stylesheet" href="./styles/css/styles.css" />
+      <link rel="stylesheet" href="./styles/css/styles_next.css" />
+      <link rel="stylesheet" href="./styles/css/styles_next_2.css" />
+      <script src="./js/script.js"></script>
+      <script src="./js/timer.js"></script>
    </head>
    <body
       data-frz-flags='{"lazyload":true,"deferjs":true,"cssontop":false,"minifyhtml":false,"concatcss":false,"minifycss":true,"concatjs":false,"minifyjs":true,"early-hints":true,"unsharding":true,"responsive":false,"edge_speed":true,"edge_seo":false}'
@@ -1294,14 +2657,6 @@
                      </div>
                      <div class="Hea1">
                         <div class="V5ScopedCssBaseline-root css-oo0okb">
-                           <style>
-                              .hide-in-webview {
-                                 display: inherit;
-                              }
-                              .is-in-webview .hide-in-webview {
-                                 display: none;
-                              }
-                           </style>
                            <div data-qa="hide_in_webview" class="hide-in-webview">
                               <header
                                  data-qa="header"
@@ -1841,7 +3196,6 @@
                                                       id="cm-placement-topBanner"
                                                       class="cm-placement-topBanner width100"
                                                    >
-                                                      <style></style>
                                                       <div
                                                          id="Accordion-Banner-693340-1"
                                                          class="accordion-banner-module"
@@ -2567,15 +3921,6 @@
                <div id="footer" data-fstrz-fragment-id="fstrz-scss-8" data-fstrz-fragment-selector="#footer">
                   <div class="Foo1 content-first">
                      <div class="V5ScopedCssBaseline-root css-oo0okb">
-                        <style>
-                           .hide-in-webview {
-                              display: inherit;
-                           }
-                           .is-in-webview .hide-in-webview {
-                              display: none;
-                           }
-                        </style>
-
                         <div data-qa="hide_in_webview" class="hide-in-webview">
                            <footer class="_f-bg-near-white-7d5940 footer" data-qa="footer-root">
                               <div class="_f-flex-c3a12c _f-pa3-ed5153 _f-bg-white-033e9a _f-reinsuranceBlock-92ce15">

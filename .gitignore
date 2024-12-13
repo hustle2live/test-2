@@ -44,7 +44,8 @@ waste-draft/
 # Dependency directories
 node_modules/
 jspm_packages/
-
+next/
+rakuten/
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
