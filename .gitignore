@@ -48,7 +48,7 @@ jspm_packages/
 next/
 rakuten/
 resourses/
-
+trash/*
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 

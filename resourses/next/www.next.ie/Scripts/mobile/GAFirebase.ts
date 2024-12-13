@@ -1,1 +1,0 @@
-No Content: https://www.next.ie/Scripts/mobile/GAFirebase.ts
