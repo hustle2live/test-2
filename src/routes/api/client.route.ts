@@ -5,14 +5,20 @@ const clientRouter = Router();
 
 clientRouter.get('/', async (req, res) => {
    try {
-      const result: TaskResponse = await taskController.doTaskFirst();
+      const login: TaskResponse = await taskController.doLogin();
 
-      if (!result || !result.success) {
-         throw Error(result.message);
+      if (!login || !login.success) {
+         throw Error(login.message);
+      }
+
+      const likeConfirmed = await taskController.startToLike();
+
+      if (!likeConfirmed || !likeConfirmed.success) {
+         throw Error(likeConfirmed?.message);
       }
 
       res.status(200).json({
-         data: result,
+         data: likeConfirmed.data,
          message: 'ClientRouter is running.. 🌈',
       });
    } catch (error) {

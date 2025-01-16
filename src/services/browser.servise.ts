@@ -14,7 +14,12 @@ import {
    AbstractWorker,
    WorkerInterface,
 } from '../common/types/task-workers.type';
-import { URLPathSelectors } from '../common/constants/page.selectors';
+import {
+   ActionSelectors,
+   DataSelectors,
+   URLPathSelectors,
+} from '../common/constants/page.selectors';
+import { TUsersListProps } from '../common/types/page-data.type';
 
 interface BCInterface extends WorkerInterface {
    init(options?: LaunchOptions): Promise<void>;
@@ -22,8 +27,11 @@ interface BCInterface extends WorkerInterface {
    setPage(data: Page): void;
    browsePage(link: string): Promise<Page | void>;
    clickOnLocator(tagName: string): Promise<void>;
-   pageHasElement(page: Page, tagElement: string): Locator<Element> | null;
+   findElement(tagElement: string, page?: Page): Locator<Element> | null;
    tryLogin(props: LoginTypeProps): Promise<Page | null>;
+   checkStartPopup(): Promise<void | true>;
+   currentPage(): Page;
+   getUsersListData(): Promise<TUsersListProps>;
 }
 
 class BrowserController extends AbstractWorker implements BCInterface {
@@ -34,6 +42,9 @@ class BrowserController extends AbstractWorker implements BCInterface {
    constructor(puppeteer: PuppeteerNode) {
       super();
       BrowserController.puppy = puppeteer;
+   }
+   currentPage(): Page {
+      return BrowserController.page;
    }
 
    async init(options: LaunchOptions = {}): Promise<void> {
@@ -56,15 +67,6 @@ class BrowserController extends AbstractWorker implements BCInterface {
       this.log('page saved to (pagetitle): ' + pageTitle);
    }
 
-   checkFunction<T, P>(result: T, func: (a?: P) => T) {
-      const res = func();
-      if (!res) {
-         const message = 'check-function ERRROR';
-         console.log(message);
-         throw Error(message);
-      }
-   }
-
    async browsePage(link: string): Promise<Page | void> {
       const page = BrowserController.page
          ? BrowserController.page
@@ -81,11 +83,7 @@ class BrowserController extends AbstractWorker implements BCInterface {
    }
 
    async clickOnLocator(tagName: string): Promise<void> {
-      if (!BrowserController.page) {
-         console.log('page is a false value');
-         throw Error('page is a false value');
-      }
-      await BrowserController.page.locator(tagName).click();
+      this.findElement(tagName, BrowserController.page)?.click();
    }
 
    private pageUrlIncludes(page: Page, query: string): boolean {
@@ -98,33 +96,88 @@ class BrowserController extends AbstractWorker implements BCInterface {
       return BrowserController.page.url();
    }
 
+   findElement(
+      tagElement: string,
+      page: Page = BrowserController.page
+   ): Locator<Element> | null {
+      if (!page) {
+         this.log(
+            'Error while findElement(): BrowserController.page - is missed !'
+         );
+         return null;
+      }
+      return page.locator(tagElement);
+   }
+
+   async checkStartPopup(): Promise<void | true> {
+      await BrowserController.page
+         .waitForSelector(DataSelectors.AFTER_LOGIN_POPUP)
+         .then(async () => {
+            await this.clickOnLocator(DataSelectors.AFTER_LOGIN_BUTTON_NEXT);
+         })
+         .then(async () => {
+            if (this.findElement(DataSelectors.AFTER_LOGIN_POPUP)) {
+               await this.clickOnLocator(
+                  DataSelectors.AFTER_LOGIN_BUTTON_CLOSE
+               );
+            }
+            return true;
+         });
+   }
+
    async tryLogin({
       formProps,
       dataProps,
    }: LoginTypeProps): Promise<Page | null> {
       const { loginTagName, passwordTagName, submitTagName } = formProps;
       const { login, password } = dataProps;
+      const allTrully = [
+         loginTagName,
+         passwordTagName,
+         submitTagName,
+         login,
+         password,
+         BrowserController.page,
+      ].every((el) => Boolean(el) === true);
 
-      if (!BrowserController.page) return null;
+      if (!allTrully) {
+         this.log('Error. Page or loginData - missed');
+         return null;
+      }
+
       await BrowserController.page.locator(loginTagName).fill(login);
       await BrowserController.page.locator(passwordTagName).fill(password);
       await BrowserController.page.locator(submitTagName).click();
 
-      await this.delayFunction(this.getPageURL, 3000);
-
-      const changePageFailed: boolean = this.pageUrlIncludes(
+      await this.delayFunction(this.getPageURL, 2000);
+      const isChangePageFailed: boolean = this.pageUrlIncludes(
          BrowserController.page,
          URLPathSelectors.LOGIN
       );
-
-      this.log(`Operation login ${changePageFailed ? 'failed' : 'success'}`);
-      this.log(await BrowserController.page.title());
-      return changePageFailed ? null : BrowserController.page;
+      this.log(`Operation login ${isChangePageFailed ? 'failed' : 'success'}`);
+      return isChangePageFailed ? null : BrowserController.page;
    }
 
-   pageHasElement(page: Page, tagElement: string): Locator<Element> | null {
-      if (!BrowserController.page) return null;
-      return BrowserController.page.locator(tagElement);
+   async getUsersListData(): Promise<TUsersListProps> {
+      return await BrowserController.page.$$eval(
+         DataSelectors.USERS_ITEM,
+         (itemArray) => {
+            let showedIdx: number | null = null;
+            const { length } = itemArray;
+            const { innerHTML } = itemArray.filter((el, idx) => {
+               if (!el.getAttribute('style')?.includes('display: none')) {
+                  showedIdx = idx;
+                  return el;
+               }
+            })[0];
+
+            return {
+               length: length,
+               showedIdx: showedIdx,
+               innerHTML: innerHTML,
+            };
+         }
+      );
    }
 }
 

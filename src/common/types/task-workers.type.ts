@@ -32,7 +32,7 @@ interface WorkerInterface {
 abstract class AbstractWorker implements WorkerInterface {
    static imageCounter: number = 1;
    log(m: string): void {
-      console.log(m);
+      console.log(`~log:: ${m}`);
    }
    async makeScreen(page: Page, path?: string): Promise<void> {
       if (!page) return;
@@ -51,7 +51,7 @@ abstract class AbstractWorker implements WorkerInterface {
    }
    async delayFunction<T>(fn: Function, ms: number): Promise<T> {
       await new Promise((resolve) => setTimeout(resolve, ms));
-      this.log(`delayed for ${ms} ms`);
+      this.log(`_delayed for ${ms} ms`);
       return await fn();
    }
 }
