@@ -36,6 +36,10 @@ build/Release
 node_modules/
 jspm_packages/
 
+# Screenshots directory
+screenshots/
+
+
 # TypeScript v1 declaration files
 typings/
 
@@ -74,5 +78,3 @@ typings/
 
 dist
 
-#screenshots directory
-screenshots/
