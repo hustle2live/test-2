@@ -26,6 +26,7 @@ interface AbstractTaskInterface {
 interface WorkerInterface {
    log: (m: string) => void;
    makeScreen: (page: Page, path?: string) => Promise<void>;
+   delayFunction: <T>(fn: Function, ms: number) => Promise<T>;
 }
 
 abstract class AbstractWorker implements WorkerInterface {
@@ -47,6 +48,11 @@ abstract class AbstractWorker implements WorkerInterface {
       });
       this.log(`Screenshot ${AbstractWorker.imageCounter} captured !`);
       AbstractWorker.imageCounter++;
+   }
+   async delayFunction<T>(fn: Function, ms: number): Promise<T> {
+      await new Promise((resolve) => setTimeout(resolve, ms));
+      this.log(`delayed for ${ms} ms`);
+      return await fn();
    }
 }
 

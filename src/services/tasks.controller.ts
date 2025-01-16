@@ -1,6 +1,6 @@
 import puppeteer, { Page } from 'puppeteer';
 import BrowserController, { BCInterface } from './browser.servise';
-import { loginFormProps, loginData } from './credentials';
+import { loginFormProps, loginData } from '../common/constants/credentials';
 import {
    AbstractTaskInterface,
    AbstractWorker,
@@ -31,15 +31,9 @@ class TaskController extends AbstractTask {
       this.browser = BrowserController;
    }
 
-   private async sleep<T>(fn: Function, ms: number): Promise<T> {
-      await new Promise((resolve) => setTimeout(resolve, ms));
-      this.log(`delayed for ${ms} ms`);
-      return await fn();
-   }
-
    public async doTaskFirst(): Promise<TaskResponse> {
-      this.log('start first task');
       const taskName = 'task1-login';
+      this.log(`${taskName} - started...`);
       try {
          await this.browser.init();
          const page = await this.browser.browsePage('https://love-story.su');
@@ -51,12 +45,17 @@ class TaskController extends AbstractTask {
             throw Error("Form doesn't exist");
          }
          await this.browser.makeScreen(BrowserController.page, taskName);
-         await this.browser.tryLogin(loginFormProps, loginData);
+         const loginOk = await this.browser.tryLogin({
+            formProps: loginFormProps,
+            dataProps: loginData,
+         });
+
          const makeDelayScreen = () => this.browser.makeScreen(page, taskName);
-         await this.sleep(makeDelayScreen, 3000);
-         this.log('Login succesfull');
-         return this.sendSuccess();
+         await this.delayFunction(makeDelayScreen, 1000);
+
+         return loginOk ? this.sendSuccess() : this.sendError('login failed');
       } catch (error) {
+         this.log('Login failed');
          this.log((error as Error)?.message ?? error);
          return this.sendError((error as Error)?.message ?? error);
       }

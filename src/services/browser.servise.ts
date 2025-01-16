@@ -5,11 +5,16 @@ import puppeteer, {
    LaunchOptions,
    PuppeteerNode,
 } from 'puppeteer';
-import { dataProps, formProps, LoginTypeProps } from './credentials';
+import {
+   TFormProps,
+   TDataProps,
+   LoginTypeProps,
+} from '../common/constants/credentials';
 import {
    AbstractWorker,
    WorkerInterface,
 } from '../common/types/task-workers.type';
+import { URLPathSelectors } from '../common/constants/page.selectors';
 
 interface BCInterface extends WorkerInterface {
    init(options?: LaunchOptions): Promise<void>;
@@ -18,14 +23,7 @@ interface BCInterface extends WorkerInterface {
    browsePage(link: string): Promise<Page | void>;
    clickOnLocator(tagName: string): Promise<void>;
    pageHasElement(page: Page, tagElement: string): Locator<Element> | null;
-   tryLogin(
-      {
-         loginTag,
-         passwordTag,
-         submitTag,
-      }: { loginTag: string; passwordTag: string; submitTag: string },
-      { login, password }: { login: string; password: string }
-   ): Promise<Page | null>;
+   tryLogin(props: LoginTypeProps): Promise<Page | null>;
 }
 
 class BrowserController extends AbstractWorker implements BCInterface {
@@ -51,12 +49,11 @@ class BrowserController extends AbstractWorker implements BCInterface {
       this.log('Browser closed');
    }
 
-   setPage(data: Page): void {
+   async setPage(data: Page): Promise<void> {
       if (!data) return this.log('Ooops page is missed, and do not saved.');
       BrowserController.page = data;
-      this.log(
-         'page saved to (pagetitle): ' + this.pageHasElement(data, 'title')
-      );
+      const pageTitle = await BrowserController.page.title();
+      this.log('page saved to (pagetitle): ' + pageTitle);
    }
 
    checkFunction<T, P>(result: T, func: (a?: P) => T) {
@@ -79,7 +76,7 @@ class BrowserController extends AbstractWorker implements BCInterface {
       await page.setViewport({ width: 1080, height: 1024 });
 
       this.log('Page loaded successfully');
-      this.setPage(page);
+      await this.setPage(page);
       return page;
    }
 
@@ -91,17 +88,38 @@ class BrowserController extends AbstractWorker implements BCInterface {
       await BrowserController.page.locator(tagName).click();
    }
 
-   async tryLogin(
-      { loginTag, passwordTag, submitTag }: formProps,
-      { login, password }: dataProps
-   ): Promise<Page | null> {
-      if (!BrowserController.page) return null;
-      await BrowserController.page.locator(loginTag).fill(login);
-      await BrowserController.page.locator(passwordTag).fill(password);
-      await BrowserController.page.locator(submitTag).click();
+   private pageUrlIncludes(page: Page, query: string): boolean {
+      const url = page.url();
+      this.log(`___ page url ___ : ${url}`);
+      return Boolean(url.includes(query));
+   }
 
-      // this.log('Login succesfull');
-      return BrowserController.page;
+   private getPageURL(): string {
+      return BrowserController.page.url();
+   }
+
+   async tryLogin({
+      formProps,
+      dataProps,
+   }: LoginTypeProps): Promise<Page | null> {
+      const { loginTagName, passwordTagName, submitTagName } = formProps;
+      const { login, password } = dataProps;
+
+      if (!BrowserController.page) return null;
+      await BrowserController.page.locator(loginTagName).fill(login);
+      await BrowserController.page.locator(passwordTagName).fill(password);
+      await BrowserController.page.locator(submitTagName).click();
+
+      await this.delayFunction(this.getPageURL, 3000);
+
+      const changePageFailed: boolean = this.pageUrlIncludes(
+         BrowserController.page,
+         URLPathSelectors.LOGIN
+      );
+
+      this.log(`Operation login ${changePageFailed ? 'failed' : 'success'}`);
+      this.log(await BrowserController.page.title());
+      return changePageFailed ? null : BrowserController.page;
    }
 
    pageHasElement(page: Page, tagElement: string): Locator<Element> | null {
