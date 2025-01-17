@@ -111,18 +111,20 @@ class TaskController extends AbstractTask implements ITaskInterface {
       } catch (error) {
          this.makeScreen(BrowserController.page, this.taskNames.likes);
          this.log((error as Error)?.message ?? error);
-         this.log(`${taskName} - failed`);
+         this.log(`\x1b[31m ${taskName} - failed \x1b[30m `);
 
          if (retries > 0) {
             await this.checkPopupFrame(taskName);
 
-            this.log(`\x1b[31m Retrying to like.., still ${retries} retries`);
+            this.log(
+               `\x1b[31m Retrying to like.., \x1b[30m still ${retries} retries`
+            );
             this.delayFunction(
                async () => await this.startToLike(retries - 1),
                2000
             );
          } else {
-            this.log('Limit of retries is riched. Task has ended.');
+            this.log('\x1b[33m Limit of retries is riched. Task ended.');
          }
          return this.sendError((error as Error)?.message ?? error);
       }
@@ -150,7 +152,7 @@ class TaskController extends AbstractTask implements ITaskInterface {
          await this.makeDelayScreenshot(page, taskName, 2000);
 
          if (!loginResult) {
-            throw new Error(`${taskName} - failed`);
+            throw new Error(`\x1b[31m ${taskName} - failed \x1b[30m `);
          }
 
          await this.checkPopupFrame(taskName);
@@ -159,14 +161,16 @@ class TaskController extends AbstractTask implements ITaskInterface {
          this.log((error as Error)?.message ?? error);
 
          if (retries > 0) {
-            this.log('\x1b[31m Retrying to Login.., still ${retries} retries');
+            this.log(
+               '\x1b[31m Retrying to Login.., \x1b[30m still ${retries} retries'
+            );
             await this.browser.close();
             this.delayFunction(
                async () => await this.doLogin(retries - 1),
                2000
             );
          } else {
-            this.log('Limit of retries is riched. Task has ended.');
+            this.log('\x1b[33m Limit of retries is riched. Task ended.');
          }
 
          return this.sendError((error as Error)?.message ?? error);

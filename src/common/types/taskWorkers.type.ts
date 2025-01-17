@@ -40,7 +40,7 @@ abstract class AbstractWorker implements WorkerInterface {
       await page.screenshot({
          path: `./screenshots/${subDirPath}img-${AbstractWorker.imageCounter}.png`,
       });
-      this.log(`Screenshot ${AbstractWorker.imageCounter} captured !`);
+      this.log(`\x1b[36m Screenshot ${AbstractWorker.imageCounter} captured!\x1b[30m `);
       AbstractWorker.imageCounter++;
    }
    async delayFunction<T>(fn: Function, ms: number): Promise<T> {

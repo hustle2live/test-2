@@ -8,7 +8,7 @@ const loginFormProps: TFormProps = {
 
 const loginData: TDataProps = {
    login: 'JosephAnderson1064453@gmail.com',
-   password: 'F7IvblI6Y',
+   password: 'F7IvblI6Y-',
 };
 
 interface LoginTypeProps {

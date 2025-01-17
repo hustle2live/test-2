@@ -55,7 +55,7 @@ class BrowserController extends AbstractWorker implements BCInterface {
       try {
          BrowserController.page = data;
          const pageTitle = await data.title();
-         this.log('followed to page (pagetitle): ' + pageTitle);
+         this.log(`\x1b[33m followed to page (pagetitle): ${pageTitle} \x1b[30m ...`);
       } catch {
          throw new Error('Ooops page is missed, and do not saved.');
       }
@@ -83,7 +83,7 @@ class BrowserController extends AbstractWorker implements BCInterface {
 
    private pageUrlIncludes(page: Page, query: string): boolean {
       const url = page.url();
-      this.log(`___ page url ___ : ${url}`);
+      this.log(` \x1b[33m ___ page url ___ : ${url} \x1b[30m ...`);
       return url.includes(query);
    }
 
@@ -151,7 +151,7 @@ class BrowserController extends AbstractWorker implements BCInterface {
       );
 
       if (!pageChangedSuccess) {
-         throw new Error(`Operation login failed`);
+         throw new Error(`\x1b[31m Operation login failed \x1b[30m `);
       }
 
       this.log(`Operation login success`);
