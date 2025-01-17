@@ -12,6 +12,11 @@ function preparefolder(folderName?: string) {
    }
 }
 
+interface ITaskNames {
+   login: string;
+   likes: string;
+}
+
 interface TaskResponse {
    success: boolean;
    message: string;
@@ -56,4 +61,10 @@ abstract class AbstractWorker implements WorkerInterface {
    }
 }
 
-export { TaskResponse, AbstractTaskInterface, WorkerInterface, AbstractWorker };
+export {
+   ITaskNames,
+   TaskResponse,
+   AbstractTaskInterface,
+   WorkerInterface,
+   AbstractWorker,
+};

@@ -1,3 +1,5 @@
+import { ITaskNames } from '../types/task-workers.type';
+
 const ActionSelectors = {
    SIGN_IN_BUTTON: 'header a[href="/signin"]',
    BUTTON_LIKE: '.controls > button > .icon-like',
@@ -9,6 +11,8 @@ const DataSelectors = {
    USER_AGE: '.users__item .age',
    USERS_LIST: '.users__list',
    USERS_ITEM: '.users__item',
+   POPUP_RANDOM: '.popup',
+   POPUP_RANDOM_BUTTON_CLOSE: '.popup .popup__close',
    AFTER_LOGIN_POPUP: '.first-sympathy-popup',
    AFTER_LOGIN_BUTTON_NEXT: '.first-sympathy-popup button.continue',
    AFTER_LOGIN_BUTTON_CLOSE:
@@ -28,4 +32,15 @@ const URLPathSelectors = {
    LOGIN: '/signin',
 } as const;
 
-export { ActionSelectors, FormSelectors, URLPathSelectors, DataSelectors };
+const TaskNames: ITaskNames = {
+   login: 'task1-login',
+   likes: 'task2-start-like',
+} as const;
+
+export {
+   ActionSelectors,
+   FormSelectors,
+   URLPathSelectors,
+   DataSelectors,
+   TaskNames,
+};

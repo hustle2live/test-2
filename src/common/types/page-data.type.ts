@@ -1,7 +1,14 @@
 type TUsersListProps = {
-   length: number;
-   showedIdx: number | null;
-   innerHTML: string;
+   usersLength: number;
+   activeUserIdx: number;
+   activeUserHTML: string;
 };
 
-export { TUsersListProps };
+type UserReactProps = { userData: string; allowedAge: number };
+
+interface PopupCloserProps {
+   popupHeading: string;
+   popupClosers: string[];
+}
+
+export { TUsersListProps, UserReactProps, PopupCloserProps };

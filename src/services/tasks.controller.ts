@@ -4,14 +4,19 @@ import { loginFormProps, loginData } from '../common/constants/credentials';
 import {
    AbstractTaskInterface,
    AbstractWorker,
+   ITaskNames,
    TaskResponse,
 } from '../common/types/task-workers.type';
 import {
    ActionSelectors,
    DataSelectors,
+   TaskNames,
    URLPathSelectors,
 } from '../common/constants/page.selectors';
-import { TUsersListProps } from '../common/types/page-data.type';
+import {
+   PopupCloserProps,
+   TUsersListProps,
+} from '../common/types/page-data.type';
 
 class AbstractTask extends AbstractWorker implements AbstractTaskInterface {
    private sendResponse(
@@ -37,144 +42,163 @@ interface ITaskInterface {
 class TaskController extends AbstractTask implements ITaskInterface {
    browser: BCInterface;
    isLoggedIn: boolean = false;
-   static usersCount: number | null = null;
+   private loginRetries: number = 3;
+   private likesRetries: number = 5;
+   private ageTreshold: number = 26;
+   private taskNames: ITaskNames;
+
+   static usersCounter: number | null = null;
 
    constructor(BrowserController: BCInterface) {
       super();
       this.browser = BrowserController;
+      this.taskNames = TaskNames;
    }
 
    private async makeDelayScreenshot(
       page: Page,
       subFolder: string = '',
-      sec: number = 1
+      ms: number = 1000
    ) {
       return await this.delayFunction(
          () => this.makeScreen(page, subFolder),
-         sec * 1000
+         ms
       );
    }
 
-   private async closeStarterPopup(): Promise<void | true> {
-      if (!this.isLoggedIn) return this.log('User does not logged in');
-      return await this.browser.checkStartPopup();
-   }
-
-   public async startToLike(): Promise<TaskResponse | void> {
-      const taskName = 'task2-like-emitter';
-      this.log(`${taskName} - started...`);
+   public async startToLike(
+      retries: number = this.likesRetries
+   ): Promise<TaskResponse | void> {
+      const taskName = this.taskNames.likes;
+      this.log(`task 2`);
       try {
          do {
-            const { length, showedIdx, innerHTML }: TUsersListProps =
-               await this.browser.getUsersListData();
+            const {
+               usersLength,
+               activeUserIdx,
+               activeUserHTML,
+            }: TUsersListProps = await this.browser.getUsersListData();
 
-            console.log('users length : ' + length);
-            console.log('showedIdx : ' + showedIdx);
+            this.log(`DO ::: usersCounter : ${TaskController.usersCounter}`);
+            this.log(`DO ::: currentIndex : ${activeUserIdx}`);
 
-            TaskController.usersCount = TaskController.usersCount ?? length;
-            if (TaskController.usersCount === 0 && showedIdx) {
-               if (length > showedIdx + 1) {
-                  TaskController.usersCount = length;
+            if (TaskController.usersCounter === null) {
+               TaskController.usersCounter = usersLength;
+            }
+
+            if (TaskController.usersCounter === 0) {
+               const userListWasUpdated = usersLength > activeUserIdx + 1;
+               if (userListWasUpdated) {
+                  this.log(
+                     `UserList changed from ${TaskController.usersCounter} to ${usersLength}`
+                  );
+                  TaskController.usersCounter =
+                     usersLength - (activeUserIdx + 1);
                }
             }
 
-            this.log(`DO ::: usersCount : ${TaskController.usersCount}`);
-
-            const regexAge = /<div class="age">\d+<\/div>/gi;
-            const ageString = innerHTML.match(regexAge)?.[0] ?? null;
-
-            const age = Number(ageString?.match(/\d+/gi)?.[0] as String);
-            const ageConfirmed = age >= 26;
-            this.log(`--- user age = ${age}`);
-
-            if (ageConfirmed) {
-               this.browser.clickOnLocator(ActionSelectors.BUTTON_LIKE);
-            } else {
-               this.browser.clickOnLocator(ActionSelectors.BUTTON_DISLIKE);
-            }
+            await this.browser.reactOnUser({
+               userData: activeUserHTML,
+               allowedAge: this.ageTreshold,
+            });
             await this.makeDelayScreenshot(
                this.browser.currentPage(),
                taskName,
-               2
-            );
-            await this.delayFunction(
-               () =>
-                  this.log(
-                     `---- profile ${ageConfirmed ? 'clicked' : 'skiped'}`
-                  ),
                2000
             );
-            this.log(`usersCount : ${TaskController.usersCount}`);
-            if (!TaskController.usersCount) {
-               this.makeDelayScreenshot(
-                  this.browser.currentPage(),
-                  taskName,
-                  2
-               );
-               return this.log(`userscount falsy`);
-            }
 
-            TaskController.usersCount = TaskController.usersCount - 1;
-         } while (TaskController.usersCount >= 0);
+            TaskController.usersCounter = TaskController.usersCounter - 1;
+         } while (TaskController.usersCounter >= 0);
 
-         return taskName ? this.sendSuccess() : this.sendError('login failed');
+         return this.sendSuccess();
       } catch (error) {
+         this.makeScreen(BrowserController.page, this.taskNames.likes);
          this.log((error as Error)?.message ?? error);
          this.log(`${taskName} - failed`);
+
+         if (retries > 0) {
+            await this.checkPopupFrame(taskName);
+
+            this.log(`retries to like, still ${retries} nums`);
+            this.delayFunction(
+               async () => await this.startToLike(retries - 1),
+               2000
+            );
+         } else {
+            this.log('Limit of retries is riched. Task has ended.');
+         }
          return this.sendError((error as Error)?.message ?? error);
       }
    }
 
-   public async doLogin(): Promise<TaskResponse> {
-      const taskName = 'task1-login';
-      this.log(`${taskName} - started...`);
+   public async doLogin(
+      retries: number = this.loginRetries
+   ): Promise<TaskResponse> {
+      const taskName = this.taskNames.login;
+      this.log(`task 1`);
       try {
          await this.browser.init();
          const page = await this.browser.browsePage(URLPathSelectors.MAIN_URL);
-         if (!page) {
-            throw Error('no page');
-         }
-
          await this.makeDelayScreenshot(page, taskName);
-         await this.browser.clickOnLocator(ActionSelectors.SIGN_IN_BUTTON);
 
-         if (!BrowserController.page.locator('form')) {
-            throw Error("Can't find login form");
-         }
+         await page.locator(ActionSelectors.SIGN_IN_BUTTON).click();
 
-         await this.makeDelayScreenshot(page, taskName);
+         await this.makeDelayScreenshot(page, taskName, 2000);
+
          const loginResult = await this.browser.tryLogin({
             formProps: loginFormProps,
             dataProps: loginData,
          });
+         this.isLoggedIn = loginResult;
+         await this.makeDelayScreenshot(page, taskName, 2000);
 
-         await this.makeDelayScreenshot(page, taskName, 2);
-         this.isLoggedIn = true;
-
-         const starterPopupCheckAndClose = await this.closeStarterPopup();
-         this.log('try close popup');
-         if (starterPopupCheckAndClose) {
-            this.log('dialog-popup closed');
-            await this.makeDelayScreenshot(
-               this.browser.currentPage(),
-               taskName
-            );
+         if (!loginResult) {
+            throw new Error(`${taskName} - failed`);
          }
 
-         return loginResult
-            ? this.sendSuccess()
-            : this.sendError('login failed');
+         await this.checkPopupFrame(taskName);
+         return this.sendSuccess();
       } catch (error) {
-         this.log(`${taskName} - failed`);
          this.log((error as Error)?.message ?? error);
+
+         if (retries > 0) {
+            this.log('retries to login');
+            await this.browser.close();
+            this.delayFunction(
+               async () => await this.doLogin(retries - 1),
+               2000
+            );
+         } else {
+            this.log('Limit of retries is riched. Task has ended.');
+         }
+
          return this.sendError((error as Error)?.message ?? error);
       }
    }
+
+   private async checkPopupFrame(
+      task: ITaskNames['login'] | ITaskNames['likes']
+   ): Promise<void> {
+      const popupStartup: PopupCloserProps = {
+         popupHeading: DataSelectors.AFTER_LOGIN_POPUP,
+         popupClosers: [
+            DataSelectors.AFTER_LOGIN_BUTTON_NEXT,
+            DataSelectors.AFTER_LOGIN_BUTTON_CLOSE,
+         ],
+      };
+      const popupRandom: PopupCloserProps = {
+         popupHeading: DataSelectors.POPUP_RANDOM,
+         popupClosers: [DataSelectors.POPUP_RANDOM_BUTTON_CLOSE],
+      };
+
+      const popupDataType: PopupCloserProps =
+         task === this.taskNames.login ? popupStartup : popupRandom;
+
+      return await this.browser.checkPopupToClose(popupDataType);
+   }
 }
 
-const controller = new BrowserController(puppeteer);
-
-const taskController = new TaskController(controller);
+const taskController = new TaskController(new BrowserController(puppeteer));
 
 export { taskController, type TaskResponse };
 

@@ -17,27 +17,35 @@ import {
 import {
    ActionSelectors,
    DataSelectors,
+   TaskNames,
    URLPathSelectors,
 } from '../common/constants/page.selectors';
-import { TUsersListProps } from '../common/types/page-data.type';
+import {
+   PopupCloserProps,
+   TUsersListProps,
+   UserReactProps,
+} from '../common/types/page-data.type';
 
 interface BCInterface extends WorkerInterface {
    init(options?: LaunchOptions): Promise<void>;
    close(): Promise<void>;
+   restart(): Promise<void>;
    setPage(data: Page): void;
-   browsePage(link: string): Promise<Page | void>;
-   clickOnLocator(tagName: string): Promise<void>;
+   browsePage(link: string): Promise<Page>;
+   clickTryOnLocator(tagName: string): Promise<void>;
    findElement(tagElement: string, page?: Page): Locator<Element> | null;
-   tryLogin(props: LoginTypeProps): Promise<Page | null>;
-   checkStartPopup(): Promise<void | true>;
+   tryLogin(props: LoginTypeProps): Promise<boolean>;
+   checkPopupToClose(props: PopupCloserProps): Promise<void>;
    currentPage(): Page;
    getUsersListData(): Promise<TUsersListProps>;
+   reactOnUser(props: UserReactProps): Promise<void>;
 }
 
 class BrowserController extends AbstractWorker implements BCInterface {
    static browser: Browser;
    static page: Page;
    static puppy: typeof puppeteer;
+   private userComparingList: { name: string; age: number }[] = [];
 
    constructor(puppeteer: PuppeteerNode) {
       super();
@@ -49,47 +57,53 @@ class BrowserController extends AbstractWorker implements BCInterface {
 
    async init(options: LaunchOptions = {}): Promise<void> {
       BrowserController.browser = await BrowserController.puppy.launch(options);
-      this.log('Browser launched. Init success');
+      this.log('Init success. Browser launched.');
    }
 
    async close(): Promise<void> {
-      if (!BrowserController.browser) {
-         return;
-      }
       await BrowserController.browser.close();
       this.log('Browser closed');
    }
 
-   async setPage(data: Page): Promise<void> {
-      if (!data) return this.log('Ooops page is missed, and do not saved.');
-      BrowserController.page = data;
-      const pageTitle = await BrowserController.page.title();
-      this.log('page saved to (pagetitle): ' + pageTitle);
+   async restart(): Promise<void> {
+      await this.close();
+      await this.init();
    }
 
-   async browsePage(link: string): Promise<Page | void> {
-      const page = BrowserController.page
-         ? BrowserController.page
-         : await BrowserController.browser.newPage();
+   async setPage(data: Page): Promise<void> {
+      try {
+         BrowserController.page = data;
+         const pageTitle = await data.title();
+         this.log('followed to page (pagetitle): ' + pageTitle);
+      } catch {
+         throw new Error('Ooops page is missed, and do not saved.');
+      }
+   }
 
+   async browsePage(link: string): Promise<Page> {
+      const page = await BrowserController.browser.newPage();
       await page.goto(link, { waitUntil: 'load' });
-
-      if (!page) throw new Error('Can not load page');
-      await page.setViewport({ width: 1080, height: 1024 });
-
+      if (!page) {
+         throw new Error('Can not load page');
+      }
+      try {
+         await page.setViewport({ width: 1080, height: 1024 });
+      } catch (error) {
+         this.log("Can't set viewport");
+      }
       this.log('Page loaded successfully');
       await this.setPage(page);
       return page;
    }
 
-   async clickOnLocator(tagName: string): Promise<void> {
-      this.findElement(tagName, BrowserController.page)?.click();
+   async clickTryOnLocator(tagName: string): Promise<void> {
+      return this.findElement(tagName, BrowserController.page)?.click();
    }
 
    private pageUrlIncludes(page: Page, query: string): boolean {
       const url = page.url();
       this.log(`___ page url ___ : ${url}`);
-      return Boolean(url.includes(query));
+      return url.includes(query);
    }
 
    private getPageURL(): string {
@@ -109,29 +123,27 @@ class BrowserController extends AbstractWorker implements BCInterface {
       return page.locator(tagElement);
    }
 
-   async checkStartPopup(): Promise<void | true> {
+   async checkPopupToClose(props: PopupCloserProps): Promise<void> {
+      const { popupHeading, popupClosers } = props;
+
       await BrowserController.page
-         .waitForSelector(DataSelectors.AFTER_LOGIN_POPUP)
+         .waitForSelector(popupHeading)
          .then(async () => {
-            await this.clickOnLocator(DataSelectors.AFTER_LOGIN_BUTTON_NEXT);
-         })
-         .then(async () => {
-            if (this.findElement(DataSelectors.AFTER_LOGIN_POPUP)) {
-               await this.clickOnLocator(
-                  DataSelectors.AFTER_LOGIN_BUTTON_CLOSE
-               );
+            try {
+               for (const item of popupClosers) {
+                  await this.clickTryOnLocator(item);
+               }
+            } catch (error) {
+               this.log("Popup don't recognized");
+               this.log((error as Error)?.message);
             }
-            return true;
          });
    }
 
-   async tryLogin({
-      formProps,
-      dataProps,
-   }: LoginTypeProps): Promise<Page | null> {
+   async tryLogin({ formProps, dataProps }: LoginTypeProps): Promise<boolean> {
       const { loginTagName, passwordTagName, submitTagName } = formProps;
       const { login, password } = dataProps;
-      const allTrully = [
+      const allPropsReceived = [
          loginTagName,
          passwordTagName,
          submitTagName,
@@ -140,44 +152,136 @@ class BrowserController extends AbstractWorker implements BCInterface {
          BrowserController.page,
       ].every((el) => Boolean(el) === true);
 
-      if (!allTrully) {
-         this.log('Error. Page or loginData - missed');
-         return null;
+      if (!allPropsReceived) {
+         throw new Error('Error. Page or loginData - missed');
       }
 
-      await BrowserController.page.locator(loginTagName).fill(login);
-      await BrowserController.page.locator(passwordTagName).fill(password);
-      await BrowserController.page.locator(submitTagName).click();
+      await BrowserController.page.waitForSelector('form').then(async () => {
+         await BrowserController.page.locator(loginTagName).fill(login);
+         await BrowserController.page.locator(passwordTagName).fill(password);
+         await BrowserController.page.locator(submitTagName).click();
+      });
 
       await this.delayFunction(this.getPageURL, 2000);
-      const isChangePageFailed: boolean = this.pageUrlIncludes(
+      const pageChangedSuccess: boolean = !this.pageUrlIncludes(
          BrowserController.page,
          URLPathSelectors.LOGIN
       );
-      this.log(`Operation login ${isChangePageFailed ? 'failed' : 'success'}`);
-      return isChangePageFailed ? null : BrowserController.page;
+
+      if (!pageChangedSuccess) {
+         throw new Error(`Operation login failed`);
+      }
+
+      this.log(`Operation login success`);
+      return pageChangedSuccess;
    }
 
    async getUsersListData(): Promise<TUsersListProps> {
       return await BrowserController.page.$$eval(
          DataSelectors.USERS_ITEM,
          (itemArray) => {
-            let showedIdx: number | null = null;
+            let displayedUserIndex: number | null = null;
             const { length } = itemArray;
             const { innerHTML } = itemArray.filter((el, idx) => {
                if (!el.getAttribute('style')?.includes('display: none')) {
-                  showedIdx = idx;
+                  displayedUserIndex = idx;
                   return el;
                }
             })[0];
 
+            if (
+               displayedUserIndex === null ||
+               displayedUserIndex === undefined
+            ) {
+               throw Error('Noone user item showed');
+            }
+
+            if (!length || !innerHTML) {
+               throw new Error('User list or User HTML is empty');
+            }
+
             return {
-               length: length,
-               showedIdx: showedIdx,
-               innerHTML: innerHTML,
+               usersLength: length,
+               activeUserIdx: displayedUserIndex,
+               activeUserHTML: innerHTML,
             };
          }
       );
+   }
+
+   private async parseUserFromHTML(
+      htmlString: string
+   ): Promise<{ age: number | null; name: string | null }> {
+      const regexName = /<div class="name">[\s\wа-яА-Я]+<\/div>/gi;
+      const regexAge = /<div class="age">\d+<\/div>/gi;
+
+      const nameString = htmlString.match(regexName)?.[0];
+      const matchName = nameString?.match(/>[\s\wа-яА-Я]+<\/div>/gi)?.[0];
+      const userName = matchName?.slice(1, -6);
+
+      const ageString = htmlString.match(regexAge)?.[0];
+      const matchAge = ageString?.match(/\d+/gi)?.[0];
+      const userAge = !matchAge ? null : Number(matchAge);
+
+      this.log(`__data_parsed: ${userName} : ${userAge}`);
+      return { age: userAge, name: userName ?? null };
+   }
+
+   private async checkUsersOrder(
+      userName: string,
+      userAge: number
+   ): Promise<{ name: string; age: number }[]> {
+      const maxLength = 3;
+      this.userComparingList.unshift({ name: userName, age: userAge });
+
+      const userListItemIsCycled =
+         this.userComparingList.every(
+            ({ age, name }) => age === userAge && name === userName
+         ) && this.userComparingList.length > 2;
+
+      this.userComparingList.length = maxLength;
+
+      if (userListItemIsCycled) {
+         throw new Error(
+            `Users repeated:: ${JSON.stringify(this.userComparingList)}`
+         );
+      }
+
+      return this.userComparingList;
+   }
+
+   async reactOnUser({
+      userData,
+      allowedAge,
+   }: {
+      userData: string;
+      allowedAge: number;
+   }): Promise<void> {
+      if (!userData || !allowedAge) {
+         throw new Error('Missed users html or confirmed age');
+      }
+
+      const { age, name } = await this.parseUserFromHTML(userData);
+      if (!age || !name) {
+         throw new Error("Can't parse user from html");
+      }
+
+      const ageIsOk = age >= allowedAge;
+
+      const reactionLocator = ageIsOk
+         ? ActionSelectors.BUTTON_LIKE
+         : ActionSelectors.BUTTON_DISLIKE;
+
+      try {
+         await BrowserController.page.locator(reactionLocator).click();
+         this.log(`- user: ${name}, ${age} - ${ageIsOk ? 'liked' : 'skiped'}`);
+      } catch (error) {
+         this.log('Error occured while click like-dislike');
+         await this.makeScreen(BrowserController.page, TaskNames.likes);
+         throw new Error((error as Error)?.message ?? error);
+      }
+
+      await this.checkUsersOrder(name, age);
    }
 }
 
