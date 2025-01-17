@@ -5,15 +5,8 @@ import puppeteer, {
    LaunchOptions,
    PuppeteerNode,
 } from 'puppeteer';
-import {
-   TFormProps,
-   TDataProps,
-   LoginTypeProps,
-} from '../common/constants/credentials';
-import {
-   AbstractWorker,
-   WorkerInterface,
-} from '../common/types/task-workers.type';
+import { LoginTypeProps } from '../common/constants/credentials';
+import { AbstractWorker } from '../common/types/taskWorkers.type';
 import {
    ActionSelectors,
    DataSelectors,
@@ -23,33 +16,21 @@ import {
 import {
    PopupCloserProps,
    TUsersListProps,
-   UserReactProps,
-} from '../common/types/page-data.type';
-
-interface BCInterface extends WorkerInterface {
-   init(options?: LaunchOptions): Promise<void>;
-   close(): Promise<void>;
-   restart(): Promise<void>;
-   setPage(data: Page): void;
-   browsePage(link: string): Promise<Page>;
-   clickTryOnLocator(tagName: string): Promise<void>;
-   findElement(tagElement: string, page?: Page): Locator<Element> | null;
-   tryLogin(props: LoginTypeProps): Promise<boolean>;
-   checkPopupToClose(props: PopupCloserProps): Promise<void>;
-   currentPage(): Page;
-   getUsersListData(): Promise<TUsersListProps>;
-   reactOnUser(props: UserReactProps): Promise<void>;
-}
+} from '../common/types/pageData.type';
+import { BCInterface } from '../common/types/browserController.type';
+import { HTMLdataParser } from '../common/helpers/dataParser';
 
 class BrowserController extends AbstractWorker implements BCInterface {
    static browser: Browser;
    static page: Page;
    static puppy: typeof puppeteer;
+   private dataParser: typeof HTMLdataParser;
    private userComparingList: { name: string; age: number }[] = [];
 
    constructor(puppeteer: PuppeteerNode) {
       super();
       BrowserController.puppy = puppeteer;
+      this.dataParser = HTMLdataParser;
    }
    currentPage(): Page {
       return BrowserController.page;
@@ -130,6 +111,7 @@ class BrowserController extends AbstractWorker implements BCInterface {
          .waitForSelector(popupHeading)
          .then(async () => {
             try {
+               this.log('...Trying close popup');
                for (const item of popupClosers) {
                   await this.clickTryOnLocator(item);
                }
@@ -189,10 +171,7 @@ class BrowserController extends AbstractWorker implements BCInterface {
                }
             })[0];
 
-            if (
-               displayedUserIndex === null ||
-               displayedUserIndex === undefined
-            ) {
+            if (!displayedUserIndex && displayedUserIndex !== 0) {
                throw Error('Noone user item showed');
             }
 
@@ -212,19 +191,9 @@ class BrowserController extends AbstractWorker implements BCInterface {
    private async parseUserFromHTML(
       htmlString: string
    ): Promise<{ age: number | null; name: string | null }> {
-      const regexName = /<div class="name">[\s\wа-яА-Я]+<\/div>/gi;
-      const regexAge = /<div class="age">\d+<\/div>/gi;
-
-      const nameString = htmlString.match(regexName)?.[0];
-      const matchName = nameString?.match(/>[\s\wа-яА-Я]+<\/div>/gi)?.[0];
-      const userName = matchName?.slice(1, -6);
-
-      const ageString = htmlString.match(regexAge)?.[0];
-      const matchAge = ageString?.match(/\d+/gi)?.[0];
-      const userAge = !matchAge ? null : Number(matchAge);
-
-      this.log(`__data_parsed: ${userName} : ${userAge}`);
-      return { age: userAge, name: userName ?? null };
+      const result = await this.dataParser(htmlString);
+      this.log(`__data_parsed: ${result.name} : ${result.age}`);
+      return result;
    }
 
    private async checkUsersOrder(

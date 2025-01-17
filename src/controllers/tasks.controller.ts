@@ -1,12 +1,12 @@
 import puppeteer, { Page } from 'puppeteer';
-import BrowserController, { BCInterface } from './browser.servise';
+import BrowserController, { BCInterface } from '../services/browser.servise';
 import { loginFormProps, loginData } from '../common/constants/credentials';
 import {
    AbstractTaskInterface,
    AbstractWorker,
    ITaskNames,
    TaskResponse,
-} from '../common/types/task-workers.type';
+} from '../common/types/taskWorkers.type';
 import {
    ActionSelectors,
    DataSelectors,
@@ -16,7 +16,7 @@ import {
 import {
    PopupCloserProps,
    TUsersListProps,
-} from '../common/types/page-data.type';
+} from '../common/types/pageData.type';
 
 class AbstractTask extends AbstractWorker implements AbstractTaskInterface {
    private sendResponse(
@@ -79,9 +79,6 @@ class TaskController extends AbstractTask implements ITaskInterface {
                activeUserHTML,
             }: TUsersListProps = await this.browser.getUsersListData();
 
-            this.log(`DO ::: usersCounter : ${TaskController.usersCounter}`);
-            this.log(`DO ::: currentIndex : ${activeUserIdx}`);
-
             if (TaskController.usersCounter === null) {
                TaskController.usersCounter = usersLength;
             }
@@ -119,7 +116,7 @@ class TaskController extends AbstractTask implements ITaskInterface {
          if (retries > 0) {
             await this.checkPopupFrame(taskName);
 
-            this.log(`retries to like, still ${retries} nums`);
+            this.log(`\x1b[31m Retrying to like.., still ${retries} retries`);
             this.delayFunction(
                async () => await this.startToLike(retries - 1),
                2000
@@ -162,7 +159,7 @@ class TaskController extends AbstractTask implements ITaskInterface {
          this.log((error as Error)?.message ?? error);
 
          if (retries > 0) {
-            this.log('retries to login');
+            this.log('\x1b[31m Retrying to Login.., still ${retries} retries');
             await this.browser.close();
             this.delayFunction(
                async () => await this.doLogin(retries - 1),

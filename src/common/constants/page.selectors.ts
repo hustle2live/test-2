@@ -1,4 +1,4 @@
-import { ITaskNames } from '../types/task-workers.type';
+import { ITaskNames } from '../types/taskWorkers.type';
 
 const ActionSelectors = {
    SIGN_IN_BUTTON: 'header a[href="/signin"]',

@@ -1,16 +1,5 @@
 import { type Page } from 'puppeteer';
-import fs from 'node:fs';
-
-function preparefolder(folderName?: string) {
-   if (!folderName) return;
-   try {
-      if (!fs.existsSync(folderName)) {
-         fs.mkdirSync(folderName);
-      }
-   } catch (err) {
-      console.error(err);
-   }
-}
+import { prepareFolder } from '../helpers/makedir';
 
 interface ITaskNames {
    login: string;
@@ -45,7 +34,7 @@ abstract class AbstractWorker implements WorkerInterface {
 
       if (path) {
          subDirPath = `${path}/`;
-         preparefolder(`./screenshots/${subDirPath}`);
+         prepareFolder(`./screenshots/${subDirPath}`);
       }
 
       await page.screenshot({
