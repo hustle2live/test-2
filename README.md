@@ -23,7 +23,7 @@ npm run dev
 
 ### 3. Run Tasks: Login and Likes
 
-To run the task, send a GET request (or follow steps on the page) to:
+To run the task, send a GET request (or just follow on the page) to:
 
 ```
 http://localhost:5000/api/client
