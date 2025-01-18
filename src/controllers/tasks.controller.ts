@@ -1,12 +1,7 @@
-import puppeteer, { Page } from 'puppeteer';
-import BrowserController, { BCInterface } from '../services/browser.servise';
+import { Page } from 'puppeteer';
+
 import { loginFormProps, loginData } from '../common/constants/credentials';
-import {
-   AbstractTaskInterface,
-   AbstractWorker,
-   ITaskNames,
-   TaskResponse,
-} from '../common/types/taskWorkers.type';
+import { ITaskNames, TaskResponse } from '../common/types/taskWorkers.type';
 import {
    ActionSelectors,
    DataSelectors,
@@ -17,29 +12,15 @@ import {
    PopupCloserProps,
    TUsersListProps,
 } from '../common/types/pageData.type';
+import { AbstractResponder } from './abstract.controller';
+import { BCInterface } from '../common/types/browserController.type';
 
-class AbstractTask extends AbstractWorker implements AbstractTaskInterface {
-   private sendResponse(
-      success: boolean,
-      message: string,
-      data?: TaskResponse['data'] | undefined
-   ): TaskResponse {
-      return { success, message, data };
-   }
-   public sendSuccess(data?: Pick<TaskResponse, 'data'>): TaskResponse {
-      return this.sendResponse(true, 'task completed', data);
-   }
-   public sendError(errorMessage: string): TaskResponse {
-      return this.sendResponse(false, errorMessage);
-   }
-}
-
-interface ITaskInterface {
+interface TasksInterface {
    doLogin: () => Promise<TaskResponse>;
    startToLike: () => Promise<TaskResponse | void>;
 }
 
-class TaskController extends AbstractTask implements ITaskInterface {
+class TaskController extends AbstractResponder implements TasksInterface {
    browser: BCInterface;
    isLoggedIn: boolean = false;
    private loginRetries: number = 3;
@@ -49,9 +30,9 @@ class TaskController extends AbstractTask implements ITaskInterface {
 
    static usersCounter: number | null = null;
 
-   constructor(BrowserController: BCInterface) {
+   constructor(controller: BCInterface) {
       super();
-      this.browser = BrowserController;
+      this.browser = controller;
       this.taskNames = TaskNames;
    }
 
@@ -94,28 +75,22 @@ class TaskController extends AbstractTask implements ITaskInterface {
                }
             }
 
+            await this.makeScreen(this.browser.currentPage(), taskName);
             await this.browser.reactOnUser({
                userData: activeUserHTML,
                allowedAge: this.ageTreshold,
             });
-            await this.makeDelayScreenshot(
-               this.browser.currentPage(),
-               taskName,
-               2000
-            );
 
             TaskController.usersCounter = TaskController.usersCounter - 1;
          } while (TaskController.usersCounter >= 0);
 
          return this.sendSuccess();
       } catch (error) {
-         this.makeScreen(BrowserController.page, this.taskNames.likes);
-         this.log((error as Error)?.message ?? error);
-         this.log(`\x1b[31m ${taskName} - failed \x1b[30m `);
+         this.makeScreen(this.browser.currentPage(), taskName);
+         this.log(this.handleError(error));
 
          if (retries > 0) {
             await this.checkPopupFrame(taskName);
-
             this.log(
                `\x1b[31m Retrying to like.., \x1b[30m still ${retries} retries`
             );
@@ -124,9 +99,10 @@ class TaskController extends AbstractTask implements ITaskInterface {
                2000
             );
          } else {
+            this.log(`\x1b[31m ${taskName} - failed \x1b[30m `);
             this.log('\x1b[33m Limit of retries is riched. Task ended.');
          }
-         return this.sendError((error as Error)?.message ?? error);
+         return this.sendError(this.handleError(error));
       }
    }
 
@@ -138,9 +114,12 @@ class TaskController extends AbstractTask implements ITaskInterface {
       try {
          await this.browser.init();
          const page = await this.browser.browsePage(URLPathSelectors.MAIN_URL);
-         await this.makeDelayScreenshot(page, taskName);
 
-         await page.locator(ActionSelectors.SIGN_IN_BUTTON).click();
+         const signIn = await page.waitForSelector(
+            ActionSelectors.SIGN_IN_BUTTON
+         );
+
+         await signIn?.click();
 
          await this.makeDelayScreenshot(page, taskName, 2000);
 
@@ -149,20 +128,16 @@ class TaskController extends AbstractTask implements ITaskInterface {
             dataProps: loginData,
          });
          this.isLoggedIn = loginResult;
-         await this.makeDelayScreenshot(page, taskName, 2000);
-
-         if (!loginResult) {
-            throw new Error(`\x1b[31m ${taskName} - failed \x1b[30m `);
-         }
 
          await this.checkPopupFrame(taskName);
          return this.sendSuccess();
       } catch (error) {
-         this.log((error as Error)?.message ?? error);
+         this.log(this.handleError(error));
+         await this.makeScreen(this.browser.currentPage(), taskName);
 
          if (retries > 0) {
             this.log(
-               '\x1b[31m Retrying to Login.., \x1b[30m still ${retries} retries'
+               `\x1b[31m Retrying to Login.., \x1b[30m still ${retries} retries`
             );
             await this.browser.close();
             this.delayFunction(
@@ -173,8 +148,12 @@ class TaskController extends AbstractTask implements ITaskInterface {
             this.log('\x1b[33m Limit of retries is riched. Task ended.');
          }
 
-         return this.sendError((error as Error)?.message ?? error);
+         return this.sendError(this.handleError(error));
       }
+   }
+
+   private handleError(error: unknown): string {
+      return error instanceof Error ? error.message : String(error);
    }
 
    private async checkPopupFrame(
@@ -199,8 +178,4 @@ class TaskController extends AbstractTask implements ITaskInterface {
    }
 }
 
-const taskController = new TaskController(new BrowserController(puppeteer));
-
-export { taskController, type TaskResponse };
-
-export default TaskController;
+export { TaskController, type TaskResponse };

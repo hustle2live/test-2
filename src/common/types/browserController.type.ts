@@ -1,21 +1,42 @@
-import { LaunchOptions, Locator, Page } from 'puppeteer';
+import { LaunchOptions, Page } from 'puppeteer';
 import { WorkerInterface } from './taskWorkers.type';
 import { LoginTypeProps } from '../constants/credentials';
-import { PopupCloserProps, TUsersListProps, UserReactProps } from './pageData.type';
+import {
+   PopupCloserProps,
+   TUsersListProps,
+   UserReactProps,
+} from './pageData.type';
 
-interface BrowserControllerInterface extends WorkerInterface {
-   init(options?: LaunchOptions): Promise<void>;
-   close(): Promise<void>;
-   restart(): Promise<void>;
-   setPage(data: Page): void;
+type BasicBrowserService = Pick<
+   IPuppeteerService,
+   'init' | 'close' | 'restart'
+>;
+
+interface BCInterface extends WorkerInterface, BasicBrowserService {
+   currentPage(): Page;
    browsePage(link: string): Promise<Page>;
-   clickTryOnLocator(tagName: string): Promise<void>;
-   findElement(tagElement: string, page?: Page): Locator<Element> | null;
    tryLogin(props: LoginTypeProps): Promise<boolean>;
    checkPopupToClose(props: PopupCloserProps): Promise<void>;
-   currentPage(): Page;
    getUsersListData(): Promise<TUsersListProps>;
    reactOnUser(props: UserReactProps): Promise<void>;
 }
 
-export { BrowserControllerInterface as BCInterface };
+interface IUserService {
+   checkUsersOrder(user: TUser): Promise<TUser[]>;
+   parseUserFromHTML(html: string): Promise<TUserParsed>;
+}
+
+interface IPuppeteerService {
+   init(options?: LaunchOptions): Promise<void>;
+   close(): Promise<void>;
+   restart(): Promise<void>;
+   newPage(url: string): Promise<Page>;
+   getCurrentPage(): Page;
+   tryClickOnLocator(target: string): Promise<void>;
+}
+
+type TUserParsed = { age: number | null; name: string | null };
+
+type TUser = { name: string; age: number };
+
+export { BCInterface, IUserService, IPuppeteerService, TUserParsed, TUser };

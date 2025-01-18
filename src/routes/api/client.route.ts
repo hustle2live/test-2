@@ -1,5 +1,14 @@
 import { Router } from 'express';
-import { taskController, TaskResponse } from '../../controllers/tasks.controller';
+import {
+   TaskController,
+   TaskResponse,
+} from '../../controllers/tasks.controller';
+import { userService } from '../../services/user.service';
+import { puppeteerService } from '../../services/puppeteer.service';
+import BrowserController from '../../services/browser.service';
+
+const controller = new BrowserController(puppeteerService, userService);
+const taskController = new TaskController(controller);
 
 const clientRouter = Router();
 

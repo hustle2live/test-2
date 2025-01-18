@@ -1,5 +1,4 @@
 import { type Page } from 'puppeteer';
-import { prepareFolder } from '../helpers/makedir';
 
 interface ITaskNames {
    login: string;
@@ -12,7 +11,7 @@ interface TaskResponse {
    data?: Page | HTMLBodyElement | {};
 }
 
-interface AbstractTaskInterface {
+interface ResponderInterface {
    sendSuccess: (props: Omit<TaskResponse, 'success'>) => void;
    sendError: (message: string) => void;
 }
@@ -23,37 +22,4 @@ interface WorkerInterface {
    delayFunction: <T>(fn: Function, ms: number) => Promise<T>;
 }
 
-abstract class AbstractWorker implements WorkerInterface {
-   static imageCounter: number = 1;
-   log(m: string): void {
-      console.log(`~log:: ${m}`);
-   }
-   async makeScreen(page: Page, path?: string): Promise<void> {
-      if (!page) return;
-      let subDirPath = '';
-
-      if (path) {
-         subDirPath = `${path}/`;
-         prepareFolder(`./screenshots/${subDirPath}`);
-      }
-
-      await page.screenshot({
-         path: `./screenshots/${subDirPath}img-${AbstractWorker.imageCounter}.png`,
-      });
-      this.log(`\x1b[36m Screenshot ${AbstractWorker.imageCounter} captured!\x1b[30m `);
-      AbstractWorker.imageCounter++;
-   }
-   async delayFunction<T>(fn: Function, ms: number): Promise<T> {
-      await new Promise((resolve) => setTimeout(resolve, ms));
-      this.log(`_delayed for ${ms} ms`);
-      return await fn();
-   }
-}
-
-export {
-   ITaskNames,
-   TaskResponse,
-   AbstractTaskInterface,
-   WorkerInterface,
-   AbstractWorker,
-};
+export { ITaskNames, TaskResponse, ResponderInterface, WorkerInterface };
