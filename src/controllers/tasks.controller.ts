@@ -74,8 +74,11 @@ class TaskController extends AbstractResponder implements TasksInterface {
                      usersLength - (activeUserIdx + 1);
                }
             }
+            await this.makeDelayScreenshot(
+               this.browser.currentPage(),
+               taskName
+            );
 
-            await this.makeScreen(this.browser.currentPage(), taskName);
             await this.browser.reactOnUser({
                userData: activeUserHTML,
                allowedAge: this.ageTreshold,
