@@ -1,4 +1,4 @@
-## Test Assignment with TypeScript, Node.js, and Puppeteer
+<!-- ## Test Assignment with TypeScript, Node.js, and Puppeteer
 
 ### 1. Download Repository & Setup
 
@@ -37,4 +37,4 @@ After starting the application, you can check the console (Node.js, VS Code, etc
 
 #### Screenshot Folder:
 
-Tasks will also create screenshots and save them to the folder `./screenshots/task_name`
+Tasks will also create screenshots and save them to the folder `./screenshots/task_name` -->
