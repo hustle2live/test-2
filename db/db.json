@@ -2,26 +2,35 @@
     "book": [
         {
             "id": "1",
-            "title": "a title",
-            "author": "Homer",
+            "title": "running a marathon",
+            "author": "Harry Rabbit",
             "category_name": "sport",
+            "ISBN": "978-617-8111-27-8",
+            "created_at": "2025-03-10 15:30:00",
+            "updated_at": null
+        },
+        {
+            "id": "2",
+            "title": "Something happens",
+            "author": "William Lawson",
+            "category_name": "education",
             "ISBN": "978-617-8111-27-8",
             "created_at": "2025-03-10 15:30:00",
             "updated_at": null
         }
     ],
-    "category": [
+    "categories": [
         {
             "id": "1",
             "name": "sport"
         },
         {
             "id": "2",
-            "name": "nature"
+            "name": "psychology"
         },
         {
             "id": "3",
-            "name": "vehicles"
+            "name": "education"
         }
     ],
     "profile": {
