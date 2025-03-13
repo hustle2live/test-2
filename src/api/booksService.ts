@@ -22,7 +22,11 @@ const BooksHttpService = (): BookService => {
             throw new Error(`HTTP error! Cant GET One Book. Status: ${response.status}`);
          }
 
-         return await response.json();
+         const data = await response.json();
+
+         // console.log(data);
+
+         return data;
       },
 
       getAll: async () => {
@@ -35,7 +39,9 @@ const BooksHttpService = (): BookService => {
             throw new Error(`HTTP error! Cant GET All Books. Status: ${response.status}`);
          }
 
-         return response.json();
+         const data = await response.json();
+
+         return data;
       },
 
       create: async (bookData: BookData) => {
@@ -49,7 +55,9 @@ const BooksHttpService = (): BookService => {
             throw new Error(`HTTP error! Can't POST new book. Status: ${response.status}`);
          }
 
-         return response.json();
+         const data = await response.json();
+
+         return data;
       },
 
       update: async (bookId: string, bookData: BookData) => {
@@ -63,7 +71,9 @@ const BooksHttpService = (): BookService => {
             throw new Error(`HTTP error! Can't UPDATE new book. Status: ${response.status}`);
          }
 
-         return response.json();
+         const data = await response.json();
+
+         return data;
       },
 
       delete: async (bookId: string) => {
@@ -76,7 +86,9 @@ const BooksHttpService = (): BookService => {
             throw new Error(`HTTP error! Can't DELETE book. Status: ${response.status}`);
          }
 
-         return response.json();
+         const data = await response.json();
+
+         return data;
       }
    };
 };

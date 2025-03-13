@@ -4,6 +4,6 @@ export type BookData = {
    author: string;
    category_name: string;
    ISBN: string;
-   created_at: Date | string;
+   created_at: string;
    updated_at: string | null;
 };

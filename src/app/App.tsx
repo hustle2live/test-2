@@ -4,6 +4,7 @@ import { Book } from '../components/book/book';
 import { Header } from '../components/header/header';
 import { Footer } from '../components/footer/footer';
 import { useBookContext } from '../hooks/useBookContext';
+import { useBookService } from '../hooks/useBookService';
 
 const App: React.FC = () => {
    const { data, loading, error } = useBookContext();
@@ -11,6 +12,10 @@ const App: React.FC = () => {
    console.log(data);
    console.log(loading);
    console.log(error);
+
+   // const book = useBookService.getOne('1');
+
+   // console.log('book: ' + book);
 
    return (
       <Routes>
