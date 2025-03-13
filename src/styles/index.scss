@@ -41,7 +41,7 @@ body {
 .header,
 .footer {
    background-color: #f5f5f5;
-   color: #fff;
+   color: #282828;
    padding: 20px;
 }
 
@@ -98,6 +98,27 @@ button {
    }
 }
 
+.loader {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 50px;
+   height: 50px;
+   border: 5px solid #f3f3f3; /* Light gray */
+   border-top: 5px solid #3498db; /* Blue */
+   border-radius: 50%;
+   animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+   0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+   }
+   100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+   }
+}
+
 .dashboard {
    width: 80%;
    margin: 0 auto;
@@ -148,16 +169,24 @@ button {
       align-items: center;
       padding: 0;
       height: 100%;
+
       & > button {
          border-color: rgb(209, 209, 209);
-         flex-basis: 30%;
+         flex-basis: 35%;
          border-radius: 3px;
-         font-size: small;
          white-space: nowrap;
-         padding: 0.5rem 0.8rem;
-         flex-shrink: 1;
+         padding: 0.5rem 0.25rem;
+         flex-shrink: 5;
+         &:nth-of-type(3) {
+            flex-shrink: 0;
+            flex-grow: 5;
+         }
       }
    }
+}
+
+.smaller {
+   font-size: 0.85rem;
 }
 
 @media (prefers-color-scheme: light) {
@@ -170,5 +199,120 @@ button {
    }
    button {
       background-color: #f9f9f9;
+   }
+}
+
+.book-page {
+   margin: 0 auto;
+}
+
+.form {
+   width: auto;
+   border-radius: 1.8rem;
+   border: 2px solid rgb(128, 149, 208);
+   background: rgb(239, 239, 239);
+   padding: 4rem 5rem;
+   display: flex;
+   flex-direction: column;
+   gap: 2rem;
+   align-items: center;
+
+   &__success_text,
+   &__error_text {
+      height: 2rem;
+      margin: 0;
+      font-weight: 600;
+      color: red;
+      font-size: 1.6rem;
+   }
+
+   &__success_text {
+      font-size: 1.4rem;
+      color: green;
+   }
+
+   &__heading {
+      margin: 1rem auto 0;
+   }
+
+   &__row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+   }
+
+   label {
+      font-size: 1.6rem;
+      padding: 0 1rem;
+      width: 40%;
+   }
+
+   select,
+   input {
+      font-size: 1.45rem;
+      padding: 0.5rem 0;
+      width: 50%;
+      border: none;
+      outline: none;
+      background: transparent;
+      border-bottom: 1px solid black;
+   }
+
+   button {
+      margin: 1rem 0.4rem;
+      font-size: 1.4rem;
+      border-radius: 6px;
+      font-weight: 600;
+      min-width: 100px;
+      border: 2px solid rgb(62, 60, 60);
+      white-space: nowrap;
+   }
+}
+
+@media screen and (max-width: 1024px) {
+   .dashboard {
+      width: 98vw;
+   }
+   .table {
+      overflow: scroll;
+   }
+}
+@media screen and (max-width: 768px) {
+   h1,
+   h2,
+   h3 {
+      font-size: 2rem;
+   }
+   .filter__show {
+      gap: 5px;
+   }
+   .form {
+      gap: 0.7rem;
+      padding: 2rem 0.4rem;
+      font-size: 16px;
+      max-width: 98vw;
+
+      label {
+         width: 35%;
+         flex-shrink: 1;
+      }
+
+      label,
+      select,
+      option,
+      button,
+      p,
+      input {
+         font-size: 14px;
+      }
+   }
+   .table-wrapper {
+      max-width: 100vw;
+      overflow: scroll;
+   }
+
+   .table {
+      width: 800px;
    }
 }

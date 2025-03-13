@@ -14,7 +14,6 @@ export const Header: React.FC = () => {
             <NavLink to='/book' end>
                Add Book
             </NavLink>
-            <button>Contacts</button>
          </nav>
       </header>
    );

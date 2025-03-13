@@ -7,6 +7,12 @@ export const ApiPath = {
    PROFILE: '/profile'
 } as const;
 
+export const HTTPPath = {
+   HOMEPAGE: '/',
+   BOOKS: '/book',
+   BOOK_EDIT: '/book/:bookId'
+} as const;
+
 export const Categories = {
    sport: 'sport',
    psychology: 'psychology',

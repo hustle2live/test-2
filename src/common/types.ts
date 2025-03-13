@@ -8,3 +8,9 @@ export type BookData = {
    updated_at: string | null;
    isActive: boolean;
 };
+
+export enum ShowFilterType {
+   Active = 'active',
+   Deactivated = 'deactivated',
+   All = 'all'
+}
