@@ -6,6 +6,7 @@ interface BookContextType {
    data: BookData[];
    loading: boolean;
    error: string | null;
+   fetchHandler: () => void;
 }
 
 const BookDataContext = createContext<BookContextType | null>(null);
@@ -15,25 +16,36 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
    const [loading, setLoading] = useState<boolean>(true);
    const [error, setError] = useState<string | null>(null);
 
+   const [trigger, setTrigger] = useState(0);
+
    const bookService = BooksHttpService();
 
-   useEffect(() => {
-      const fetchData = async () => {
-         try {
-            const books = await bookService.getAll();
-            if (!books) throw new Error('Failed to fetch books');
-            setData(books); // ?? []
-         } catch (err) {
-            setError(err instanceof Error ? err.message : String(err));
-         } finally {
-            setLoading(false);
-         }
-      };
+   const fetchBookData = async () => {
+      try {
+         const books = await bookService.getAll();
+         if (!books) throw new Error('Failed to fetch books');
+         setData(books);
+      } catch (err) {
+         setError(err instanceof Error ? err.message : String(err));
+      } finally {
+         setLoading(false);
+      }
+   };
 
-      fetchData();
+   const fetchHandler = () => {
+      const changeTrigger = () => setTrigger(trigger + 1);
+      setTimeout(changeTrigger, 0);
+   };
+
+   useEffect(() => {
+      fetchBookData();
    }, []);
 
-   const contextValues = useMemo(() => ({ data, loading, error }), [data, loading, error]);
+   useEffect(() => {
+      fetchBookData();
+   }, [trigger]);
+
+   const contextValues = useMemo(() => ({ data, loading, error, fetchHandler }), [data, loading, error, fetchHandler]);
 
    return <BookDataContext.Provider value={contextValues}>{children}</BookDataContext.Provider>;
 };

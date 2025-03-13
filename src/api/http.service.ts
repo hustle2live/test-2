@@ -9,7 +9,7 @@ type ApiParams = {
 };
 
 type HttpRequestProps = {
-   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
    url: string;
    headers?: RequestInit['headers'];
    body?: RequestInit['body'];

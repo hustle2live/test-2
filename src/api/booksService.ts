@@ -1,4 +1,5 @@
 import { BookData } from '../common/types';
+import { useBookContext } from '../hooks/useBookContext';
 import { ApiPath } from './apiPath';
 import { createURL, httpRequest } from './http.service';
 
@@ -6,7 +7,7 @@ interface BookService {
    getOne: (bookId: string) => Promise<BookData[] | null>;
    getAll: () => Promise<BookData[] | null>;
    create: (bookData: BookData) => Promise<BookData[] | null>;
-   update: (bookId: string, bookData: BookData) => Promise<BookData[] | null>;
+   update: (bookId: string, bookData: Partial<BookData>) => Promise<BookData[] | null>;
    delete: (bookId: string) => Promise<BookData[] | null>;
 }
 
@@ -23,9 +24,6 @@ const BooksHttpService = (): BookService => {
          }
 
          const data = await response.json();
-
-         // console.log(data);
-
          return data;
       },
 
@@ -38,9 +36,7 @@ const BooksHttpService = (): BookService => {
          if (!response.ok) {
             throw new Error(`HTTP error! Cant GET All Books. Status: ${response.status}`);
          }
-
          const data = await response.json();
-
          return data;
       },
 
@@ -56,14 +52,13 @@ const BooksHttpService = (): BookService => {
          }
 
          const data = await response.json();
-
          return data;
       },
 
-      update: async (bookId: string, bookData: BookData) => {
+      update: async (bookId: string, bookData: Partial<BookData>) => {
          const response = await httpRequest({
             url: createURL({ endpoint: ApiPath.BOOKS_ALL, params: { id: bookId } }),
-            method: 'GET',
+            method: 'PATCH',
             body: JSON.stringify(bookData)
          });
 
@@ -72,7 +67,7 @@ const BooksHttpService = (): BookService => {
          }
 
          const data = await response.json();
-
+         console.log(data);
          return data;
       },
 

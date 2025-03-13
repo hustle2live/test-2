@@ -6,4 +6,5 @@ export type BookData = {
    ISBN: string;
    created_at: string;
    updated_at: string | null;
+   isActive: boolean;
 };

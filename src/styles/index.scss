@@ -99,12 +99,23 @@ button {
 }
 
 .dashboard {
+   width: 80%;
+   margin: 0 auto;
+}
+
+.filter {
+   &__show {
+      justify-self: flex-end;
+      align-self: flex-end;
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 2.3rem;
+      padding-right: 1ch;
+   }
 }
 
 .table {
-   width: 80%;
-   margin: 0 auto;
-   padding: 20px;
+   padding: 0;
 
    &__row {
       box-sizing: border-box;
@@ -113,6 +124,11 @@ button {
       &-title {
          text-align: center;
          font-weight: bold;
+      }
+
+      &_muted {
+         background-color: #213547;
+         color: #fff;
       }
    }
 
@@ -137,6 +153,7 @@ button {
          flex-basis: 30%;
          border-radius: 3px;
          font-size: small;
+         white-space: nowrap;
          padding: 0.5rem 0.8rem;
          flex-shrink: 1;
       }
