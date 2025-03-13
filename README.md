@@ -1,18 +1,17 @@
 # React + TypeScript Application
 
-### To Run JSON-Server Type:
+### To Start Application:
 
-`npx json-server .\db\db.json`
-
-
-##
-
-### To Start Application type:
-
-install dependencies: `npm install`
-
-run application: `npm run dev`
-
+0. Download Repository
 
 ##
 
+###
+
+1. Run JSON-Server Type: `npx json-server .\db\db.json`
+
+2. install dependencies: `npm install`
+
+3. run application: `npm run dev`
+
+##
