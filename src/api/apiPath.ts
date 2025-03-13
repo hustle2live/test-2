@@ -1,10 +1,10 @@
+export const baseURL = 'http://localhost:3000';
+
 export const ApiPath = {
-   baseURL: 'http://localhost:3000',
-   endpoints: {
-      book: '/book',
-      categories: '/categories',
-      profile: '/profile',
-   }
+   BOOKS_ALL: '/books',
+   BOOK_ONE: '/books/:id',
+   CATEGORIES: '/categories',
+   PROFILE: '/profile'
 } as const;
 
 export const Categories = {
