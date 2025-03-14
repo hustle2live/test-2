@@ -11,9 +11,9 @@ const createButton = (type: 'edit' | 'delete' | 'activate', action: ActionType =
    return button;
 };
 
-type TypeActions = { fetchBooks: () => void; navigate: NavigateFunction };
+type AddActionsType = { fetchBooks: () => void; navigate: NavigateFunction };
 
-const createActions = (buttonId: string, active: boolean, addActions: TypeActions) => {
+const createActions = (buttonId: string, active: boolean, addActions: AddActionsType) => {
    const { fetchBooks, navigate } = addActions;
 
    const onEdit = () => navigate(`${HTTPPath.BOOKS}/${buttonId}`);
