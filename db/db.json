@@ -1,0 +1,101 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "running a marathon",
+      "author": "Harry Rabbit",
+      "category_name": "sport",
+      "ISBN": "978-617-8111-27-8",
+      "created_at": "2025-03-10 23:30:00",
+      "updated_at": null,
+      "isActive": false
+    },
+    {
+      "id": "2",
+      "title": "Something happens",
+      "author": "William Lawson",
+      "category_name": "education",
+      "ISBN": "978-617-8111-27-8",
+      "created_at": "2025-03-10 12:30:00",
+      "updated_at": null,
+      "isActive": false
+    },
+    {
+      "id": "3",
+      "title": "Running a marathon",
+      "author": "Harry Rabbit",
+      "category_name": "sport",
+      "ISBN": "978-617-8111-27-8",
+      "created_at": "2025-03-10 23:30:00",
+      "updated_at": "3/14/2025, 7:29:58 AM",
+      "isActive": true
+    },
+    {
+      "id": "6",
+      "title": "Running a marathon",
+      "author": "Harry Rabbit",
+      "category_name": "sport",
+      "ISBN": "978-617-8111-27-8",
+      "created_at": "2025-03-10 23:30:00",
+      "updated_at": "3/14/2025, 7:34:11 AM",
+      "isActive": false
+    },
+    {
+      "id": "7",
+      "title": "SSSSss",
+      "author": "Emy",
+      "category_name": "sport",
+      "ISBN": "978-617-8111-27-8",
+      "created_at": "2025-03-10 23:30:00",
+      "updated_at": "3/13/2025, 11:04:22 PM",
+      "isActive": true
+    },
+    {
+      "id": "9",
+      "title": "Comedy Room",
+      "author": "Jimmy Ba",
+      "category_name": "psychology",
+      "ISBN": "978-617-8111-27-8",
+      "created_at": "3/13/2025, 11:08:30 PM",
+      "updated_at": "3/14/2025, 12:00:27 AM",
+      "isActive": false
+    },
+    {
+      "id": "1614b04e-33e3-4f27-9e0b-b79c8909ff9b",
+      "title": "New ",
+      "author": "William Lawson",
+      "category_name": "education",
+      "ISBN": "978-617-8111-27-8",
+      "created_at": "3/13/2025, 11:41:36 PM",
+      "updated_at": null,
+      "isActive": true
+    },
+    {
+      "id": "d73e7dca-0d24-4bca-9e25-ab3e50f385e5",
+      "title": "BBBe",
+      "author": "Harry Rabbit 4",
+      "category_name": "education",
+      "ISBN": "978-617-8111-27-8",
+      "created_at": "3/14/2025, 7:34:39 AM",
+      "updated_at": null,
+      "isActive": false
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "sport"
+    },
+    {
+      "id": "2",
+      "name": "psychology"
+    },
+    {
+      "id": "3",
+      "name": "education"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

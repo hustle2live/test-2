@@ -1,40 +1,21 @@
-## Test Assignment with TypeScript, Node.js, and Puppeteer
+# React + TypeScript Application
 
-### 1. Download Repository & Setup
+### Install Application:
 
-```
-git clone https://github.com/hustle2live/test-2.git
-```
+- Download Repository
 
-```
-npm install
-```
+- Install dependencies: `npm install`
+##
 
-### 2. Start Application (Production or Development)
-
-```
-npm start
-```
-__OR__
-```
-npm run dev
-```
+### To Run Application:
 
 
-### 3. Run Tasks: Login and Likes
+1. Start JSON-Server : `npx json-server .\db\db.json`
 
-To run the task, send a GET request (or just follow on the page) to:
+2. Start React App : `npm run dev`
 
-```
-http://localhost:5000/api/client
-```
+##
 
-## Features
+    Make sure JSON-Server is running at [http://localhost:3000](http://localhost:3000).
 
-#### Logger:
-
-After starting the application, you can check the console (Node.js, VS Code, etc.) for logs generated during task completion.
-
-#### Screenshot Folder:
-
-Tasks will also create screenshots and save them to the folder `./screenshots/task_name`
+    If it's running on a different port, update the `baseUrl` in `src/api/apiPath.ts`.
