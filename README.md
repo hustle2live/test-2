@@ -16,6 +16,6 @@
 
 ##
 
-    Make sure JSON-Server is running at [http://localhost:3000](http://localhost:3000).
+Make sure JSON-Server is running at [http://localhost:3000](http://localhost:3000).
 
-    If it's running on a different port, update the `baseUrl` in `src/api/apiPath.ts`.
+If it's running on a different port, update the `baseUrl` in `src/api/apiPath.ts`.
