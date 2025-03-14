@@ -31,7 +31,7 @@ export const Dashboard: React.FC = () => {
 
    return (
       <div className='dashboard'>
-         <h1>Hello World!</h1>
+         <h2>Dashboard</h2>
 
          <div className='filter filter__show'>
             <label htmlFor='filter-action'>Filter </label>{' '}

@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { toZonedTime } from 'date-fns-tz';
+import { formatInTimeZone, toZonedTime } from 'date-fns-tz';
 
 export const formatTimeStamp = (date: string): string => {
    try {
@@ -11,3 +11,6 @@ export const formatTimeStamp = (date: string): string => {
    }
    return 'invalid date';
 };
+
+export const formatInUTC = (date: string | number | Date): string =>
+   formatInTimeZone(date, 'UTC', 'yyyy-MM-dd HH:mm:ss');
