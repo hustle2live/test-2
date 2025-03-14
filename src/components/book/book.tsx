@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useBookService } from '../../hooks/useBookService';
 import { BookData } from '../../common/types';
 import { HTTPPath } from '../../api/apiPath';
+import { formatInUTC } from '../dashboard/timeStampFormatter';
 
 export const BookPage: React.FC = (): ReactNode => {
    const { bookId } = useParams();
@@ -30,7 +31,7 @@ export const BookPage: React.FC = (): ReactNode => {
 
    async function handleSubmit(event: React.FormEvent) {
       event.preventDefault();
-      const currentDate = new Date().toLocaleString();
+      const currentDate = formatInUTC(new Date());
       const uuid = currentBook ? currentBook.id : uniqueId();
 
       const isValid = [title, name, uuid, category, standart].every((elem) => Boolean(elem));
@@ -95,7 +96,7 @@ export const BookPage: React.FC = (): ReactNode => {
 
    return (
       <div className='book-page'>
-         <h1>Book page</h1>
+         <h2>Book page</h2>
 
          <form className='form' onSubmit={handleSubmit}>
             <h2 className='form__heading'>{!bookId ? 'Add New Book' : 'Edit Current Book'}</h2>
