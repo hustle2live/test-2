@@ -22,12 +22,12 @@
     },
     {
       "id": "3",
-      "title": "running a marathon",
+      "title": "Running a marathon",
       "author": "Harry Rabbit",
       "category_name": "sport",
       "ISBN": "978-617-8111-27-8",
       "created_at": "2025-03-10 23:30:00",
-      "updated_at": null,
+      "updated_at": "3/14/2025, 7:29:58 AM",
       "isActive": true
     },
     {
@@ -56,6 +56,7 @@
       "author": "Emy",
       "category_name": "sport",
       "ISBN": "978-617-8111-27-8",
+      "created_at": "2025-03-10 23:30:00",
       "updated_at": "3/13/2025, 11:04:22 PM",
       "isActive": true
     },
